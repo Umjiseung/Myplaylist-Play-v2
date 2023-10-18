@@ -1,6 +1,7 @@
 package com.project.playlist.domain.user.controller;
 
 
+import com.project.playlist.domain.user.data.dto.response.MyProfileInfoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/profil")
-    public ResponseEntity<Void> myProfilInfo() {
+    @GetMapping("/profile")
+    public ResponseEntity<MyProfileInfoResponse> myProfileInfo() {
+
 
     }
 
