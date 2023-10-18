@@ -17,7 +17,8 @@ public class PlayListService {
 
     @Transactional
     public ResponseEntity<PlayListWriteResponse> playListWrite(PlayListWriteRequest writeRequest) {
-        if (writeRequest.getMusicName().isBlank() || writeRequest.getMusicURL().isBlank()) throw
+        if (writeRequest.getMusicName().isBlank() || writeRequest.getMusicURL().isBlank()) throw new IllegalArgumentException("필수항목이 비어있습니다.");
+        return
     }
 
 }

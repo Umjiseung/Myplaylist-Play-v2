@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/playlist")
 public class PlayListController {
 
-    private PlayListService boardListService;
+    private final PlayListService boardListService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> write(@RequestBody PlayListWriteRequest writeRequest) {
-        boardListService.PlayListWrite(writeRequest);
+        boardListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
