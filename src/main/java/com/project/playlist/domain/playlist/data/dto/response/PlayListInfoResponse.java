@@ -1,18 +1,22 @@
-package com.project.playlist.domain.playlist.data.dto.request;
-
+package com.project.playlist.domain.playlist.data.dto.response;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public class PlayListWriteRequest {
+public class PlayListInfoResponse {
     private Long id;
+
     private String studentId;
-    private String StudentName;
+
+    private String studentName;
+
     private String musicName;
+
     private String musicURL;
+
     private String musicCategory;
 
 }

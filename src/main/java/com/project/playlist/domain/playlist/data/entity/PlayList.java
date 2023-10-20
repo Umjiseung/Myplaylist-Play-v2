@@ -11,22 +11,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "TABLE_PLAYLIST")
 public class PlayList {
 
     @Id
-    @GeneratedValue
-    @Column(name = "PLAYLIST_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "PLAYLIST_name")
+    private String studentId;
+
+    private String studentName;
+
     private String musicName;
 
-    @Column(name = "PLAYLIST_url")
     private String musicURL;
 
-
-    @Column(name = "PLAYLIST_category")
     private String musicCategory;
 
 }
