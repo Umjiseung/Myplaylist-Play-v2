@@ -33,7 +33,7 @@ public class PlayListController {
     // 모든 Playlist 가져오기
     @GetMapping
     public ResponseEntity<List<PlayListGetsResponse>> musicGets() {
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(playListService.playListGets(),HttpStatus.OK);
     }
 
     // playlist 상세보기

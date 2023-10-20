@@ -1,15 +1,15 @@
 package com.project.playlist.domain.playlist.data.dto.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PlayListUpdateRequest {
-    private Long id;
-    private String studentId;
-    private String StudentName;
-    private String musicName;
-    private String musicURL;
-    private String musicCategory;
+    private final Long id;
+    private final String studentId;
+    private final String StudentName;
+    private final String musicName;
+    private final String musicURL;
+    private final String musicCategory;
 }

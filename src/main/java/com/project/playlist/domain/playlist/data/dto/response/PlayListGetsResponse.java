@@ -1,17 +1,17 @@
 package com.project.playlist.domain.playlist.data.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PlayListGetsResponse {
-    private Long id;
-    private String studentId;
-    private String studentName;
-    private String musicName;
-    private String musicURL;
-    private String musicCategory;
+    private final Long id;
+    private final String studentId;
+    private final String StudentName;
+    private final String musicName;
+    private final String musicURL;
+    private final String musicCategory;
 
 }
