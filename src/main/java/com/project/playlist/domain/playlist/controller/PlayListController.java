@@ -1,8 +1,12 @@
 package com.project.playlist.domain.playlist.controller;
 
+import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
+import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResponse;
+import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
+import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +25,7 @@ public class PlayListController {
 
     // Playlist 작성
     @PostMapping("/write")
-    public ResponseEntity<Void> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
+    public ResponseEntity<PlayListWriteResponse> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -40,9 +44,15 @@ public class PlayListController {
 
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMusic(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id) {
         playListService.playListDelete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PlayListUpdateResponse> musicUpdate(@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
+        playListService.playListUpdate(updateRequest,id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
