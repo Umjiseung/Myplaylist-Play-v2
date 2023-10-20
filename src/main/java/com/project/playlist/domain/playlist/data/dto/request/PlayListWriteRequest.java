@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 public class PlayListWriteRequest {
     private final Long id;
     private final String studentId;
-    private final String StudentName;
+    private final String studentName;
     private final String musicName;
     private final String musicURL;
     private final String musicCategory;
