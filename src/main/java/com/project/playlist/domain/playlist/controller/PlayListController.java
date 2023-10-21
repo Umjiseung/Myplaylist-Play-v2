@@ -1,5 +1,6 @@
 package com.project.playlist.domain.playlist.controller;
 
+import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
@@ -44,8 +45,8 @@ public class PlayListController {
 
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id) {
-        playListService.playListDelete(id);
+    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id, PlayListDeleteRequest deleteRequest) {
+        playListService.playListDelete(id, deleteRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

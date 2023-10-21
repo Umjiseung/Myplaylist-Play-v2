@@ -25,6 +25,10 @@ public class PlayList {
 
     private String musicURL;
 
+    private String musicContent;
+
     private String musicCategory;
+
+    private String playListPW;
 
 }

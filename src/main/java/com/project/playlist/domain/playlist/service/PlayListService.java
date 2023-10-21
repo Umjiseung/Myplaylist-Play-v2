@@ -1,6 +1,7 @@
 package com.project.playlist.domain.playlist.service;
 
 
+import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -32,10 +34,12 @@ public class PlayListService {
                 .studentName(writeRequest.getStudentName())
                 .musicName(writeRequest.getMusicName())
                 .musicURL(writeRequest.getMusicURL())
+                .musicContent(writeRequest.getMusicContent())
                 .musicCategory(writeRequest.getMusicCategory())
+                .playListPW(writeRequest.getPlayListPW())
                 .build();
         song = playListRepository.save(song);
-        return new PlayListWriteResponse(song.getId(),song.getStudentId(),song.getStudentName(),song.getMusicName(),song.getMusicURL(),song.getMusicCategory());
+        return new PlayListWriteResponse(song.getId(),song.getStudentId(),song.getStudentName(),song.getMusicName(),song.getMusicURL(),song.getMusicContent(),song.getMusicCategory());
 
     }
 
@@ -45,7 +49,7 @@ public class PlayListService {
         List<PlayListGetsResponse> responseLists = new ArrayList<>();
 
         for (PlayList playList : playLists) {
-            responseLists.add(new PlayListGetsResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicCategory()));
+            responseLists.add(new PlayListGetsResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicContent(),playList.getMusicCategory()));
         }
 
         return responseLists;
@@ -54,14 +58,17 @@ public class PlayListService {
     @Transactional(readOnly = true)
     public PlayListInfoResponse playListGet(Long id) {
         PlayList playList = playListRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList가 존재하지 않습니다. " + id));
-        return new PlayListInfoResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicCategory());
+                .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList가 존재하지 않습니다. 해당 id: " + id));
+        return new PlayListInfoResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicContent(),playList.getMusicCategory());
     }
 
     @Transactional
-    public void playListDelete(Long id) {
+    public void playListDelete(Long id, PlayListDeleteRequest deleteRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 삭제할 수 없습니다. " + id));
+
+        if (!Objects.equals(playList.getPlayListPW(), deleteRequest.getPlayListPW())) throw new IllegalArgumentException("등록된 비밀번호와 일치하지 않습니다. 입력한 비밀번호: " + deleteRequest.getPlayListPW());
+
         playListRepository.delete(playList);
     }
 
@@ -70,10 +77,13 @@ public class PlayListService {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 찾을 수 없습니다: " + id));
 
+        if (!Objects.equals(playList.getPlayListPW(), updateRequest.getPlayListPW())) throw new IllegalArgumentException("등록된 비밀번호와 일치하지 않습니다. 입력한 비밀번호: " + updateRequest.getPlayListPW());
+
         playList.setStudentId(updateRequest.getStudentId());
         playList.setStudentName(updateRequest.getStudentName());
         playList.setMusicName(updateRequest.getMusicName());
         playList.setMusicURL(updateRequest.getMusicURL());
+        playList.setMusicContent(updateRequest.getMusicContent());
         playList.setMusicCategory(updateRequest.getMusicCategory());
     }
 

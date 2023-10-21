@@ -11,5 +11,7 @@ public class PlayListUpdateRequest {
     private final String studentName;
     private final String musicName;
     private final String musicURL;
+    private final String musicContent;
     private final String musicCategory;
+    private final String playListPW;
 }
