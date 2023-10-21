@@ -73,7 +73,7 @@ public class PlayListService {
     }
 
     @Transactional
-    public void playListUpdate(PlayListUpdateRequest updateRequest, Long id) {
+    public void playListUpdate(Long id,PlayListUpdateRequest updateRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 찾을 수 없습니다: " + id));
 

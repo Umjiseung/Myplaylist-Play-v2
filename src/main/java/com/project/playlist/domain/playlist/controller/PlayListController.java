@@ -45,7 +45,7 @@ public class PlayListController {
 
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id, PlayListDeleteRequest deleteRequest) {
+    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id, @RequestBody PlayListDeleteRequest deleteRequest) {
         playListService.playListDelete(id, deleteRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
