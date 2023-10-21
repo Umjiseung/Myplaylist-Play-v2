@@ -52,7 +52,7 @@ public class PlayListController {
 
     @PutMapping("/{id}")
     public ResponseEntity<PlayListUpdateResponse> musicUpdate(@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
-        playListService.playListUpdate(updateRequest,id);
+        playListService.playListUpdate(id, updateRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
