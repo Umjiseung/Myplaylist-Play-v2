@@ -7,7 +7,6 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsRespon
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
-import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

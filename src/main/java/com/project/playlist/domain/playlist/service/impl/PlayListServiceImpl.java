@@ -6,10 +6,12 @@ import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteReques
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
+import com.project.playlist.domain.playlist.enums.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
