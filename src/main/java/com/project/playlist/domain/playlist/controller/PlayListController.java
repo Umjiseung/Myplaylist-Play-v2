@@ -36,6 +36,12 @@ public class PlayListController {
         return new ResponseEntity<>(playListService.playListGets(),HttpStatus.OK);
     }
 
+    // 카테고리별 Playlist 가져오기
+    @GetMapping("/category")
+    public ResponseEntity<List<PlayListGetsResponse>> musicOfGets() {
+        return new ResponseEntity<>(playListService.playListOfGets(),HttpStatus.OK);
+    }
+
     // playlist 상세보기
     @GetMapping("/{id}")
     public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") Long id) {

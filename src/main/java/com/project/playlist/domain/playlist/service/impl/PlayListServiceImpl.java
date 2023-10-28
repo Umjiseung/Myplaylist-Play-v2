@@ -77,6 +77,18 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<PlayListGetsResponse> playListOfGets() {
+        List<PlayList> playLists = playListRepository.findAll();
+        List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
+
+        for (PlayList playList : playLists) {
+            listOfCategory.add(new PlayListGetsResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicContent(),playList.getMusicCategory()));
+        }
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public PlayListInfoResponse playListGet(Long id) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList가 존재하지 않습니다. 해당 id: " + id));
