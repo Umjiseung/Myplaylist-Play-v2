@@ -1,5 +1,6 @@
 package com.project.playlist.domain.playlist.data.dto.request;
 
+import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -12,6 +13,6 @@ public class PlayListUpdateRequest {
     private final String musicName;
     private final String musicURL;
     private final String musicContent;
-    private final String musicCategory;
+    private final Category category;
     private final String playListPW;
 }

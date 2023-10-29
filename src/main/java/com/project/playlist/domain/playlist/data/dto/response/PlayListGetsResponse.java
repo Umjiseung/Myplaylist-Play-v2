@@ -1,6 +1,7 @@
 package com.project.playlist.domain.playlist.data.dto.response;
 
 
+import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +14,6 @@ public class PlayListGetsResponse {
     private final String musicName;
     private final String musicURL;
     private final String musicContent;
-    private final String musicCategory;
+    private final Category category;
 
 }

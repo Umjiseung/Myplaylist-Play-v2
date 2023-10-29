@@ -7,6 +7,7 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsRespon
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
+import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,16 +31,11 @@ public class PlayListController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    // 모든 Playlist 가져오기
-    @GetMapping
-    public ResponseEntity<List<PlayListGetsResponse>> musicGets() {
-        return new ResponseEntity<>(playListService.playListGets(),HttpStatus.OK);
-    }
 
     // 카테고리별 Playlist 가져오기
     @GetMapping("/category")
-    public ResponseEntity<List<PlayListGetsResponse>> musicOfGets() {
-        return new ResponseEntity<>(playListService.playListOfGets(),HttpStatus.OK);
+    public ResponseEntity<List<PlayListGetsResponse>> musicOfGets(@RequestParam Category category) {
+        return new ResponseEntity<>(playListService.playListOfGets(category),HttpStatus.OK);
     }
 
     // playlist 상세보기

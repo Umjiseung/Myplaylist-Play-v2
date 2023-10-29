@@ -29,7 +29,7 @@ public class PlayList {
     private String musicContent;
 
     @Enumerated(EnumType.STRING)
-    private String musicCategory;
+    private Category category;
 
     private String playListPW;
 

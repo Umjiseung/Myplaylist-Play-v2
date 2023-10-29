@@ -6,12 +6,11 @@ import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteReques
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
-import com.project.playlist.domain.playlist.enums.Category;
+import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +45,7 @@ public class PlayListServiceImpl implements PlayListService {
                 .musicName(writeRequest.getMusicName())
                 .musicURL(writeRequest.getMusicURL())
                 .musicContent(writeRequest.getMusicContent())
-                .musicCategory(writeRequest.getMusicCategory())
+                .category(writeRequest.get())
                 .playListPW(writeRequest.getPlayListPW())
                 .build();
         playList = playListRepository.save(playList);
@@ -64,21 +63,8 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<PlayListGetsResponse> playListGets() {
-        List<PlayList> playLists = playListRepository.findAll();
-        List<PlayListGetsResponse> responseLists = new ArrayList<>();
-
-        for (PlayList playList : playLists) {
-            responseLists.add(new PlayListGetsResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicContent(),playList.getMusicCategory()));
-        }
-
-        return responseLists;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<PlayListGetsResponse> playListOfGets() {
-        List<PlayList> playLists = playListRepository.findAll();
+    public List<PlayListGetsResponse> playListOfGets(Category category) {
+        List<PlayList> playLists = playListRepository.findAll(category);
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
 
         for (PlayList playList : playLists) {
