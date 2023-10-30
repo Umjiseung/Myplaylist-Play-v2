@@ -1,12 +1,11 @@
 package com.project.playlist.domain.playlist.data.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class PlayListDeleteRequest {
-
-    private final String playListPW;
-
+    private String playListPW;
 }
