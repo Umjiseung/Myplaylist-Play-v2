@@ -33,8 +33,8 @@ public class PlayListServiceImpl implements PlayListService {
                 writeRequest.getStudentId(),
                 writeRequest.getMusicName(),
                 writeRequest.getMusicURL(),
-                writeRequest.getMusicCategory())
-                .anyMatch(String::isBlank)) {
+                writeRequest.getCategory())
+                .anyMatch(Objects::isNull)) {
             throw new IllegalArgumentException("인적사항 또는 필수항목이 비어있습니다.");
         }
 
@@ -45,7 +45,7 @@ public class PlayListServiceImpl implements PlayListService {
                 .musicName(writeRequest.getMusicName())
                 .musicURL(writeRequest.getMusicURL())
                 .musicContent(writeRequest.getMusicContent())
-                .category(writeRequest.get())
+                .category(writeRequest.getCategory())
                 .playListPW(writeRequest.getPlayListPW())
                 .build();
         playList = playListRepository.save(playList);
@@ -56,7 +56,7 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
-                playList.getMusicCategory()
+                playList.getCategory()
         );
 
     }
@@ -64,21 +64,36 @@ public class PlayListServiceImpl implements PlayListService {
     @Override
     @Transactional(readOnly = true)
     public List<PlayListGetsResponse> playListOfGets(Category category) {
-        List<PlayList> playLists = playListRepository.findAll(category);
+        List<PlayList> playLists = playListRepository.findByCategory(category);
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
 
         for (PlayList playList : playLists) {
-            listOfCategory.add(new PlayListGetsResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicContent(),playList.getMusicCategory()));
+            listOfCategory.add(new PlayListGetsResponse(
+                    playList.getId(),
+                    playList.getStudentId(),
+                    playList.getStudentName(),
+                    playList.getMusicName(),
+                    playList.getMusicURL(),
+                    playList.getMusicContent(),
+                    playList.getCategory()
+            ));
         }
-
+        return listOfCategory;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public PlayListInfoResponse playListGet(Long id) {
-        PlayList playList = playListRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList가 존재하지 않습니다. 해당 id: " + id));
-        return new PlayListInfoResponse(playList.getId(),playList.getStudentId(),playList.getStudentName(),playList.getMusicName(),playList.getMusicURL(),playList.getMusicContent(),playList.getMusicCategory());
+    public PlayListInfoResponse playListGet(Category category,Long id) {
+        PlayList playList = playListRepository.findByidOfCategory(category,id);
+        return new PlayListInfoResponse(
+                playList.getId(),
+                playList.getStudentId(),
+                playList.getStudentName(),
+                playList.getMusicName(),
+                playList.getMusicURL(),
+                playList.getMusicContent(),
+                playList.getCategory());
+
     }
 
     @Override
@@ -105,7 +120,7 @@ public class PlayListServiceImpl implements PlayListService {
         playList.setMusicName(updateRequest.getMusicName());
         playList.setMusicURL(updateRequest.getMusicURL());
         playList.setMusicContent(updateRequest.getMusicContent());
-        playList.setMusicCategory(updateRequest.getMusicCategory());
+        playList.setCategory(updateRequest.getCategory());
     }
 
 }

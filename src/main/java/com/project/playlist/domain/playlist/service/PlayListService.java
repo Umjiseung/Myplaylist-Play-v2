@@ -7,14 +7,15 @@ import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteReques
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
+import com.project.playlist.domain.playlist.data.entity.Category;
 
 import java.util.List;
 
 public interface PlayListService {
 
     PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest);
-    List<PlayListGetsResponse> playListOfGets();
-    PlayListInfoResponse playListGet(Long id);
+    List<PlayListGetsResponse> playListOfGets(Category category);
+    PlayListInfoResponse playListGet(Category category,Long id);
     void playListDelete(Long id, PlayListDeleteRequest deleteRequest);
     void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
 
