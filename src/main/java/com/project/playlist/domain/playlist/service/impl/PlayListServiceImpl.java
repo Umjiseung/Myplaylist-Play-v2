@@ -119,12 +119,15 @@ public class PlayListServiceImpl implements PlayListService {
 
         if (!Objects.equals(playList.getPlayListPW(), updateRequest.getPlayListPW())) throw new IllegalArgumentException("등록된 비밀번호와 일치하지 않습니다. 입력한 비밀번호: " + updateRequest.getPlayListPW());
 
-        playList.setStudentId(updateRequest.getStudentId());
-        playList.setStudentName(updateRequest.getStudentName());
-        playList.setMusicName(updateRequest.getMusicName());
-        playList.setMusicURL(updateRequest.getMusicURL());
-        playList.setMusicContent(updateRequest.getMusicContent());
-        playList.setCategory(updateRequest.getCategory());
+        playList = playList.builder()
+                .studentId(updateRequest.getStudentId())
+                .studentName(updateRequest.getStudentName())
+                .musicName(updateRequest.getMusicName())
+                .musicURL(updateRequest.getMusicURL())
+                .musicContent(updateRequest.getMusicContent())
+                .category(updateRequest.getCategory())
+                .build();
+        playListRepository.save(playList);
     }
 
 }
