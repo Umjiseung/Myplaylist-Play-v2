@@ -31,16 +31,6 @@ public class PlayListServiceImpl implements PlayListService {
     @Override
     @Transactional
     public PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest) {
-        if (Stream.of(
-                writeRequest.getStudentName(),
-                writeRequest.getStudentId(),
-                writeRequest.getMusicName(),
-                writeRequest.getMusicURL(),
-                writeRequest.getCategory())
-                .anyMatch(Objects::isNull)) {
-            throw new IllegalArgumentException("인적사항 또는 필수항목이 비어있습니다.");
-        }
-
         PlayList playList = PlayList.builder()
                 .id(writeRequest.getId())
                 .studentId(writeRequest.getStudentId())
@@ -61,7 +51,6 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicContent(),
                 playList.getCategory()
         );
-
     }
 
     @Override

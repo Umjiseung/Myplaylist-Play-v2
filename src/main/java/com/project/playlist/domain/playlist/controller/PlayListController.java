@@ -51,10 +51,10 @@ public class PlayListController {
     }
 
     // playlist 수정하기
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<PlayListUpdateResponse> musicUpdate(@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id, updateRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
 
 
