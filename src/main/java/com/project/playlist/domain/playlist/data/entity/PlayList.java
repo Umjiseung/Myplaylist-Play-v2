@@ -1,7 +1,6 @@
 package com.project.playlist.domain.playlist.data.entity;
 
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
