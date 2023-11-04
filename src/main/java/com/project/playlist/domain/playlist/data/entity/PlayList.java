@@ -16,20 +16,14 @@ public class PlayList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String studentId;
-
     private String studentName;
-
     private String musicName;
-
     private String musicURL;
-
     private String musicContent;
 
     @Enumerated(EnumType.STRING)
     private Category category;
-
     private String playListPW;
 
 }
