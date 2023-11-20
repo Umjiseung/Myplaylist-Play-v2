@@ -4,6 +4,8 @@ package com.project.playlist.domain.playlist.data.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PlayList {
+public class PlayList extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +40,13 @@ public class PlayList {
     @Column(nullable = false)
     private String playListPW;
 
+
+    public void update(String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.musicName = musicName;
+        this.musicURL = musicURL;
+        this.musicContent = musicContent;
+        this.category = category;
+    }
 }

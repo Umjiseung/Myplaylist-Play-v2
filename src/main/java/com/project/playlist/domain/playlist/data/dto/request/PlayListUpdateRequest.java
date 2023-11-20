@@ -2,25 +2,27 @@ package com.project.playlist.domain.playlist.data.dto.request;
 
 import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
 
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class PlayListUpdateRequest {
-    private final Long id;
-    @NotNull
-    private final String studentId;
-    @NotNull
-    private final String studentName;
-    @NotNull
-    private final String musicName;
-    private final String musicURL;
-    @NotNull
-    private final String musicContent;
-    @NotNull
-    private final Category category;
-    @NotNull
-    private final String playListPW;
+
+    @NotBlank
+    private String studentId;
+    @NotBlank
+    private String studentName;
+    @NotBlank
+    private String musicName;
+    @NotBlank
+    private String musicURL;
+    @NotBlank
+    private String musicContent;
+    @NotBlank
+    private Category category;
+    @NotBlank
+    private String playListPW;
 }

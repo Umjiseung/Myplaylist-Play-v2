@@ -31,7 +31,6 @@ public class PlayListServiceImpl implements PlayListService {
     @Transactional
     public PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest) {
         PlayList playList = PlayList.builder()
-                .id(writeRequest.getId())
                 .studentId(writeRequest.getStudentId())
                 .studentName(writeRequest.getStudentName())
                 .musicName(writeRequest.getMusicName())
@@ -48,7 +47,8 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
-                playList.getCategory()
+                playList.getCategory(),
+                playList.getCreateAt()
         );
     }
 
@@ -66,7 +66,8 @@ public class PlayListServiceImpl implements PlayListService {
                     playList.getMusicName(),
                     playList.getMusicURL(),
                     playList.getMusicContent(),
-                    playList.getCategory()
+                    playList.getCategory(),
+                    playList.getCreateAt()
             ));
         }
         return listOfCategory;
@@ -84,8 +85,8 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
-                playList.getCategory());
-
+                playList.getCategory(),
+                playList.getCreateAt());
     }
 
     @Override
@@ -107,11 +108,7 @@ public class PlayListServiceImpl implements PlayListService {
 
         if (!Objects.equals(playList.getPlayListPW(), updateRequest.getPlayListPW())) throw new IllegalArgumentException("등록된 비밀번호와 일치하지 않습니다. 입력한 비밀번호: " + updateRequest.getPlayListPW());
 
-        playList.setStudentId(updateRequest.getStudentId());
-        playList.setMusicName(updateRequest.getMusicName());
-        playList.setMusicURL(updateRequest.getMusicURL());
-        playList.setMusicContent(updateRequest.getMusicContent());
-        playList.setCategory(updateRequest.getCategory());
+        playList.update(updateRequest.getStudentId(),updateRequest.getStudentName(), updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
         playListRepository.save(playList);
     }
 
