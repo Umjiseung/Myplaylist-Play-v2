@@ -47,8 +47,7 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
-                playList.getCategory(),
-                playList.getCreateAt()
+                playList.getCategory()
         );
     }
 
@@ -66,8 +65,7 @@ public class PlayListServiceImpl implements PlayListService {
                     playList.getMusicName(),
                     playList.getMusicURL(),
                     playList.getMusicContent(),
-                    playList.getCategory(),
-                    playList.getCreateAt()
+                    playList.getCategory()
             ));
         }
         return listOfCategory;
@@ -85,8 +83,8 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
-                playList.getCategory(),
-                playList.getCreateAt());
+                playList.getCategory()
+        );
     }
 
     @Override

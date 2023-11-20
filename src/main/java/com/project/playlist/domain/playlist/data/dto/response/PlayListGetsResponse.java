@@ -18,10 +18,9 @@ public class PlayListGetsResponse {
     private String musicURL;
     private String musicContent;
     private Category category;
-    private LocalDateTime createdAt;
 
 
-    public PlayListGetsResponse(Long id, String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category, LocalDateTime createdAt) {
+    public PlayListGetsResponse(Long id, String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category ) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -29,6 +28,5 @@ public class PlayListGetsResponse {
         this.musicURL = musicURL;
         this.musicContent = musicContent;
         this.category = category;
-        this.createdAt = createdAt;
     }
 }
