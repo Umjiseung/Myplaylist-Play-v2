@@ -1,8 +1,8 @@
 package com.project.playlist.domain.auth.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
