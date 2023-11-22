@@ -1,6 +1,5 @@
 package com.project.playlist.global.jwt;
 
-import com.example.study.domain.auth.data.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
