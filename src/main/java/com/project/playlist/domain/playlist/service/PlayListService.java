@@ -1,6 +1,7 @@
 package com.project.playlist.domain.playlist.service;
 
 
+import com.project.playlist.global.user.CustomUserDetailsService;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;

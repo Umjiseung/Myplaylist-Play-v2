@@ -1,5 +1,6 @@
 package com.project.playlist.domain.playlist.controller;
 
+import com.project.playlist.global.user.CustomUserDetailsService;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
@@ -12,6 +13,7 @@ import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class PlayListController {
 
     // Playlist 작성
     @PostMapping("/write")
-    public ResponseEntity<PlayListWriteResponse> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
+    public ResponseEntity<PlayListWriteResponse> musicWrite(@AuthenticationPrincipal CustomUserDetailsService userDetailsService, @RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
