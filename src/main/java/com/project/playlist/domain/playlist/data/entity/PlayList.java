@@ -42,7 +42,7 @@ public class PlayList{
 
     @ManyToOne
     @JoinColumn(name = "memberId")
-    private Member user;
+    private Member member;
 
 
     public void update(String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category) {
