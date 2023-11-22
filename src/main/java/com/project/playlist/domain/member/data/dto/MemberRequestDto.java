@@ -14,11 +14,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class MemberRequestDto {
 
     private String email;
+    private String studentId;
+    private String studentName;
     private String password;
 
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
-                .email(email)
+                .studentId(studentId)
+                .studentName(studentName)
                 .password(passwordEncoder.encode(password))
                 .authority(Authority.ROLE_USER)
                 .build();

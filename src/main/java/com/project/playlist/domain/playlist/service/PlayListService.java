@@ -18,6 +18,6 @@ public interface PlayListService {
     List<PlayListGetsResponse> playListOfGets(Category category);
     PlayListInfoResponse playListGet(Long id);
     void playListDelete(Member member, Long id, PlayListDeleteRequest deleteRequest);
-    void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
+    void playListUpdate(Member member, Long id, PlayListUpdateRequest updateRequest);
 
 }
