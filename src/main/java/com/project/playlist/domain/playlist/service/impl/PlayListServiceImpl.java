@@ -29,8 +29,6 @@ public class PlayListServiceImpl implements PlayListService {
     @Transactional
     public PlayListWriteResponse playListWrite(Member member, PlayListWriteRequest writeRequest) {
         PlayList playList = PlayList.builder()
-                .studentId(writeRequest.getStudentId())
-                .studentName(writeRequest.getStudentName())
                 .musicName(writeRequest.getMusicName())
                 .musicURL(writeRequest.getMusicURL())
                 .musicContent(writeRequest.getMusicContent())
@@ -40,8 +38,6 @@ public class PlayListServiceImpl implements PlayListService {
         playList = playListRepository.save(playList);
         return new PlayListWriteResponse(
                 playList.getId(),
-                playList.getStudentId(),
-                playList.getStudentName(),
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
@@ -87,7 +83,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public void playListDelete(Long id, PlayListDeleteRequest deleteRequest) {
+    public void playListDelete(Member member, Long id, PlayListDeleteRequest deleteRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 삭제할 수 없습니다. " + id));
 

@@ -2,6 +2,7 @@ package com.project.playlist.domain.playlist.data.entity;
 
 
 import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,12 +18,6 @@ public class PlayList{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private String studentId;
-
-    @Column(nullable = false)
-    private String studentName;
 
     @Column(nullable = false)
     private String musicName;
@@ -44,10 +39,16 @@ public class PlayList{
     @JoinColumn(name = "memberId")
     private Member member;
 
+    public PlayList(Member member, PlayListWriteRequest writeRequest) {
+        this.musicName = writeRequest.getMusicName();
+        this.musicURL = writeRequest.getMusicURL();
+        this.musicContent = writeRequest.getMusicContent();
+        this.category = writeRequest.getCategory();
+        this.member = member;
+    }
 
-    public void update(String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category) {
-        this.studentId = studentId;
-        this.studentName = studentName;
+
+    public void update(String musicName, String musicURL, String musicContent, Category category) {
         this.musicName = musicName;
         this.musicURL = musicURL;
         this.musicContent = musicContent;
