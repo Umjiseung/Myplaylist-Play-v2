@@ -1,6 +1,6 @@
 package com.project.playlist.domain.playlist.service.impl;
 
-import com.project.playlist.global.user.CustomUserDetailsService;
+import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
@@ -27,7 +27,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest) {
+    public PlayListWriteResponse playListWrite(Member member, PlayListWriteRequest writeRequest) {
         PlayList playList = PlayList.builder()
                 .studentId(writeRequest.getStudentId())
                 .studentName(writeRequest.getStudentName())

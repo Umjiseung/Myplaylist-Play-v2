@@ -1,7 +1,7 @@
 package com.project.playlist.domain.playlist.service;
 
 
-import com.project.playlist.global.user.CustomUserDetailsService;
+import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface PlayListService {
 
-    PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest);
+    PlayListWriteResponse playListWrite(Member member, PlayListWriteRequest writeRequest);
     List<PlayListGetsResponse> playListOfGets(Category category);
     PlayListInfoResponse playListGet(Long id);
     void playListDelete(Long id, PlayListDeleteRequest deleteRequest);

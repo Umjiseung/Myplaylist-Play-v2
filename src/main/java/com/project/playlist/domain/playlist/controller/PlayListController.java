@@ -10,6 +10,7 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResp
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.service.PlayListService;
+import com.project.playlist.global.user.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class PlayListController {
 
     // Playlist 작성
     @PostMapping("/write")
-    public ResponseEntity<PlayListWriteResponse> musicWrite(@AuthenticationPrincipal CustomUserDetailsService userDetailsService, @RequestBody PlayListWriteRequest writeRequest) {
-        playListService.playListWrite(writeRequest);
+    public ResponseEntity<PlayListWriteResponse> musicWrite(@AuthenticationPrincipal UserDetailsService userDetailsService, @RequestBody PlayListWriteRequest writeRequest) {
+        playListService.playListWrite(userDetailsService.getMember(),writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
