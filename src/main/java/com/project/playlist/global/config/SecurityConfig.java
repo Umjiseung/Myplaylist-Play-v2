@@ -1,9 +1,9 @@
 package com.project.playlist.global.config;
 
-import com.example.study.global.jwt.JwtAccessDeniedHandler;
-import com.example.study.global.jwt.JwtAuthenticationEntryPoint;
-import com.example.study.global.jwt.JwtSecurityConfig;
-import com.example.study.global.jwt.TokenProvider;
+import com.project.playlist.global.jwt.JwtAccessDeniedHandler;
+import com.project.playlist.global.jwt.JwtAuthenticationEntryPoint;
+import com.project.playlist.global.jwt.JwtSecurityConfig;
+import com.project.playlist.global.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,9 @@
 package com.project.playlist.domain.member.data.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
+
 
 @Entity
 @Getter
