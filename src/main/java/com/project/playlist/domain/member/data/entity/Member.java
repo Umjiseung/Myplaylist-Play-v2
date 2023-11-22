@@ -1,8 +1,12 @@
 package com.project.playlist.domain.member.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.playlist.domain.playlist.data.entity.PlayList;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,6 +28,10 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Authority authority;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "member")
+    List<PlayList> board = new ArrayList<>();
 
     @Builder
     public Member(String email, String password, Authority authority) {

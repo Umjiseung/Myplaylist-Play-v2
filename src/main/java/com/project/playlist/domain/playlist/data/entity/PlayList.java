@@ -1,9 +1,10 @@
 package com.project.playlist.domain.playlist.data.entity;
 
 
+import com.project.playlist.domain.member.data.entity.Member;
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 
 @Entity
 @Getter
@@ -38,6 +39,10 @@ public class PlayList{
 
     @Column(nullable = false)
     private String playListPW;
+
+    @ManyToOne
+    @JoinColumn(name = "memberId")
+    private Member user;
 
 
     public void update(String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category) {
