@@ -31,9 +31,8 @@ public class Member {
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
-    List<PlayList> board = new ArrayList<>();
+    List<PlayList> playList = new ArrayList<>();
 
-    @Builder
     public Member(String email, String password, Authority authority) {
         this.email = email;
         this.password = password;
