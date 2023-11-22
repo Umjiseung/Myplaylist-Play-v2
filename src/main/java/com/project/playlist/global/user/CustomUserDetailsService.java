@@ -1,4 +1,4 @@
-package com.project.playlist.domain.member.service;
+package com.project.playlist.global.user;
 
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.repository.MemberRepository;
@@ -19,6 +19,8 @@ import java.util.Collections;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+
+    UserDetails
 
     @Override
     @Transactional
