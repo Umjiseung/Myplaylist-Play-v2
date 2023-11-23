@@ -37,7 +37,7 @@ public class PlayListServiceImpl implements PlayListService {
                 .build();
         playList = playListRepository.save(playList);
         return new PlayListWriteResponse(
-                playList.getId(),
+                playList.getMember(),
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
@@ -47,15 +47,14 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<PlayListGetsResponse> playListOfGets(Category category) {
+    public List<PlayListGetsResponse> playListOfGets(Member member,Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
 
         for (PlayList playList : playLists) {
             listOfCategory.add(new PlayListGetsResponse(
                     playList.getId(),
-                    playList.getStudentId(),
-                    playList.getStudentName(),
+                    playList.getMember(),
                     playList.getMusicName(),
                     playList.getMusicURL(),
                     playList.getMusicContent(),
@@ -67,13 +66,12 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(readOnly = true)
-    public PlayListInfoResponse playListGet(Long id) {
+    public PlayListInfoResponse playListGet(Long id,Member member) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("id에 해당하는 PlayList를 찾지 못 했습니다"));
         return new PlayListInfoResponse(
                 playList.getId(),
-                playList.getStudentId(),
-                playList.getStudentName(),
+                playList.getMember(),
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
@@ -83,7 +81,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public void playListDelete(Member member, Long id, PlayListDeleteRequest deleteRequest) {
+    public void playListDelete(Long id,Member member, PlayListDeleteRequest deleteRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 삭제할 수 없습니다. " + id));
 
@@ -94,13 +92,13 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public void playListUpdate(Member member, Long id, PlayListUpdateRequest updateRequest) {
+    public void playListUpdate(Long id, Member member, PlayListUpdateRequest updateRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 찾을 수 없습니다: " + id));
 
         if (!Objects.equals(playList.getPlayListPW(), updateRequest.getPlayListPW())) throw new IllegalArgumentException("등록된 비밀번호와 일치하지 않습니다. 입력한 비밀번호: " + updateRequest.getPlayListPW());
 
-        playList.update(updateRequest.getStudentId(),updateRequest.getStudentName(), updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
+        playList.update(member, updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
         playListRepository.save(playList);
     }
 

@@ -1,12 +1,11 @@
 package com.project.playlist.domain.playlist.data.dto.response;
 
 
+import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -20,7 +19,7 @@ public class PlayListGetsResponse {
     private Category category;
 
 
-    public PlayListGetsResponse(Long id, String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category ) {
+    public PlayListGetsResponse(Long id, Member member, String musicName, String musicURL, String musicContent, Category category ) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;

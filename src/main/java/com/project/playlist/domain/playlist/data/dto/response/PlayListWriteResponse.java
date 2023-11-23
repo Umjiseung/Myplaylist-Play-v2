@@ -1,5 +1,6 @@
 package com.project.playlist.domain.playlist.data.dto.response;
 
+import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,9 @@ public class PlayListWriteResponse {
     private String musicContent;
     private Category category;
 
-    public PlayListWriteResponse(String studentId, String studentName, String musicName, String musicURL, String musicContent, Category category ) {
-        this.studentId = studentId;
-        this.studentName = studentName;
+    public PlayListWriteResponse(Member member,String musicName, String musicURL, String musicContent, Category category ) {
+        this.studentId = member.getStudentId();
+        this.studentName = member.getStudentName();
         this.musicName = musicName;
         this.musicURL = musicURL;
         this.musicContent = musicContent;
