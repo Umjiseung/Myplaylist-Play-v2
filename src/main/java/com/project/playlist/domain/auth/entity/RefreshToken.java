@@ -6,7 +6,9 @@ import lombok.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Builder
 public class RefreshToken {
 
     @Id
@@ -15,12 +17,6 @@ public class RefreshToken {
 
     @Column(name = "rt_value")
     private String value;
-
-    @Builder
-    public RefreshToken(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
 
     public RefreshToken updateValue(String token) {
         this.value = token;
