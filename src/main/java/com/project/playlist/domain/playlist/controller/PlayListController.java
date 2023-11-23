@@ -49,14 +49,14 @@ public class PlayListController {
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> musicDelete(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @PathVariable("id") Long id, @RequestBody PlayListDeleteRequest deleteRequest) {
-        playListService.playListDelete(id,userDetailsService.getMember(), deleteRequest);
+        playListService.playListDelete(userDetailsService.getMember(), id,deleteRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     // playlist 수정하기
     @PatchMapping("/{id}")
     public ResponseEntity<PlayListUpdateResponse> musicUpdate(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
-        playListService.playListUpdate(id,userDetailsService.getMember(), updateRequest);
+        playListService.playListUpdate(userDetailsService.getMember(), id,updateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
 

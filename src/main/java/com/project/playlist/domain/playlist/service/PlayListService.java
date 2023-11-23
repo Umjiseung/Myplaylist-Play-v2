@@ -17,7 +17,7 @@ public interface PlayListService {
     PlayListWriteResponse playListWrite(Member member, PlayListWriteRequest writeRequest);
     List<PlayListGetsResponse> playListOfGets(Member member,Category category);
     PlayListInfoResponse playListGet(Long id,Member member);
-    void playListDelete(Long id, Member member, PlayListDeleteRequest deleteRequest);
-    void playListUpdate(Long id, Member member, PlayListUpdateRequest updateRequest);
+    void playListDelete(Member member, Long id, PlayListDeleteRequest deleteRequest);
+    void playListUpdate(Member member, Long id,PlayListUpdateRequest updateRequest);
 
 }
