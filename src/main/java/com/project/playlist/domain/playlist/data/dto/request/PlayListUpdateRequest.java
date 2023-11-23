@@ -1,10 +1,10 @@
 package com.project.playlist.domain.playlist.data.dto.request;
 
 import com.project.playlist.domain.playlist.data.entity.Category;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 
 
 @Getter

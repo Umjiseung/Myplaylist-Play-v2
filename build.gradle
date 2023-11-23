@@ -29,8 +29,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
     //database
-//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+//	runtimeOnly 'org.postgresql:postgresql'
 
     //starter
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
