@@ -20,6 +20,8 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String studentId;
 
     private String studentName;
@@ -49,5 +51,6 @@ public class Member {
         this.studentName = requestDto.getStudentName();
         this.password = requestDto.getPassword();
     }
+
 }
 
