@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @Getter
 @AllArgsConstructor
-public class UserDetailsService implements UserDetails {
+public class MemberDetailsImpl implements UserDetails {
 
     private Member member;
 

@@ -1,7 +1,6 @@
 package com.project.playlist.domain.playlist.controller;
 
 import com.project.playlist.domain.member.data.entity.Member;
-import com.project.playlist.global.user.CustomUserDetailsService;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListDeleteRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
@@ -11,7 +10,7 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResp
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.service.PlayListService;
-import com.project.playlist.global.user.UserDetailsService;
+import com.project.playlist.global.user.MemberDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class PlayListController {
 
     // Playlist 작성
     @PostMapping("/write")
-    public ResponseEntity<PlayListWriteResponse> musicWrite(@AuthenticationPrincipal UserDetailsService userDetailsService, @RequestBody PlayListWriteRequest writeRequest) {
+    public ResponseEntity<PlayListWriteResponse> musicWrite(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(userDetailsService.getMember(),writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -49,14 +48,14 @@ public class PlayListController {
 
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> musicDelete(@AuthenticationPrincipal UserDetailsService userDetailsService,@PathVariable("id") Long id, @RequestBody PlayListDeleteRequest deleteRequest) {
+    public ResponseEntity<Void> musicDelete(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @PathVariable("id") Long id, @RequestBody PlayListDeleteRequest deleteRequest) {
         playListService.playListDelete(id,userDetailsService.getMember(), deleteRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     // playlist 수정하기
     @PatchMapping("/{id}")
-    public ResponseEntity<PlayListUpdateResponse> musicUpdate(@AuthenticationPrincipal UserDetailsService userDetailsService,@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
+    public ResponseEntity<PlayListUpdateResponse> musicUpdate(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id,userDetailsService.getMember(), updateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
