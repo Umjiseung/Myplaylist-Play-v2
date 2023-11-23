@@ -12,8 +12,9 @@ public class MemberResponseDto {
     private String email;
     private String studentId;
     private String studentName;
+    private String password;
 
     public static MemberResponseDto of(Member member) {
-        return new MemberResponseDto(member.getEmail(),member.getStudentId(), member.getStudentName());
+        return new MemberResponseDto(member.getEmail(),member.getStudentId(), member.getStudentName(),member.getPassword());
     }
 }

@@ -11,6 +11,7 @@ import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.global.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthServiceImpl implements AuthService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
@@ -30,7 +32,10 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public MemberResponseDto signup(MemberRequestDto memberRequestDto) {
-        if (memberRepository.existsByEmail(memberRequestDto.getEmail())) {
+        if (memberRepository.existsByEmailAndStudentIdAndStudentName(
+                memberRequestDto.getEmail(),
+                memberRequestDto.getStudentId(),
+                memberRequestDto.getStudentName())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
 

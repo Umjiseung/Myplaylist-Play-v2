@@ -2,6 +2,7 @@ package com.project.playlist.domain.member.data.dto;
 
 import com.project.playlist.domain.member.data.entity.Authority;
 import com.project.playlist.domain.member.data.entity.Member;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,13 +14,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @NoArgsConstructor
 public class MemberRequestDto {
 
+    @NotBlank
     private String email;
+    @NotBlank
     private String studentId;
+    @NotBlank
     private String studentName;
+    @NotBlank
     private String password;
 
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
+                .email(email)
                 .studentId(studentId)
                 .studentName(studentName)
                 .password(passwordEncoder.encode(password))
