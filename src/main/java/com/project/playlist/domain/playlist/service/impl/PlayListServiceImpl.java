@@ -27,7 +27,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public PlayListWriteResponse playListWrite(Member member, PlayListWriteRequest writeRequest) {
+    public PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest) {
         PlayList playList = PlayList.builder()
                 .musicName(writeRequest.getMusicName())
                 .musicURL(writeRequest.getMusicURL())
@@ -81,7 +81,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public void playListDelete(Member member, Long id,PlayListDeleteRequest deleteRequest) {
+    public void playListDelete(Long id, PlayListDeleteRequest deleteRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 삭제할 수 없습니다. " + id));
 
@@ -92,7 +92,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public void playListUpdate(Member member, Long id,PlayListUpdateRequest updateRequest) {
+    public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
         PlayList playList = playListRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 찾을 수 없습니다: " + id));
 

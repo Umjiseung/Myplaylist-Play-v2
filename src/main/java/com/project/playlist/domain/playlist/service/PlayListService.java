@@ -14,10 +14,10 @@ import java.util.List;
 
 public interface PlayListService {
 
-    PlayListWriteResponse playListWrite(Member member, PlayListWriteRequest writeRequest);
+    PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest);
     List<PlayListGetsResponse> playListOfGets(Member member,Category category);
     PlayListInfoResponse playListGet(Long id,Member member);
-    void playListDelete(Member member, Long id, PlayListDeleteRequest deleteRequest);
-    void playListUpdate(Member member, Long id,PlayListUpdateRequest updateRequest);
+    void playListDelete(Long id, PlayListDeleteRequest deleteRequest);
+    void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
 
 }

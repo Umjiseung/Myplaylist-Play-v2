@@ -28,8 +28,8 @@ public class PlayListController {
 
     // Playlist 작성
     @PostMapping("/write")
-    public ResponseEntity<PlayListWriteResponse> musicWrite(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @RequestBody PlayListWriteRequest writeRequest) {
-        playListService.playListWrite(userDetailsService.getMember(),writeRequest);
+    public ResponseEntity<PlayListWriteResponse> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
+        playListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -48,15 +48,15 @@ public class PlayListController {
 
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> musicDelete(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @PathVariable("id") Long id, @RequestBody PlayListDeleteRequest deleteRequest) {
-        playListService.playListDelete(userDetailsService.getMember(), id,deleteRequest);
+    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id, @RequestBody PlayListDeleteRequest deleteRequest) {
+        playListService.playListDelete(id,deleteRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     // playlist 수정하기
     @PatchMapping("/{id}")
-    public ResponseEntity<PlayListUpdateResponse> musicUpdate(@AuthenticationPrincipal MemberDetailsImpl userDetailsService, @PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
-        playListService.playListUpdate(userDetailsService.getMember(), id,updateRequest);
+    public ResponseEntity<PlayListUpdateResponse> musicUpdate(@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
+        playListService.playListUpdate(id,updateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
 
