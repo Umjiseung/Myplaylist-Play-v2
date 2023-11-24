@@ -29,7 +29,7 @@ public class MemberDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return member.getEmail();
+        return member.getStudentName();
     }
 
     @Override
