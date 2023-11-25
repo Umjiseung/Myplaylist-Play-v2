@@ -1,6 +1,6 @@
 package com.project.playlist.domain.auth.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 

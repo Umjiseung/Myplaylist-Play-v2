@@ -3,7 +3,7 @@ package com.project.playlist.domain.member.data.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.member.data.dto.MemberRequestDto;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;

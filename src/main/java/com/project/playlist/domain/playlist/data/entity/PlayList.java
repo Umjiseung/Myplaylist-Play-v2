@@ -3,7 +3,7 @@ package com.project.playlist.domain.playlist.data.entity;
 
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 
