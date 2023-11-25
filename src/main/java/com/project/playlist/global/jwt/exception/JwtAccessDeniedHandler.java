@@ -1,4 +1,4 @@
-package com.project.playlist.global.jwt;
+package com.project.playlist.global.jwt.exception;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -48,7 +48,7 @@ public class PlayList{
     }
 
 
-    public void update(Member member, String musicName, String musicURL, String musicContent, Category category) {
+    public void update(String musicName, String musicURL, String musicContent, Category category) {
         this.member = member;
         this.musicName = musicName;
         this.musicURL = musicURL;

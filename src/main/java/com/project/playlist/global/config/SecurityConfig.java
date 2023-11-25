@@ -1,6 +1,6 @@
 package com.project.playlist.global.config;
 
-import com.project.playlist.global.jwt.JwtAccessDeniedHandler;
+import com.project.playlist.global.jwt.exception.JwtAccessDeniedHandler;
 import com.project.playlist.global.jwt.JwtAuthenticationEntryPoint;
 import com.project.playlist.global.jwt.JwtSecurityConfig;
 import com.project.playlist.global.jwt.TokenProvider;
