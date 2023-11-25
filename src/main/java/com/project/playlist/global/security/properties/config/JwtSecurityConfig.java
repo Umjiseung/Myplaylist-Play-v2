@@ -1,5 +1,7 @@
-package com.project.playlist.global.jwt;
+package com.project.playlist.global.security.properties.config;
 
+import com.project.playlist.global.security.jwt.TokenProvider;
+import com.project.playlist.global.security.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

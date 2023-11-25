@@ -9,7 +9,7 @@ import com.project.playlist.domain.member.data.dto.MemberRequestDto;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.repository.MemberRepository;
-import com.project.playlist.global.jwt.TokenProvider;
+import com.project.playlist.global.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

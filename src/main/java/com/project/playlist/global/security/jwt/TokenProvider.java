@@ -1,4 +1,4 @@
-package com.project.playlist.global.jwt;
+package com.project.playlist.global.security.jwt;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
 import io.jsonwebtoken.*;

@@ -1,4 +1,4 @@
-package com.project.playlist.global.jwt;
+package com.project.playlist.global.security.properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
