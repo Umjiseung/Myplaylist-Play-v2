@@ -4,9 +4,7 @@ import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.rmi.AlreadyBoundException;
 
 @RequiredArgsConstructor
 public class MemberUtils {
