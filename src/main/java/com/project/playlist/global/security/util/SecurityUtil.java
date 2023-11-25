@@ -1,4 +1,4 @@
-package com.project.playlist.global.util;
+package com.project.playlist.global.security.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;

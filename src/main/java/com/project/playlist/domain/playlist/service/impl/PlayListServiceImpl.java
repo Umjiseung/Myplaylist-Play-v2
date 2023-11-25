@@ -11,7 +11,7 @@ import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
-import com.project.playlist.global.util.SecurityUtil;
+import com.project.playlist.global.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

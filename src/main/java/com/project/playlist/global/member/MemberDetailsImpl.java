@@ -1,4 +1,4 @@
-package com.project.playlist.global.user;
+package com.project.playlist.global.member;
 
 import com.project.playlist.domain.member.data.entity.Member;
 import lombok.AllArgsConstructor;

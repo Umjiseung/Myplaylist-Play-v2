@@ -2,7 +2,7 @@ package com.project.playlist.domain.member.controller;
 
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.domain.member.service.MemberService;
-import com.project.playlist.global.util.SecurityUtil;
+import com.project.playlist.global.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

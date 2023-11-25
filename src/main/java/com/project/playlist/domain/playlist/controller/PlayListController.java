@@ -10,11 +10,9 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResp
 import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.service.PlayListService;
-import com.project.playlist.global.user.MemberDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
