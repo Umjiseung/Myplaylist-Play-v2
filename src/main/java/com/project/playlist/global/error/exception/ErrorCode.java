@@ -1,4 +1,4 @@
-package com.project.playlist.global.error;
+package com.project.playlist.global.error.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
