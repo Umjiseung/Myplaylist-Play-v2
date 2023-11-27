@@ -6,7 +6,6 @@ import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteReques
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResponse;
-import com.project.playlist.domain.playlist.data.dto.response.PlayListWriteResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,7 @@ public class PlayListController {
 
     // Playlist 작성
     @PostMapping("/write")
-    public ResponseEntity<PlayListWriteResponse> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
+    public ResponseEntity<Void> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
