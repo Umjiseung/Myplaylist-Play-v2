@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PlayListWriteResponse {
+    private Long id;
     private String studentId;
     private String studentName;
     private String musicName;
@@ -18,7 +19,8 @@ public class PlayListWriteResponse {
     private String musicContent;
     private Category category;
 
-    public PlayListWriteResponse(Member member,String musicName, String musicURL, String musicContent, Category category ) {
+    public PlayListWriteResponse(Long id, Member member,String musicName, String musicURL, String musicContent, Category category ) {
+        this.id = id;
         this.studentId = member.getStudentId();
         this.studentName = member.getStudentName();
         this.musicName = musicName;
