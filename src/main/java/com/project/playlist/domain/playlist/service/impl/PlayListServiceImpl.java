@@ -10,6 +10,7 @@ import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import com.project.playlist.global.member.MemberUtils;
+import com.project.playlist.global.playlist.PlayListUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     private final PlayListRepository playListRepository;
     private final MemberUtils memberUtils;
+    private final PlayListUtils playListUtils;
 
 
     @Override
@@ -72,8 +74,8 @@ public class PlayListServiceImpl implements PlayListService {
     public void playListDelete(Long id, Category category) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playListInfo = playListRepository.findByCategoryAndId(category, id);
-        boardUtils.validate(userInfo,boardInfo);
-        boardRepository.deleteById(id);
+        playListUtils.validate(userInfo,playListInfo);
+        playListRepository.deleteById(id);
     }
 
     @Override
