@@ -2,12 +2,14 @@ package com.project.playlist.global.member.impl;
 
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.repository.MemberRepository;
+import com.project.playlist.global.member.MemberUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
-
+@Service
 @RequiredArgsConstructor
-public class MemberUtilsImpl {
+public class MemberUtilsImpl implements MemberUtils {
     private final MemberRepository memberRepository;
 
     public Member getCurrentMember() {
