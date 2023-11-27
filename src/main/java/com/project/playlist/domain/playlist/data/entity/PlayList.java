@@ -32,9 +32,6 @@ public class PlayList{
     @Column(nullable = false)
     private Category category;
 
-    @Column(nullable = false)
-    private String playListPW;
-
     @ManyToOne
     @JoinColumn(name = "memberId")
     private Member member;
@@ -49,7 +46,6 @@ public class PlayList{
 
 
     public void update(String musicName, String musicURL, String musicContent, Category category) {
-        this.member = member;
         this.musicName = musicName;
         this.musicURL = musicURL;
         this.musicContent = musicContent;
