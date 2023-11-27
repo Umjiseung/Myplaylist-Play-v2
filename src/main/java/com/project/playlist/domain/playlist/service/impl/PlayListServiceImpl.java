@@ -81,12 +81,10 @@ public class PlayListServiceImpl implements PlayListService {
     @Override
     @Transactional
     public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
-        PlayList playList = playListRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 찾을 수 없습니다: " + id));
-
-
+        Member member = memberUtils.getCurrentMember();
+        PlayList playList = playListRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        playListUtils.validate(member,playList);
         playList.update(updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
-        playListRepository.save(playList);
     }
 
 }
