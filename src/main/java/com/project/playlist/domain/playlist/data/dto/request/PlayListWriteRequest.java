@@ -31,7 +31,7 @@ public class PlayListWriteRequest {
     private String playListPW;
 
     public PlayList toEntity(Member member) {
-        return PlayList.builder().member(member).musicName(musicName).musicContent(musicContent).musicURL(musicURL).category(category).playListPW(playListPW).build();
+        return PlayList.builder().member(member).musicName(musicName).musicContent(musicContent).musicURL(musicURL).category(category).build();
     }
 
 }
