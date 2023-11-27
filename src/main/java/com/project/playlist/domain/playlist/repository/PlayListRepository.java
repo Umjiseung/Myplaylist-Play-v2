@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PlayListRepository extends JpaRepository<PlayList,Long> {
     List<PlayList> findByCategory(Category category);
+    PlayList findByCategoryAndId(Category category, Long id);
 }

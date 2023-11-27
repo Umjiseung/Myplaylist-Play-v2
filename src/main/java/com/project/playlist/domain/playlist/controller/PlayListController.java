@@ -39,8 +39,8 @@ public class PlayListController {
 
     // playlist 상세보기
     @GetMapping("/{category}/{id}")
-    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("category") Category category,@PathVariable("id") Long id,Member member) {
-        return new ResponseEntity<>(playListService.playListGet(id,member),HttpStatus.OK);
+    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("category") Category category,@PathVariable("id") Long id) {
+        return new ResponseEntity<>(playListService.playListGet(id,category),HttpStatus.OK);
     }
 
     // Playlist 삭제하기

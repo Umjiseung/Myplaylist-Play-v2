@@ -55,9 +55,8 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(readOnly = true)
-    public PlayListInfoResponse playListGet(Long id,Member member) {
-        PlayList playList = playListRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("id에 해당하는 PlayList를 찾지 못 했습니다"));
+    public PlayListInfoResponse playListGet(Long id,Category category) {
+        PlayList playList = playListRepository.findByCategoryAndId(category, id);
         return new PlayListInfoResponse(
                 playList.getId(),
                 playList.getMember(),
@@ -70,12 +69,11 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public void playListDelete(Long id) {
-        PlayList playList = playListRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id에 해당하는 PlayList를 삭제할 수 없습니다. " + id));
-
-
-        playListRepository.delete(playList);
+    public void playListDelete(Long id, Category category) {
+        Member userInfo = memberUtils.getCurrentMember();
+        PlayList playListInfo = playListRepository.findByCategoryAndId(category, id);
+        boardUtils.validate(userInfo,boardInfo);
+        boardRepository.deleteById(id);
     }
 
     @Override
