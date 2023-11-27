@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface PlayListService {
 
-    PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest);
+    void playListWrite(PlayListWriteRequest writeRequest);
     List<PlayListGetsResponse> playListOfGets(Member member,Category category);
     PlayListInfoResponse playListGet(Long id,Member member);
     void playListDelete(Long id, PlayListDeleteRequest deleteRequest);

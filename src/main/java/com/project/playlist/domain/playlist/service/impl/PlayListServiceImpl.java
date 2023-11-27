@@ -31,22 +31,11 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional
-    public PlayListWriteResponse playListWrite(PlayListWriteRequest writeRequest) {
-        PlayList playList = PlayList.builder()
-                .musicName(writeRequest.getMusicName())
-                .musicURL(writeRequest.getMusicURL())
-                .musicContent(writeRequest.getMusicContent())
-                .category(writeRequest.getCategory())
-                .playListPW(writeRequest.getPlayListPW())
-                .build();
-        playList = playListRepository.save(playList);
-        return new PlayListWriteResponse(
-                playList.getMember(),
-                playList.getMusicName(),
-                playList.getMusicURL(),
-                playList.getMusicContent(),
-                playList.getCategory()
-        );
+    public void playListWrite(PlayListWriteRequest writeRequest) {
+        Member userInfo = memberUtils.getCurrentMember();
+        PlayList playList = writeRequest.toEntity(userInfo);
+        playListRepository.save(playList);
+
     }
 
     @Override
