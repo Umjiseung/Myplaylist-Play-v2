@@ -39,8 +39,6 @@ public class Member {
     @Column(name = "rt_value")
     private String value;
 
-
-
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     List<PlayList> playList = new ArrayList<>();

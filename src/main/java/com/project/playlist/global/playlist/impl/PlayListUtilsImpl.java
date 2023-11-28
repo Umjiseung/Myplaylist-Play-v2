@@ -17,13 +17,13 @@ public class PlayListUtilsImpl implements PlayListUtils {
     private final PlayListRepository playListRepository;
     @Override
     public List<MyPlaylistGetsResponse> findPlaylistsByUserInfo(Member member) {
-        List<PlayList> playLists = playListRepository.findBoardsByUser(member);
+        List<PlayList> playLists = playListRepository.findBoardsByMember(member);
         return getBoardTitle(playLists);
     }
 
     @Override
     public void validate(Member userInfo, PlayList boardInfo) {
-        boolean checkBoardOwner = playListRepository.existsByUserAndTitle(userInfo,boardInfo.getMusicName());
+        boolean checkBoardOwner = playListRepository.existsByMemberAndMusicName(userInfo,boardInfo.getMusicName());
         if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
     }
 
