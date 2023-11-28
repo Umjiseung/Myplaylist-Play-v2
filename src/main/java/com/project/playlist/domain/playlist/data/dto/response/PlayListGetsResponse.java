@@ -21,8 +21,8 @@ public class PlayListGetsResponse {
 
     public PlayListGetsResponse(Long id, Member member, String musicName, String musicURL, String musicContent, Category category ) {
         this.id = id;
-        this.studentId = studentId;
-        this.studentName = studentName;
+        this.studentId = member.getStudentId();
+        this.studentName = member.getStudentName();
         this.musicName = musicName;
         this.musicURL = musicURL;
         this.musicContent = musicContent;

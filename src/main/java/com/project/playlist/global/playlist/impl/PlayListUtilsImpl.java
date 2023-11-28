@@ -1,7 +1,7 @@
 package com.project.playlist.global.playlist.impl;
 
 import com.project.playlist.domain.member.data.entity.Member;
-import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistInfoResponse;
+import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.global.playlist.PlayListUtils;
@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 public class PlayListUtilsImpl implements PlayListUtils {
     private final PlayListRepository playListRepository;
     @Override
-    public List<MyPlaylistInfoResponse> findBoardsByUserInfo(Member member) {
-        List<PlayList> boardList = playListRepository.findBoardsByUser(member);
-        return getBoardTitle(boardList);
+    public List<MyPlaylistGetsResponse> findPlaylistsByUserInfo(Member member) {
+        List<PlayList> playLists = playListRepository.findBoardsByUser(member);
+        return getBoardTitle(playLists);
     }
 
     @Override
@@ -27,9 +27,9 @@ public class PlayListUtilsImpl implements PlayListUtils {
         if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
     }
 
-    private List<MyPlaylistInfoResponse> getBoardTitle(List<PlayList> boardList){
-        List<MyPlaylistInfoResponse> list = boardList.stream().map(playList->
-                        new MyPlaylistInfoResponse(playList.getId (),playList.getMusicName(),playList.getMusicContent(),playList.getMusicURL()))
+    private List<MyPlaylistGetsResponse> getBoardTitle(List<PlayList> boardList){
+        List<MyPlaylistGetsResponse> list = boardList.stream().map(playList->
+                        new MyPlaylistGetsResponse(playList.getId (),playList.getMusicName(),playList.getMusicContent(),playList.getMusicURL()))
                 .collect(Collectors.toList());
         return list;
     }
