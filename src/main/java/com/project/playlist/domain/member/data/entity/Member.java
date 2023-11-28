@@ -33,6 +33,14 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
+    @Column(name = "rt_key")
+    private String key;
+
+    @Column(name = "rt_value")
+    private String value;
+
+
+
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     List<PlayList> playList = new ArrayList<>();
@@ -51,6 +59,12 @@ public class Member {
         this.studentName = requestDto.getStudentName();
         this.password = requestDto.getPassword();
     }
-
+    public Member updateValue(String refreshToken) {
+        this.value = refreshToken;
+        return this;
+    }
+    public void updateRefreshToken(String refreshToken){
+        this.value = refreshToken;
+    }
 }
 

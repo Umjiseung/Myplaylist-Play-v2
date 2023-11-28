@@ -10,4 +10,5 @@ public interface AuthService {
     MemberResponseDto signup(MemberRequestDto memberRequestDto);
     TokenDto login(MemberRequestDto memberRequestDto);
     TokenDto refresh(TokenRequestDto tokenRequestDto);
+    void logout();
 }
