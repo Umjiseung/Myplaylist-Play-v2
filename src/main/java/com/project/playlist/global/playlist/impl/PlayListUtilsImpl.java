@@ -28,9 +28,8 @@ public class PlayListUtilsImpl implements PlayListUtils {
     }
 
     private List<MyPlaylistGetsResponse> getBoardTitle(List<PlayList> boardList){
-        List<MyPlaylistGetsResponse> list = boardList.stream().map(playList->
+        return boardList.stream().map(playList->
                         new MyPlaylistGetsResponse(playList.getId (),playList.getMusicName(),playList.getMusicContent(),playList.getMusicURL()))
                 .collect(Collectors.toList());
-        return list;
     }
 }
