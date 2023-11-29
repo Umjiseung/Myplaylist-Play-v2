@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -24,8 +26,8 @@ public class MemberController {
         return ResponseEntity.ok(memberService.myMemberInfo(studentName));
     }
 
-//    @GetMapping("/{studentName}/myplaylist")
-//    public ResponseEntity<MyPlaylistGetsResponse> getMyPlaylist(@PathVariable String studentName, Member member) {
-//        return ResponseEntity.ok(memberService.getMyPlaylist(member));
-//    }
+    @GetMapping("/{studentName}/myplaylist")
+    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist(@PathVariable String studentName, Member member) {
+        return ResponseEntity.ok(memberService.getMyPlaylist(member));
+    }
 }

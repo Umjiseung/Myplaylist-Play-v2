@@ -26,7 +26,9 @@ public class MemberService {
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
     }
 
-//    public MyPlaylistGetsResponse getMyPlaylist(Member member) {
-//    }
+    public List<MyPlaylistGetsResponse> getMyPlaylist(Member member) {
+        List<MyPlaylistGetsResponse> myPlaylists = playListUtils.findPlaylistsByUserInfo(member);
+        return myPlaylists;
+    }
 
 }
