@@ -21,13 +21,13 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
 
-    @GetMapping("/{studentName}")
+    @GetMapping("/{studentId}")
     public ResponseEntity<MemberResponseDto> findMemberInfoById(@PathVariable String studentName) {
         return ResponseEntity.ok(memberService.myMemberInfo(studentName));
     }
 
-    @GetMapping("/{studentName}/myplaylist")
-    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist(@PathVariable String studentName, Member member) {
+    @GetMapping("/{studentId}/myplaylist")
+    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist(@PathVariable String studentId, Member member) {
         return ResponseEntity.ok(memberService.getMyPlaylist(member));
     }
 }

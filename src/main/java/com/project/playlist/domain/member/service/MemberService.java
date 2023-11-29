@@ -20,15 +20,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PlayListUtils playListUtils;
 
-    public MemberResponseDto myMemberInfo(String studentName) {
-        return memberRepository.findByStudentName(studentName)
+    public MemberResponseDto myMemberInfo(String StudentId) {
+        return memberRepository.findByStudentId(StudentId)
                 .map(MemberResponseDto::of)
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
     }
 
     public List<MyPlaylistGetsResponse> getMyPlaylist(Member member) {
-        List<MyPlaylistGetsResponse> myPlaylists = playListUtils.findPlaylistsByUserInfo(member);
-        return myPlaylists;
+        return playListUtils.findPlaylistsByUserInfo(member);
     }
 
 }
