@@ -22,11 +22,11 @@ public class MemberUtilsImpl implements MemberUtils {
     }
 
     public void checkExistName(String studentName) {
-        if (memberRepository.existsByStudentName(studentName));
+        memberRepository.existsByStudentName(studentName);
     }
 
     public void checkExistEmail(String email) {
-        if(memberRepository.existsByEmail(email));
+        memberRepository.existsByEmail(email);
     }
 
 }
