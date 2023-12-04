@@ -61,6 +61,17 @@ public class Member {
         this.value = refreshToken;
         return this;
     }
+
+    public void update(Member member) {
+        this.id = member.getId();
+        this.studentId = member.getStudentId();
+        this.studentName = member.getStudentName();
+        this.email = member.getEmail();
+        this.password = member.getPassword();
+        this.authority = member.getAuthority();
+        this.key = member.getKey();
+        this.value = member.getValue();
+    }
     public void updateRefreshToken(String refreshToken){
         this.value = refreshToken;
     }

@@ -92,7 +92,7 @@ public class AuthServiceImpl implements AuthService {
 
         // 6. 저장소 정보 업데이트
         Member newRefreshToken = refreshToken.updateValue(tokenDto.getRefreshToken());
-        memberRepository.save(newRefreshToken);
+        newRefreshToken.update(newRefreshToken);
 
         // 토큰 발급
         return tokenDto;
