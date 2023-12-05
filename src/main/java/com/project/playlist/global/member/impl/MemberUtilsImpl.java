@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 public class MemberUtilsImpl implements MemberUtils {
     private final MemberRepository memberRepository;
 
-    public Member getCurrentMember() {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    public Member getCurrentMember(String email) {
         return getMemberByEmail(email);
     }
 

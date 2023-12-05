@@ -57,11 +57,10 @@ public class AuthServiceImpl implements AuthService {
 
         // 4. RefreshToken 저장
         Member refreshToken = Member.builder()
-                .key(authentication.getName())
-                .value(tokenDto.getRefreshToken())
+                .refreshToken(tokenDto.getRefreshToken())
                 .build();
 
-        memberRepository.save(refreshToken);
+        refreshToken.updateRefreshToken(refreshToken.getRefreshToken());
 
         // 5. 토큰 발급
         return tokenDto;
@@ -83,7 +82,7 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new RuntimeException("로그아웃 된 사용자입니다."));
 
         // 4. Refresh Token 일치하는지 검사
-        if (!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())) {
+        if (!refreshToken.getRefreshToken().equals(tokenRequestDto.getRefreshToken())) {
             throw new RuntimeException("토큰의 유저 정보가 일치하지 않습니다.");
         }
 
@@ -91,8 +90,8 @@ public class AuthServiceImpl implements AuthService {
         TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
 
         // 6. 저장소 정보 업데이트
-        Member newRefreshToken = refreshToken.updateValue(tokenDto.getRefreshToken());
-        newRefreshToken.update(newRefreshToken);
+        refreshToken.updateRefreshToken(tokenDto.getRefreshToken());
+
 
         // 토큰 발급
         return tokenDto;

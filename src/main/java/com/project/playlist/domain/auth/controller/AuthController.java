@@ -6,6 +6,7 @@ import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.member.data.dto.MemberRequestDto;
 
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
+import com.project.playlist.global.member.MemberUtils;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final MemberUtils memberUtils;
 
     @PostMapping("/signup")
     public ResponseEntity<MemberResponseDto> signup(@RequestBody MemberRequestDto requestDto) {
@@ -26,6 +28,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
+//        String validatedEmail = memberUtils.getCurrentMember(requestDto.getEmail());
         return ResponseEntity.ok(authService.login(requestDto));
     }
 

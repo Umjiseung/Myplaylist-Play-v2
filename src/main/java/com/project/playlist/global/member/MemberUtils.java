@@ -4,7 +4,7 @@ import com.project.playlist.domain.member.data.entity.Member;
 
 public interface MemberUtils {
 
-    Member getCurrentMember();
+    Member getCurrentMember(String email);
     Member getMemberByEmail(String email);
     void checkExistName(String studentName);
     void checkExistEmail(String email);

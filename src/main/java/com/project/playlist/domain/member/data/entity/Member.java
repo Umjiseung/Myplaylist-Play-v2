@@ -36,8 +36,8 @@ public class Member {
     @Column(name = "rt_key")
     private String key;
 
-    @Column(name = "rt_value")
-    private String value;
+    @Column(name = "rt_refreshToken")
+    private String refreshToken;
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
@@ -57,10 +57,6 @@ public class Member {
         this.studentName = requestDto.getStudentName();
         this.password = requestDto.getPassword();
     }
-    public Member updateValue(String refreshToken) {
-        this.value = refreshToken;
-        return this;
-    }
 
     public void update(Member member) {
         this.id = member.getId();
@@ -70,10 +66,10 @@ public class Member {
         this.password = member.getPassword();
         this.authority = member.getAuthority();
         this.key = member.getKey();
-        this.value = member.getValue();
+        this.refreshToken = member.getRefreshToken();
     }
     public void updateRefreshToken(String refreshToken){
-        this.value = refreshToken;
+        this.refreshToken = refreshToken;
     }
 }
 
