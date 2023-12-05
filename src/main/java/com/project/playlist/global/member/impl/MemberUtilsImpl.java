@@ -14,6 +14,7 @@ public class MemberUtilsImpl implements MemberUtils {
 
     public Member getCurrentMember() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println(email);
         return getMemberByEmail(email);
     }
 

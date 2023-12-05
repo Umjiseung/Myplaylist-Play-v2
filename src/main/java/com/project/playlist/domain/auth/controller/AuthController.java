@@ -26,6 +26,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
+        String  validatedEmail =
         return ResponseEntity.ok(authService.login(requestDto));
     }
 
