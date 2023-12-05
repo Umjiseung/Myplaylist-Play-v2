@@ -22,8 +22,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/{studentId}")
-    public ResponseEntity<MemberResponseDto> findMemberInfoById(@PathVariable String studentName) {
-        return ResponseEntity.ok(memberService.myMemberInfo(studentName));
+    public ResponseEntity<MemberResponseDto> findMemberInfoById(@PathVariable String studentId) {
+        return ResponseEntity.ok(memberService.myMemberInfo(studentId));
     }
 
     @GetMapping("/{studentId}/myplaylist")
