@@ -25,8 +25,8 @@ public class MemberController {
         return ResponseEntity.ok(memberService.myMemberInfo(studentId));
     }
 
-    @GetMapping("/{studentId}/myplaylist")
-    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist(@PathVariable String studentId, Member member) {
-        return ResponseEntity.ok(memberService.getMyPlaylist(member));
+    @GetMapping("/my-playlist")
+    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist() {
+        return ResponseEntity.ok(memberService.getMyPlaylist());
     }
 }
