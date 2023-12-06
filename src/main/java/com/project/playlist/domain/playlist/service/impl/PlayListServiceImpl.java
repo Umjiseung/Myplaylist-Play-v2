@@ -28,7 +28,7 @@ public class PlayListServiceImpl implements PlayListService {
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     public void playListWrite(PlayListWriteRequest writeRequest) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playList = writeRequest.toEntity(userInfo);
@@ -37,7 +37,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
     public List<PlayListGetsResponse> playListOfGets(Member member,Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
@@ -56,7 +56,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
     public PlayListInfoResponse playListGet(Long id,Category category) {
         PlayList playList = playListRepository.findByCategoryAndId(category, id);
         return new PlayListInfoResponse(
@@ -70,7 +70,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     public void playListDelete(Long id, Category category) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playListInfo = playListRepository.findByCategoryAndId(category, id);
@@ -79,7 +79,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();
         PlayList playList = playListRepository.findById(id).orElseThrow(IllegalArgumentException::new);
