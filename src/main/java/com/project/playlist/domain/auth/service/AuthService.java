@@ -2,7 +2,7 @@ package com.project.playlist.domain.auth.service;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
-import com.project.playlist.domain.member.data.dto.SignUpRequest;
+import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 
 public interface AuthService {

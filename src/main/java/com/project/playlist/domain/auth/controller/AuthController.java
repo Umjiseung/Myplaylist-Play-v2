@@ -3,7 +3,7 @@ package com.project.playlist.domain.auth.controller;
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
 import com.project.playlist.domain.auth.service.AuthService;
-import com.project.playlist.domain.member.data.dto.SignUpRequest;
+import com.project.playlist.domain.auth.dto.SignUpRequest;
 
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.global.member.MemberUtils;
