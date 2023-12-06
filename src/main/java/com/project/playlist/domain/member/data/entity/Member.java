@@ -37,12 +37,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    @Column(name = "rt_key",nullable = false)
-    private String key;
-
-    @Column(name = "rt_refreshToken",nullable = false)
-    private String refreshToken;
-
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     @Column(nullable = false)
