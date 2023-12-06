@@ -7,6 +7,7 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsRespon
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
+import com.project.playlist.domain.playlist.exception.PlaylistNotFound;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import com.project.playlist.global.member.MemberUtils;
@@ -37,7 +38,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
+    @Transactional(rollbackFor = {PlaylistNotFound.class}, readOnly = true)
     public List<PlayListGetsResponse> playListOfGets(Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
@@ -56,7 +57,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
+    @Transactional(rollbackFor = {PlaylistNotFound.class},readOnly = true)
     public PlayListInfoResponse playListGet(Long id,Category category) {
         PlayList playList = playListRepository.findByCategoryAndId(category, id);
         return new PlayListInfoResponse(
