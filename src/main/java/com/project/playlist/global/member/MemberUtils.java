@@ -6,6 +6,6 @@ public interface MemberUtils {
 
     Member getCurrentMember();
     Member getMemberByEmail(String email);
-    void checkExistName(String studentName);
-    void checkExistEmail(String email);
+    boolean checkExistName(String studentName);
+    boolean checkExistEmail(String email);
 }

@@ -28,13 +28,13 @@ public class MemberUtilsImpl implements MemberUtils {
     }
 
     @Override
-    public void checkExistName(String studentName) {
-        memberRepository.existsByStudentName(studentName);
+    public boolean checkExistName(String studentName) {
+        return memberRepository.existsByStudentName(studentName);
     }
 
     @Override
-    public void checkExistEmail(String email) {
-        memberRepository.existsByEmail(email);
+    public boolean checkExistEmail(String email) {
+        return memberRepository.existsByEmail(email);
     }
 
 }
