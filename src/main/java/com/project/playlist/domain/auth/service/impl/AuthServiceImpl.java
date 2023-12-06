@@ -3,7 +3,7 @@ package com.project.playlist.domain.auth.service.impl;
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
 import com.project.playlist.domain.auth.service.AuthService;
-import com.project.playlist.domain.member.data.dto.MemberRequestDto;
+import com.project.playlist.domain.member.data.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.repository.MemberRepository;
@@ -28,25 +28,25 @@ public class AuthServiceImpl implements AuthService {
     private final TokenProvider tokenProvider;
     private final MemberUtils memberUtils;
 
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     @Override
-    public MemberResponseDto signup(MemberRequestDto memberRequestDto) {
+    public MemberResponseDto signup(SignUpRequest signUpRequest) {
         if (memberRepository.existsByEmailAndStudentIdAndStudentName(
-                memberRequestDto.getEmail(),
-                memberRequestDto.getStudentId(),
-                memberRequestDto.getStudentName())) {
+                signUpRequest.getEmail(),
+                signUpRequest.getStudentId(),
+                signUpRequest.getStudentName())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
 
-        Member member = memberRequestDto.toMember(passwordEncoder);
+        Member member = signUpRequest.toMember(passwordEncoder);
         return MemberResponseDto.of(memberRepository.save(member));
     }
 
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     @Override
-    public TokenDto login(MemberRequestDto memberRequestDto) {
+    public TokenDto login(SignUpRequest signUpRequest) {
         // 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
-        UsernamePasswordAuthenticationToken authenticationToken = memberRequestDto.toAuthentication();
+        UsernamePasswordAuthenticationToken authenticationToken = signUpRequest.toAuthentication();
 
         // 2. 실제로 검증 (사용자 비밀번호 체크) 이 이루어지는 부분
         //    authenticate 메서드가 실행이 될 때 CustomUserDetailsService 에서 만들었던 loadUserByUsername 메서드가 실행됨
@@ -66,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
         return tokenDto;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     @Override
     public TokenDto refresh(TokenRequestDto tokenRequestDto) {
         // 1. Refresh Token 검증
@@ -98,7 +98,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     public void logout() {
         Member member = memberUtils.getCurrentMember();
 

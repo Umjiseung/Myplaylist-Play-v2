@@ -3,7 +3,7 @@ package com.project.playlist.domain.auth.controller;
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
 import com.project.playlist.domain.auth.service.AuthService;
-import com.project.playlist.domain.member.data.dto.MemberRequestDto;
+import com.project.playlist.domain.member.data.dto.SignUpRequest;
 
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.global.member.MemberUtils;
@@ -22,12 +22,12 @@ public class AuthController {
     private final MemberUtils memberUtils;
 
     @PostMapping("/signup")
-    public ResponseEntity<MemberResponseDto> signup(@RequestBody MemberRequestDto requestDto) {
+    public ResponseEntity<MemberResponseDto> signup(@RequestBody SignUpRequest requestDto) {
         return ResponseEntity.ok(authService.signup(requestDto));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
+    public ResponseEntity<TokenDto> login(@RequestBody SignUpRequest requestDto) {
 //        String validatedEmail = memberUtils.getCurrentMember(requestDto.getEmail());
         return ResponseEntity.ok(authService.login(requestDto));
     }

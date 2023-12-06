@@ -1,7 +1,7 @@
 package com.project.playlist.domain.member.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.playlist.domain.member.data.dto.MemberRequestDto;
+import com.project.playlist.domain.member.data.dto.SignUpRequest;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import javax.persistence.*;
 import lombok.*;
@@ -51,7 +51,7 @@ public class Member {
         this.authority = authority;
     }
 
-    public Member(MemberRequestDto requestDto) {
+    public Member(SignUpRequest requestDto) {
         this.email = requestDto.getEmail();
         this.studentId = requestDto.getStudentId();
         this.studentName = requestDto.getStudentName();

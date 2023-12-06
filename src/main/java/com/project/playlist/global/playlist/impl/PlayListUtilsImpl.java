@@ -17,7 +17,7 @@ public class PlayListUtilsImpl implements PlayListUtils {
     private final PlayListRepository playListRepository;
     @Override
     public List<MyPlaylistGetsResponse> findPlaylistsByUserInfo(Member member) {
-        List<PlayList> playLists = playListRepository.findBoardsByMember(member);
+        List<PlayList> playLists = playListRepository.findPlayListsByMember(member);
         return getBoardTitle(playLists);
     }
 
