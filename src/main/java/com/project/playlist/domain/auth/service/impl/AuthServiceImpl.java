@@ -6,7 +6,9 @@ import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.data.entity.RefreshToken;
 import com.project.playlist.domain.member.repository.MemberRepository;
+import com.project.playlist.domain.member.repository.RefreshTokenRepository;
 import com.project.playlist.global.member.MemberUtils;
 import com.project.playlist.global.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthServiceImpl implements AuthService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final MemberUtils memberUtils;
@@ -56,11 +59,12 @@ public class AuthServiceImpl implements AuthService {
         TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
 
         // 4. RefreshToken 저장
-        Member refreshToken = Member.builder()
-                .refreshToken(tokenDto.getRefreshToken())
+        RefreshToken refreshToken = RefreshToken.builder()
+                .key(authentication.getName())
+                .value(tokenDto.getRefreshToken())
                 .build();
 
-        refreshToken.updateRefreshToken(refreshToken.getRefreshToken());
+        refreshTokenRepository.save(refreshToken);
 
         // 5. 토큰 발급
         return tokenDto;
@@ -78,11 +82,11 @@ public class AuthServiceImpl implements AuthService {
         Authentication authentication = tokenProvider.getAuthentication(tokenRequestDto.getAccessToken());
 
         // 3. 저장소에서 Member ID 를 기반으로 Refresh Token 값 가져옴
-        Member refreshToken = memberRepository.findByKey(authentication.getName())
+        RefreshToken refreshToken = refreshTokenRepository.findByKey(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("로그아웃 된 사용자입니다."));
 
         // 4. Refresh Token 일치하는지 검사
-        if (!refreshToken.getRefreshToken().equals(tokenRequestDto.getRefreshToken())) {
+        if (!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())) {
             throw new RuntimeException("토큰의 유저 정보가 일치하지 않습니다.");
         }
 
@@ -90,7 +94,8 @@ public class AuthServiceImpl implements AuthService {
         TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
 
         // 6. 저장소 정보 업데이트
-        refreshToken.updateRefreshToken(tokenDto.getRefreshToken());
+        RefreshToken newRefreshToken = refreshToken.updateValue(tokenDto.getRefreshToken());
+        refreshTokenRepository.save(newRefreshToken);
 
 
         // 토큰 발급
@@ -102,6 +107,6 @@ public class AuthServiceImpl implements AuthService {
     public void logout() {
         Member member = memberUtils.getCurrentMember();
 
-        member.updateRefreshToken(null);
+
     }
 }

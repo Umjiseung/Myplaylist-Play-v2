@@ -12,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class RefreshToken {
 
@@ -22,8 +23,7 @@ public class RefreshToken {
     @Column(nullable = false,name = "rt_value")
     private String value;
 
-    public RefreshToken(String key, String value) {
-        this.key = key;
+    public void ExpireValue(String value) {
         this.value = value;
     }
 
