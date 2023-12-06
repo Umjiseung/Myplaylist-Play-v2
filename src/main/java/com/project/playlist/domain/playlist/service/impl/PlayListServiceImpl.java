@@ -38,7 +38,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
-    public List<PlayListGetsResponse> playListOfGets(Member member,Category category) {
+    public List<PlayListGetsResponse> playListOfGets(Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
 
