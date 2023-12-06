@@ -1,25 +1,26 @@
 package com.project.playlist.global.member.impl;
 
 import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.exception.MemberNotFoundException;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.global.member.MemberDetailsImpl;
 import com.project.playlist.global.member.MemberUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
 public class MemberUtilsImpl implements MemberUtils {
     private final MemberRepository memberRepository;
-    private final MemberDetailsImpl memberDetails;
 
     @Override
     public Member getCurrentMember() {
-        String email = memberDetails.getUsername();
-        log.info(email);
-        return getMemberByEmail(email);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return memberRepository.findByEmail(email)
+                .orElseThrow(MemberNotFoundException::new);
     }
 
     @Override
