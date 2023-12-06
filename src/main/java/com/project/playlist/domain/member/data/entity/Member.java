@@ -64,11 +64,7 @@ public class Member {
         this.email = member.getEmail();
         this.password = member.getPassword();
         this.authority = member.getAuthority();
-        this.key = member.getKey();
-        this.refreshToken = member.getRefreshToken();
-    }
-    public void updateRefreshToken(String refreshToken){
-        this.refreshToken = refreshToken;
+
     }
 }
 
