@@ -9,10 +9,8 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,27 +18,34 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
+    @Column(nullable = false)
     private String studentId;
 
+    @Column(nullable = false)
     private String studentName;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    @Column(name = "rt_key")
+    @Column(name = "rt_key",nullable = false)
     private String key;
 
-    @Column(name = "rt_refreshToken")
+    @Column(name = "rt_refreshToken",nullable = false)
     private String refreshToken;
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
+    @Column(nullable = false)
     List<PlayList> playList = new ArrayList<>();
 
     public Member(String email ,String studentId, String studentName, String password, Authority authority) {
@@ -72,4 +77,6 @@ public class Member {
         this.refreshToken = refreshToken;
     }
 }
+
+
 

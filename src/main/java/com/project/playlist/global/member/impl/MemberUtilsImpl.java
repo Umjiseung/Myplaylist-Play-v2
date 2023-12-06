@@ -5,10 +5,12 @@ import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.global.member.MemberDetailsImpl;
 import com.project.playlist.global.member.MemberUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MemberUtilsImpl implements MemberUtils {
     private final MemberRepository memberRepository;
     private final MemberDetailsImpl memberDetails;
@@ -16,6 +18,7 @@ public class MemberUtilsImpl implements MemberUtils {
     @Override
     public Member getCurrentMember() {
         String email = memberDetails.getUsername();
+        log.info(email);
         return getMemberByEmail(email);
     }
 
