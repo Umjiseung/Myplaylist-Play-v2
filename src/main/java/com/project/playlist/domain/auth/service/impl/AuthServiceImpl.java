@@ -4,6 +4,7 @@ import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
 import com.project.playlist.domain.auth.exception.AlreadyExistMember;
 import com.project.playlist.domain.auth.exception.ExpiredRefreshToken;
+import com.project.playlist.domain.auth.exception.InvalidToken;
 import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
@@ -77,7 +78,7 @@ public class AuthServiceImpl implements AuthService {
     public TokenDto refresh(TokenRequestDto tokenRequestDto) {
         // 1. Refresh Token 검증
         if (!tokenProvider.validateToken(tokenRequestDto.getRefreshToken())) {
-            throw new ExpiredRefreshToken("Refresh Token 이 유효하지 않습니다.");
+            throw new InvalidToken();
         }
 
         // 2. Access Token 에서 Member ID 가져오기
