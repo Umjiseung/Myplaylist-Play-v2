@@ -2,9 +2,8 @@ package com.project.playlist.domain.auth.service.impl;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
-import com.project.playlist.domain.auth.exception.AlreadyExistMember;
-import com.project.playlist.domain.auth.exception.ExpiredRefreshToken;
-import com.project.playlist.domain.auth.exception.InvalidToken;
+import com.project.playlist.domain.auth.exception.AlreadyExistMemberException;
+import com.project.playlist.domain.auth.exception.InvalidTokenException;
 import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
@@ -41,7 +40,7 @@ public class AuthServiceImpl implements AuthService {
                 signUpRequest.getEmail(),
                 signUpRequest.getStudentId(),
                 signUpRequest.getStudentName())) {
-            throw new AlreadyExistMember();
+            throw new AlreadyExistMemberException();
         }
 
         Member member = signUpRequest.toMember(passwordEncoder);
@@ -78,7 +77,7 @@ public class AuthServiceImpl implements AuthService {
     public TokenDto refresh(TokenRequestDto tokenRequestDto) {
         // 1. Refresh Token 검증
         if (!tokenProvider.validateToken(tokenRequestDto.getRefreshToken())) {
-            throw new InvalidToken();
+            throw new InvalidTokenException();
         }
 
         // 2. Access Token 에서 Member ID 가져오기
