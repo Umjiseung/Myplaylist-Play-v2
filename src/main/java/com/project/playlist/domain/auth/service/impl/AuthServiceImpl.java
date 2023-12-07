@@ -2,6 +2,7 @@ package com.project.playlist.domain.auth.service.impl;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
+import com.project.playlist.domain.auth.exception.AlreadyExistMember;
 import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
@@ -34,11 +35,11 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(rollbackFor = {RuntimeException.class})
     @Override
     public MemberResponseDto signup(SignUpRequest signUpRequest) {
-        if (memberRepository.existsByEmailAndStudentIdAndStudentName(
+        if (memberRepository.existsByEmailOrStudentIdOrStudentName(
                 signUpRequest.getEmail(),
                 signUpRequest.getStudentId(),
                 signUpRequest.getStudentName())) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다");
+            throw new AlreadyExistMember();
         }
 
         Member member = signUpRequest.toMember(passwordEncoder);

@@ -10,6 +10,7 @@ import lombok.Getter;
 public enum ErrorCode {
     PLAYLIST_NOT_FOUND(404,"Playlist Not Found"),
     ALREADY_EXIST_EMAIL(400,"Already Exist Email"),
+    ALREADY_EXIST_MEMBER(400,"Already Exist Member"),
     PASSWORD_MISMATCH(400,"PasswordMismatch"),
     ALREADY_EXIST_STUDENTNAME(400,"Already Exist StudentName"),
     NOT_THE_OWNER(400,"Not The Owner"),
