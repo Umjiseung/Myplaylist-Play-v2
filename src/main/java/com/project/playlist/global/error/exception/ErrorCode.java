@@ -15,6 +15,7 @@ public enum ErrorCode {
     ALREADY_EXIST_STUDENTNAME(400,"Already Exist StudentName"),
     NOT_THE_OWNER(400,"Not The Owner"),
     EXPIRED_TOKEN(401,"Expired Token"),
+    EXPIRED_REFRESHTOKEN(401,"Expired RefreshToken"),
     INVALID_TOKEN(401, "Invalid Token"),
     UNAUTHORIZED(401, "Unauthorized"),
     MEMBER_NOT_FOUND(404,"Member Not Found");
