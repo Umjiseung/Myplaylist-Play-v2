@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
 public class MemberServiceImpl {
     private final MemberRepository memberRepository;
     private final PlayListUtils playListUtils;
