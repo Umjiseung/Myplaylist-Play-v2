@@ -1,4 +1,4 @@
-package com.project.playlist.domain.member.data.dto;
+package com.project.playlist.domain.auth.dto;
 
 import com.project.playlist.domain.member.data.entity.Authority;
 import com.project.playlist.domain.member.data.entity.Member;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberRequestDto {
+public class SignUpRequest {
 
     @NotBlank
     private String email;

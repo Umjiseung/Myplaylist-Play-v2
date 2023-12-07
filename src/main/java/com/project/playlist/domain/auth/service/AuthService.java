@@ -2,13 +2,13 @@ package com.project.playlist.domain.auth.service;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
-import com.project.playlist.domain.member.data.dto.MemberRequestDto;
+import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 
 public interface AuthService {
 
-    MemberResponseDto signup(MemberRequestDto memberRequestDto);
-    TokenDto login(MemberRequestDto memberRequestDto);
+    MemberResponseDto signup(SignUpRequest signUpRequest);
+    TokenDto login(SignUpRequest signUpRequest);
     TokenDto refresh(TokenRequestDto tokenRequestDto);
     void logout();
 }

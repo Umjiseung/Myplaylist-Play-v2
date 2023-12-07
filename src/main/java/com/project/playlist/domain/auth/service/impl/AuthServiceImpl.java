@@ -3,10 +3,12 @@ package com.project.playlist.domain.auth.service.impl;
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.dto.TokenRequestDto;
 import com.project.playlist.domain.auth.service.AuthService;
-import com.project.playlist.domain.member.data.dto.MemberRequestDto;
+import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.data.entity.RefreshToken;
 import com.project.playlist.domain.member.repository.MemberRepository;
+import com.project.playlist.domain.member.repository.RefreshTokenRepository;
 import com.project.playlist.global.member.MemberUtils;
 import com.project.playlist.global.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -24,29 +26,30 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthServiceImpl implements AuthService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final MemberUtils memberUtils;
 
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     @Override
-    public MemberResponseDto signup(MemberRequestDto memberRequestDto) {
+    public MemberResponseDto signup(SignUpRequest signUpRequest) {
         if (memberRepository.existsByEmailAndStudentIdAndStudentName(
-                memberRequestDto.getEmail(),
-                memberRequestDto.getStudentId(),
-                memberRequestDto.getStudentName())) {
+                signUpRequest.getEmail(),
+                signUpRequest.getStudentId(),
+                signUpRequest.getStudentName())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
 
-        Member member = memberRequestDto.toMember(passwordEncoder);
+        Member member = signUpRequest.toMember(passwordEncoder);
         return MemberResponseDto.of(memberRepository.save(member));
     }
 
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     @Override
-    public TokenDto login(MemberRequestDto memberRequestDto) {
+    public TokenDto login(SignUpRequest signUpRequest) {
         // 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
-        UsernamePasswordAuthenticationToken authenticationToken = memberRequestDto.toAuthentication();
+        UsernamePasswordAuthenticationToken authenticationToken = signUpRequest.toAuthentication();
 
         // 2. 실제로 검증 (사용자 비밀번호 체크) 이 이루어지는 부분
         //    authenticate 메서드가 실행이 될 때 CustomUserDetailsService 에서 만들었던 loadUserByUsername 메서드가 실행됨
@@ -56,17 +59,18 @@ public class AuthServiceImpl implements AuthService {
         TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
 
         // 4. RefreshToken 저장
-        Member refreshToken = Member.builder()
-                .refreshToken(tokenDto.getRefreshToken())
+        RefreshToken refreshToken = RefreshToken.builder()
+                .key(authentication.getName())
+                .value(tokenDto.getRefreshToken())
                 .build();
 
-        refreshToken.updateRefreshToken(refreshToken.getRefreshToken());
+        refreshTokenRepository.save(refreshToken);
 
         // 5. 토큰 발급
         return tokenDto;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     @Override
     public TokenDto refresh(TokenRequestDto tokenRequestDto) {
         // 1. Refresh Token 검증
@@ -78,11 +82,11 @@ public class AuthServiceImpl implements AuthService {
         Authentication authentication = tokenProvider.getAuthentication(tokenRequestDto.getAccessToken());
 
         // 3. 저장소에서 Member ID 를 기반으로 Refresh Token 값 가져옴
-        Member refreshToken = memberRepository.findByKey(authentication.getName())
+        RefreshToken refreshToken = refreshTokenRepository.findByKey(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("로그아웃 된 사용자입니다."));
 
         // 4. Refresh Token 일치하는지 검사
-        if (!refreshToken.getRefreshToken().equals(tokenRequestDto.getRefreshToken())) {
+        if (!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())) {
             throw new RuntimeException("토큰의 유저 정보가 일치하지 않습니다.");
         }
 
@@ -90,7 +94,8 @@ public class AuthServiceImpl implements AuthService {
         TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
 
         // 6. 저장소 정보 업데이트
-        refreshToken.updateRefreshToken(tokenDto.getRefreshToken());
+        RefreshToken newRefreshToken = refreshToken.updateValue(tokenDto.getRefreshToken());
+        refreshTokenRepository.save(newRefreshToken);
 
 
         // 토큰 발급
@@ -98,10 +103,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = {RuntimeException.class})
     public void logout() {
         Member member = memberUtils.getCurrentMember();
 
-        member.updateRefreshToken(null);
+
     }
 }

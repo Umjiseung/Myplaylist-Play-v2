@@ -1,8 +1,8 @@
 package com.project.playlist.global.member;
 
 import com.project.playlist.domain.member.data.entity.Member;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberDetailsImpl implements UserDetails {
 
-    private Member member;
+    private final Member member;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
