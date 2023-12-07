@@ -15,20 +15,18 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final PlayListUtils playListUtils;
     private final MemberUtils memberUtils;
 
-    @Transactional(rollbackFor = {RuntimeException.class})
     public MemberResponseDto myMemberInfo(String StudentId) {
         return memberRepository.findByStudentId(StudentId)
                 .map(MemberResponseDto::of)
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class})
     public List<MyPlaylistGetsResponse> getMyPlaylist() {
         Member member = memberUtils.getCurrentMember();
         return playListUtils.findPlaylistsByUserInfo(member);
