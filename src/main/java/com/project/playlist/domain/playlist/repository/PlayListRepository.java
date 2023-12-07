@@ -12,6 +12,6 @@ import java.util.List;
 public interface PlayListRepository extends JpaRepository<PlayList,Long> {
     List<PlayList> findByCategory(Category category);
     PlayList findByCategoryAndId(Category category, Long id);
-    List<PlayList> findBoardsByMember(Member member);
+    List<PlayList> findPlayListsByMember(Member member);
     boolean existsByMemberAndMusicName(Member member, String musicName);
 }

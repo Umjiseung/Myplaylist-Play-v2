@@ -2,6 +2,7 @@ package com.project.playlist.domain.member.controller;
 
 import com.project.playlist.domain.member.data.dto.MemberResponseDto;
 import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.service.MemberService;
 import com.project.playlist.domain.member.service.impl.MemberServiceImpl;
 import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +18,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
-    private final MemberServiceImpl memberServiceImpl;
+    private final MemberService memberService;
 
     @GetMapping("/{studentId}")
     public ResponseEntity<MemberResponseDto> findMemberInfoById(@PathVariable String studentId) {
-        return ResponseEntity.ok(memberServiceImpl.myMemberInfo(studentId));
+        return ResponseEntity.ok(memberService.myMemberInfo(studentId));
     }
 
-    @GetMapping("/{studentId}/myplaylist")
-    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist(@PathVariable String studentId, Member member) {
-        return ResponseEntity.ok(memberServiceImpl.getMyPlaylist(member));
+    @GetMapping("/my-playlist")
+    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist() {
+        return ResponseEntity.ok(memberService.getMyPlaylist());
     }
 }
