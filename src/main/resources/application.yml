@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/playlist-v2
-    username: root
-    password: 1029384756
+    url: ${db_url}
+    username: ${db_username}
+    password: ${db_password}
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MariaDBDialect
