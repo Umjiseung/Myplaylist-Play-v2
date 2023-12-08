@@ -3,8 +3,8 @@ package com.project.playlist.domain.member.data.entity;
 
 import org.springframework.data.redis.core.RedisHash;
 
-import javax.persistence.Column;
 import javax.persistence.Id;
+
 
 @RedisHash(value = "refreshToken", timeToLive = 60)
 public class RefreshToken {
