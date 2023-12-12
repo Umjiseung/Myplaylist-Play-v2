@@ -108,7 +108,11 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(rollbackFor = {RuntimeException.class})
     public void logout() {
         Member member = memberUtils.getCurrentMember();
-
+        RefreshToken refreshToken = RefreshToken.builder()
+                .key(member.getStudentName())
+                .value(null)
+                .build();
+        refreshTokenRepository.save(refreshToken);
 
     }
 }
