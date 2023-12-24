@@ -22,8 +22,8 @@ public class PlayListUtilsImpl implements PlayListUtils {
     }
 
     @Override
-    public void validate(Member userInfo, PlayList boardInfo) {
-        boolean checkBoardOwner = playListRepository.existsByMemberAndMusicName(userInfo,boardInfo.getMusicName());
+    public void validate(Member userInfo, PlayList playlistInfo) {
+        boolean checkBoardOwner = playListRepository.existsByMemberAndMusicName(userInfo,playlistInfo.getMusicName());
         if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
     }
 

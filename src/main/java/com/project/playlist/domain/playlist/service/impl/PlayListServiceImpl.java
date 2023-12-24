@@ -72,9 +72,9 @@ public class PlayListServiceImpl implements PlayListService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
-    public void playListDelete(Long id, Category category) {
+    public void playListDelete(Long id) {
         Member userInfo = memberUtils.getCurrentMember();
-        PlayList playListInfo = playListRepository.findByCategoryAndId(category, id);
+        PlayList playListInfo = playListRepository.findById(id);
         playListUtils.validate(userInfo,playListInfo);
         playListRepository.deleteById(id);
     }

@@ -18,8 +18,9 @@ public class MemberUtilsImpl implements MemberUtils {
 
     @Override
     public Member getCurrentMember() {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return memberRepository.findByEmail(email)
+        String id = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.info(id);
+        return memberRepository.findById(Long.valueOf(id))
                 .orElseThrow(MemberNotFoundException::new);
     }
 

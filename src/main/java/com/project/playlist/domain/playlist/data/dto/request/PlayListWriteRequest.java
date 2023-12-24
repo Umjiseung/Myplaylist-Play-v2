@@ -16,10 +16,6 @@ import lombok.NoArgsConstructor;
 public class PlayListWriteRequest {
 
     @NotBlank
-    private String studentId;
-    @NotBlank
-    private String studentName;
-    @NotBlank
     private String musicName;
     @NotBlank
     private String musicURL;
