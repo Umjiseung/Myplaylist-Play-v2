@@ -36,8 +36,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(rollbackFor = {RuntimeException.class})
     @Override
     public MemberResponseDto signup(SignUpRequest signUpRequest) {
-        if (memberRepository.existsByEmailOrStudentIdOrStudentName(
-                signUpRequest.getEmail(),
+        if (memberRepository.existsByStudentIdOrStudentName(
                 signUpRequest.getStudentId(),
                 signUpRequest.getStudentName())) {
             throw new AlreadyExistMemberException();

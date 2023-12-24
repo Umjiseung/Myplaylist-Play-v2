@@ -28,7 +28,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody SignUpRequest requestDto) {
-//        String validatedEmail = memberUtils.getCurrentMember(requestDto.getEmail());
         return ResponseEntity.ok(authService.login(requestDto));
     }
 
@@ -37,7 +36,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.refresh(requestDto));
     }
 
-    @PutMapping("/logout")
+    @DeleteMapping("/logout")
     public ResponseEntity<Void> logout(){
         authService.logout();
         return new ResponseEntity<>(HttpStatus.OK);
