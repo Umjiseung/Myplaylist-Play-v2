@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+
 import lombok.*;
 
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class Member {
     private String studentName;
 
     @Column(nullable = false)
+    @Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@gmail\\.com$", message = "Invalid Gmail address")
+
     private String email;
 
     @Column(nullable = false)
