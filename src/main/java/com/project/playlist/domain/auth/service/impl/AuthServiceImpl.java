@@ -90,7 +90,7 @@ public class AuthServiceImpl implements AuthService {
 
         // 4. Refresh Token 일치하는지 검사
         if (!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())) {
-            throw new RuntimeException("토큰의 유저 정보가 일치하지 않습니다.");
+            throw new InvalidTokenException();
         }
 
         // 5. 새로운 토큰 생성

@@ -41,6 +41,9 @@ public class PlayListServiceImpl implements PlayListService {
     @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
     public List<PlayListGetsResponse> playListOfGets(Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
+        if (playLists == null) {
+            throw new PlaylistNotFound();
+        }
         List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
 
         for (PlayList playList : playLists) {
@@ -60,6 +63,9 @@ public class PlayListServiceImpl implements PlayListService {
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
     public PlayListInfoResponse playListGet(Long id,Category category) {
         PlayList playList = playListRepository.findByCategoryAndId(category, id);
+        if (playList == null) {
+            throw new PlaylistNotFound();
+        }
         return new PlayListInfoResponse(
                 playList.getId(),
                 playList.getMember(),
@@ -83,7 +89,7 @@ public class PlayListServiceImpl implements PlayListService {
     @Transactional(rollbackFor = {RuntimeException.class})
     public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();
-        PlayList playList = playListRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        PlayList playList = playListRepository.findById(id).orElseThrow(PlaylistNotFound::new);
         playListUtils.validate(member,playList);
         playList.update(updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
     }
