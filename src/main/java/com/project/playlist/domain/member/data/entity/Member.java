@@ -57,15 +57,6 @@ public class Member {
         this.password = requestDto.getPassword();
     }
 
-    public void update(Member member) {
-        this.id = member.getId();
-        this.studentId = member.getStudentId();
-        this.studentName = member.getStudentName();
-        this.email = member.getEmail();
-        this.password = member.getPassword();
-        this.authority = member.getAuthority();
-
-    }
 }
 
 

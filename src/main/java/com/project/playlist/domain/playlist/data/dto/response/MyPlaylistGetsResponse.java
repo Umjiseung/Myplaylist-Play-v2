@@ -7,12 +7,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MyPlaylistGetsResponse {
     private Long id;
+    private String studentId;
+    private String studentName;
     private String musicName;
     private String musicURL;
     private String musicContent;
 
-    public MyPlaylistGetsResponse(Long id, String musicName, String musicURL, String musicContent) {
+
+    public MyPlaylistGetsResponse(Long id, String studentId, String studentName, String musicName, String musicURL, String musicContent) {
         this.id = id;
+        this.studentId = studentId;
+        this.studentName = studentName;
         this.musicName = musicName;
         this.musicURL = musicURL;
         this.musicContent = musicContent;
