@@ -17,5 +17,5 @@ spring:
     secret: ${JWT_SECRET}
 
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
