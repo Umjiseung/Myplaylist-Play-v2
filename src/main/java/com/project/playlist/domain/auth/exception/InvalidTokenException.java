@@ -5,6 +5,6 @@ import com.project.playlist.global.error.exception.GlobalException;
 
 public class InvalidTokenException extends GlobalException {
     public InvalidTokenException() {
-        super(ErrorCode.EXPIRED_TOKEN);
+        super(ErrorCode.INVALID_TOKEN);
     }
 }
