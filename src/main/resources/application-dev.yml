@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/playlist-v2
+    username: root
+    password: 1029384756
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MariaDBDialect
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  jwt:
+    secret: ${JWT_SECRET}
+
+  redis:
+    host: local
+    port: 6379
+
+discord:
+  webhook:
+    url:
