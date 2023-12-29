@@ -5,8 +5,7 @@ import com.project.playlist.domain.auth.dto.TokenRequestDto;
 import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
 
-import com.project.playlist.domain.member.data.dto.MemberResponseDto;
-import com.project.playlist.global.member.MemberUtils;
+import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<MemberResponseDto> signup(@RequestBody SignUpRequest requestDto) {
+    public ResponseEntity<MemberResponse> signup(@RequestBody SignUpRequest requestDto) {
         return ResponseEntity.ok(authService.signup(requestDto));
     }
 

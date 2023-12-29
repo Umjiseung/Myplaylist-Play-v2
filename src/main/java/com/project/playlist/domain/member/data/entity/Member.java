@@ -2,6 +2,7 @@ package com.project.playlist.domain.member.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
+import com.project.playlist.domain.member.data.dto.request.UpdatePassword;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -58,6 +59,10 @@ public class Member {
         this.studentId = requestDto.getStudentId();
         this.studentName = requestDto.getStudentName();
         this.password = requestDto.getPassword();
+    }
+
+    public void UpdateMember(UpdatePassword request) {
+        this.password = request.getPassword();
     }
 
 }

@@ -1,16 +1,12 @@
 package com.project.playlist.domain.member.controller;
 
-import com.project.playlist.domain.member.data.dto.MemberResponseDto;
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.data.dto.request.UpdatePassword;
+import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.service.MemberService;
-import com.project.playlist.domain.member.service.impl.MemberServiceImpl;
 import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,12 +17,21 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/{studentId}")
-    public ResponseEntity<MemberResponseDto> findMemberInfoById(@PathVariable String studentId) {
+    public ResponseEntity<MemberResponse> findMemberInfoById(@PathVariable String studentId) {
         return ResponseEntity.ok(memberService.myMemberInfo(studentId));
     }
 
-    @GetMapping("/my-playlist")
+    @GetMapping
     public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist() {
         return ResponseEntity.ok(memberService.getMyPlaylist());
     }
+
+    @PatchMapping("/{studentId}")
+    public ResponseEntity<Void> updateMemberInfo(
+            @PathVariable String studentId,
+            @RequestBody UpdatePassword request
+    ) {
+        return ResponseEntity.noContent(memberService).build();
+    }
+
 }

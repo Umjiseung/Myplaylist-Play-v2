@@ -18,6 +18,7 @@ public enum ErrorCode {
     EXPIRED_REFRESHTOKEN(401, "Expired RefreshToken"),        // 리프레시 토큰 만료 (HTTP 401)
     INVALID_TOKEN(401, "Invalid Token"),                      // 잘못된 토큰 (HTTP 401)
     UNAUTHORIZED(401, "Unauthorized"),                        // 권한 없음 (HTTP 401)
+    Member_NOT_SAME(401,"Member Not Same"),
     MEMBER_NOT_FOUND(404, "Member Not Found");                // 회원을 찾을 수 없음 (HTTP 404)
 
 

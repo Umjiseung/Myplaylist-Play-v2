@@ -6,7 +6,7 @@ import com.project.playlist.domain.auth.exception.AlreadyExistMemberException;
 import com.project.playlist.domain.auth.exception.InvalidTokenException;
 import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
-import com.project.playlist.domain.member.data.dto.MemberResponseDto;
+import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.data.entity.RefreshToken;
 import com.project.playlist.domain.member.repository.MemberRepository;
@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional(rollbackFor = {RuntimeException.class})
     @Override
-    public MemberResponseDto signup(SignUpRequest signUpRequest) {
+    public MemberResponse signup(SignUpRequest signUpRequest) {
         if (memberRepository.existsByStudentIdOrStudentName(
                 signUpRequest.getStudentId(),
                 signUpRequest.getStudentName())) {
@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         Member member = signUpRequest.toMember(passwordEncoder);
-        return MemberResponseDto.of(memberRepository.save(member));
+        return MemberResponse.of(memberRepository.save(member));
     }
 
     @Transactional(rollbackFor = {RuntimeException.class})
