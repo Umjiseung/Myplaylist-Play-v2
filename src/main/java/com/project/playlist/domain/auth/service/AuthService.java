@@ -1,8 +1,6 @@
 package com.project.playlist.domain.auth.service;
 
-import com.project.playlist.domain.auth.dto.TokenDto;
-import com.project.playlist.domain.auth.dto.TokenRequestDto;
-import com.project.playlist.domain.auth.dto.SignUpRequest;
+import com.project.playlist.domain.auth.dto.*;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 
 public interface AuthService {
@@ -11,4 +9,6 @@ public interface AuthService {
     TokenDto login(SignUpRequest signUpRequest);
     TokenDto refresh(TokenRequestDto tokenRequestDto);
     void logout();
+
+    AuthFindResponse findPassword(AuthFindRequest authFindRequest);
 }

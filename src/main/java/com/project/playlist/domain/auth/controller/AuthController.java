@@ -1,9 +1,7 @@
 package com.project.playlist.domain.auth.controller;
 
-import com.project.playlist.domain.auth.dto.TokenDto;
-import com.project.playlist.domain.auth.dto.TokenRequestDto;
+import com.project.playlist.domain.auth.dto.*;
 import com.project.playlist.domain.auth.service.AuthService;
-import com.project.playlist.domain.auth.dto.SignUpRequest;
 
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +35,12 @@ public class AuthController {
     @DeleteMapping("/logout")
     public ResponseEntity<Void> logout(){
         authService.logout();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<AuthFindResponse> findPassword(@RequestBody AuthFindRequest request) {
+        authService.findPassword(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

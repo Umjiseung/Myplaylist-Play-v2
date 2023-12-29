@@ -1,14 +1,13 @@
 package com.project.playlist.domain.auth.service.impl;
 
-import com.project.playlist.domain.auth.dto.TokenDto;
-import com.project.playlist.domain.auth.dto.TokenRequestDto;
+import com.project.playlist.domain.auth.dto.*;
 import com.project.playlist.domain.auth.exception.AlreadyExistMemberException;
 import com.project.playlist.domain.auth.exception.InvalidTokenException;
 import com.project.playlist.domain.auth.service.AuthService;
-import com.project.playlist.domain.auth.dto.SignUpRequest;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.data.entity.RefreshToken;
+import com.project.playlist.domain.member.exception.MemberNotFoundException;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.domain.member.repository.RefreshTokenRepository;
 import com.project.playlist.global.member.MemberUtils;
@@ -110,5 +109,13 @@ public class AuthServiceImpl implements AuthService {
     public void logout() {
         Member member = memberUtils.getCurrentMember();
         refreshTokenRepository.deleteById(member.getStudentName());
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
+    public AuthFindResponse findPassword(AuthFindRequest request) {
+        Member member = memberRepository.findByEmail(request.getEmail())
+                .orElseThrow(MemberNotFoundException::new);
+        return AuthFindResponse.of(member.getPassword());
     }
 }
