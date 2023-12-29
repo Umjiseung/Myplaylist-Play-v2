@@ -19,23 +19,25 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final PlayListUtils playListUtils;
     private final MemberUtils memberUtils;
 
+    @Transactional(rollbackFor = {Exception.class},readOnly = true)
     public MemberResponse myMemberInfo(String StudentId) {
         return memberRepository.findByStudentId(StudentId)
                 .map(MemberResponse::of)
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
     }
 
+    @Transactional(rollbackFor = {Exception.class},readOnly = true)
     public List<MyPlaylistGetsResponse> getMyPlaylist() {
         Member member = memberUtils.getCurrentMember();
         return playListUtils.findPlaylistsByUserInfo(member);
     }
 
+    @Transactional(rollbackFor = {Exception.class})
     public void UpdatePassword(String studentId, UpdatePassword request) {
         Member member = memberUtils.getCurrentMember();
         Member findMember = memberRepository.findByStudentId(studentId)
