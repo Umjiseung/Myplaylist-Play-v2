@@ -11,5 +11,5 @@ public interface MemberService {
     MemberResponse myMemberInfo(String StudentId);
     List<MyPlaylistGetsResponse> getMyPlaylist();
 
-    void UpdatePassword(String studentId, UpdatePassword request);
+    void updatePassword(String studentId, UpdatePassword request);
 }

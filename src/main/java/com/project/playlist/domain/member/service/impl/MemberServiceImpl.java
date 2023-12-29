@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Transactional(rollbackFor = {Exception.class})
-    public void UpdatePassword(String studentId, UpdatePassword request) {
+    public void updatePassword(String studentId, UpdatePassword request) {
         Member member = memberUtils.getCurrentMember();
         Member findMember = memberRepository.findByStudentId(studentId)
                 .orElseThrow(MemberNotFoundException::new);

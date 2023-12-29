@@ -5,6 +5,7 @@ import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.service.MemberService;
 import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,8 @@ public class MemberController {
             @PathVariable String studentId,
             @RequestBody UpdatePassword request
     ) {
-        return ResponseEntity.noContent(memberService).build();
+        memberService.updatePassword(studentId,request);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
