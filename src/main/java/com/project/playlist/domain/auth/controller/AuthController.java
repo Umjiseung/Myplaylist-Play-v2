@@ -37,10 +37,4 @@ public class AuthController {
         authService.logout();
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping
-    public ResponseEntity<AuthFindResponse> findPassword(@RequestBody AuthFindRequest request) {
-        authService.findPassword(request);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

@@ -110,12 +110,4 @@ public class AuthServiceImpl implements AuthService {
         Member member = memberUtils.getCurrentMember();
         refreshTokenRepository.deleteById(member.getStudentName());
     }
-
-    @Override
-    @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
-    public AuthFindResponse findPassword(AuthFindRequest request) {
-        Member member = memberRepository.findByEmail(request.getEmail())
-                .orElseThrow(MemberNotFoundException::new);
-        return AuthFindResponse.of(member.getPassword());
-    }
 }

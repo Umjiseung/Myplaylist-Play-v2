@@ -10,5 +10,4 @@ public interface AuthService {
     TokenDto refresh(TokenRequestDto tokenRequestDto);
     void logout();
 
-    AuthFindResponse findPassword(AuthFindRequest authFindRequest);
 }
