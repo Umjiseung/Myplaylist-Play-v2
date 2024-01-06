@@ -35,6 +35,7 @@ public class Member {
     private String email;
 
     @Column(nullable = false)
+    @Pattern(regexp = "^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,24}$", message = "Invalid Password Pattern")
     private String password;
 
     @Column(nullable = false)
