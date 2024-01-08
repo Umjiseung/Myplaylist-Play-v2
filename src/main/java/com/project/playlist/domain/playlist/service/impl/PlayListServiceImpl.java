@@ -21,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(rollbackFor = {Exception.class})
 public class PlayListServiceImpl implements PlayListService {
 
     private final PlayListRepository playListRepository;
@@ -28,14 +29,13 @@ public class PlayListServiceImpl implements PlayListService {
     private final PlayListUtils playListUtils;
 
 
-    @Transactional(rollbackFor = {RuntimeException.class})
     public void playListWrite(PlayListWriteRequest writeRequest) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playList = writeRequest.toEntity(userInfo);
         playListRepository.save(playList);
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
+    @Transactional(readOnly = true)
     public List<PlayListGetsResponse> playlistAllGets() {
         List<PlayList> playLists = playListRepository.findAll();
         List<PlayListGetsResponse> responses = new ArrayList<>();
@@ -53,7 +53,7 @@ public class PlayListServiceImpl implements PlayListService {
         return responses;
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
+    @Transactional(readOnly = true)
     public List<PlayListGetsResponse> playListOfGets(Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
         if (playLists == null) {
@@ -74,7 +74,7 @@ public class PlayListServiceImpl implements PlayListService {
         return listOfCategory;
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
+    @Transactional(readOnly = true)
     public PlayListInfoResponse playListGet(Long id,Category category) {
         PlayList playList = playListRepository.findByCategoryAndId(category, id);
         if (playList == null) {
@@ -90,7 +90,6 @@ public class PlayListServiceImpl implements PlayListService {
         );
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class})
     public void playListDelete(Long id) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playListInfo = playListRepository.findByIdOrIdNull(id);
@@ -98,7 +97,6 @@ public class PlayListServiceImpl implements PlayListService {
         playListRepository.deleteById(id);
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class})
     public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();
         PlayList playList = playListRepository.findById(id).orElseThrow(PlaylistNotFound::new);
