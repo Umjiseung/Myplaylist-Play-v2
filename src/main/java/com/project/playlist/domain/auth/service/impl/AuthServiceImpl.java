@@ -7,13 +7,11 @@ import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.data.entity.RefreshToken;
-import com.project.playlist.domain.member.exception.MemberNotFoundException;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.domain.member.repository.RefreshTokenRepository;
 import com.project.playlist.global.member.MemberUtils;
 import com.project.playlist.global.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -23,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(rollbackFor = {Exception.class})
 public class AuthServiceImpl implements AuthService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
@@ -31,8 +30,6 @@ public class AuthServiceImpl implements AuthService {
     private final TokenProvider tokenProvider;
     private final MemberUtils memberUtils;
 
-    @Transactional(rollbackFor = {RuntimeException.class})
-    @Override
     public MemberResponse signup(SignUpRequest signUpRequest) {
         if (memberRepository.existsByStudentIdOrStudentName(
                 signUpRequest.getStudentId(),
@@ -44,8 +41,6 @@ public class AuthServiceImpl implements AuthService {
         return MemberResponse.of(memberRepository.save(member));
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class})
-    @Override
     public TokenDto login(SignUpRequest signUpRequest) {
         // 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
         UsernamePasswordAuthenticationToken authenticationToken = signUpRequest.toAuthentication();
@@ -69,8 +64,6 @@ public class AuthServiceImpl implements AuthService {
         return tokenDto;
     }
 
-    @Transactional(rollbackFor = {RuntimeException.class})
-    @Override
     public TokenDto refresh(TokenRequestDto tokenRequestDto) {
         // 1. Refresh Token 검증
         if (!tokenProvider.validateToken(tokenRequestDto.getRefreshToken())) {
@@ -102,8 +95,6 @@ public class AuthServiceImpl implements AuthService {
         return tokenDto;
     }
 
-    @Override
-    @Transactional(rollbackFor = {RuntimeException.class})
     public void logout() {
         Member member = memberUtils.getCurrentMember();
         refreshTokenRepository.deleteById(member.getStudentName());
