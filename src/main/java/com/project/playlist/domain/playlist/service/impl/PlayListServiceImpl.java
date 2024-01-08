@@ -28,16 +28,31 @@ public class PlayListServiceImpl implements PlayListService {
     private final PlayListUtils playListUtils;
 
 
-    @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public void playListWrite(PlayListWriteRequest writeRequest) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playList = writeRequest.toEntity(userInfo);
         playListRepository.save(playList);
-
     }
 
-    @Override
+    @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
+    public List<PlayListGetsResponse> playlistAllGets() {
+        List<PlayList> playLists = playListRepository.findAll();
+        List<PlayListGetsResponse> responses = new ArrayList<>();
+
+        for (PlayList playList: playLists) {
+            responses.add(new PlayListGetsResponse(
+                    playList.getId(),
+                    playList.getMember(),
+                    playList.getMusicName(),
+                    playList.getMusicURL(),
+                    playList.getMusicContent(),
+                    playList.getCategory()
+            ));
+        }
+        return responses;
+    }
+
     @Transactional(rollbackFor = {RuntimeException.class}, readOnly = true)
     public List<PlayListGetsResponse> playListOfGets(Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
@@ -59,7 +74,6 @@ public class PlayListServiceImpl implements PlayListService {
         return listOfCategory;
     }
 
-    @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
     public PlayListInfoResponse playListGet(Long id,Category category) {
         PlayList playList = playListRepository.findByCategoryAndId(category, id);
@@ -76,7 +90,6 @@ public class PlayListServiceImpl implements PlayListService {
         );
     }
 
-    @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public void playListDelete(Long id) {
         Member userInfo = memberUtils.getCurrentMember();
@@ -85,7 +98,6 @@ public class PlayListServiceImpl implements PlayListService {
         playListRepository.deleteById(id);
     }
 
-    @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();

@@ -28,6 +28,10 @@ public class PlayListController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<PlayListGetsResponse>> musicAllGets() {
+
+    }
 
     // 카테고리별 Playlist 가져오기
     @GetMapping("/{category}")
