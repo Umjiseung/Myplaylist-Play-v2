@@ -69,7 +69,8 @@ public class PlayListServiceImpl implements PlayListService {
                 playList.getMusicName(),
                 playList.getMusicURL(),
                 playList.getMusicContent(),
-                playList.getCategory()
+                playList.getCategory(),
+                playList.getDate()
         );
     }
 
@@ -87,6 +88,7 @@ public class PlayListServiceImpl implements PlayListService {
         playList.update(updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
     }
 
+    @Transactional(readOnly = true)
     public List<PlayListGetsResponse> playlistGetsDate(String date) {
         List<PlayList> playLists = playListRepository.findByDate(date);
         return playlistGets(playLists);
