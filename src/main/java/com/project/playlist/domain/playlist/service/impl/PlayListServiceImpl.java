@@ -45,20 +45,7 @@ public class PlayListServiceImpl implements PlayListService {
     @Transactional(readOnly = true)
     public List<PlayListGetsResponse> playlistAllGets() {
         List<PlayList> playLists = playListRepository.findAll();
-        List<PlayListGetsResponse> responses = new ArrayList<>();
-
-        for (PlayList playList: playLists) {
-            responses.add(new PlayListGetsResponse(
-                    playList.getId(),
-                    playList.getMember(),
-                    playList.getMusicName(),
-                    playList.getMusicURL(),
-                    playList.getMusicContent(),
-                    playList.getCategory(),
-                    playList.getDate()
-            ));
-        }
-        return responses;
+        return playlistGets(playLists);
     }
 
     @Transactional(readOnly = true)
@@ -67,20 +54,7 @@ public class PlayListServiceImpl implements PlayListService {
         if (playLists == null) {
             throw new PlaylistNotFound();
         }
-        List<PlayListGetsResponse> listOfCategory = new ArrayList<>();
-
-        for (PlayList playList : playLists) {
-            listOfCategory.add(new PlayListGetsResponse(
-                    playList.getId(),
-                    playList.getMember(),
-                    playList.getMusicName(),
-                    playList.getMusicURL(),
-                    playList.getMusicContent(),
-                    playList.getCategory(),
-                    playList.getDate()
-            ));
-        }
-        return listOfCategory;
+        return playlistGets(playLists);
     }
 
     @Transactional(readOnly = true)
@@ -115,6 +89,10 @@ public class PlayListServiceImpl implements PlayListService {
 
     public List<PlayListGetsResponse> playlistGetsDate(String date) {
         List<PlayList> playLists = playListRepository.findByDate(date);
+        return playlistGets(playLists);
+    }
+
+    private List<PlayListGetsResponse> playlistGets(List<PlayList> playLists) {
         List<PlayListGetsResponse> responses = new ArrayList<>();
 
         for (PlayList playList: playLists) {
