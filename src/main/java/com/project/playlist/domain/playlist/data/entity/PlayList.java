@@ -32,17 +32,12 @@ public class PlayList{
     @Column(nullable = false)
     private Category category;
 
+    @Column(nullable = false)
+    private Integer date;
+
     @ManyToOne
     @JoinColumn(name = "memberId")
     private Member member;
-
-    public PlayList(Member member, PlayListWriteRequest writeRequest) {
-        this.musicName = writeRequest.getMusicName();
-        this.musicURL = writeRequest.getMusicURL();
-        this.musicContent = writeRequest.getMusicContent();
-        this.category = writeRequest.getCategory();
-        this.member = member;
-    }
 
 
     public void update(String musicName, String musicURL, String musicContent, Category category) {
