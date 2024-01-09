@@ -46,6 +46,12 @@ public class PlayListController {
         return new ResponseEntity<>(playListService.playListGet(id,category),HttpStatus.OK);
     }
 
+    @GetMapping("/playlist")
+    public ResponseEntity<PlayListGetsResponse> musicGetsOfDate(@RequestParam String date) {
+        playListService.playlistGetsDate(date);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     // Playlist 삭제하기
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id) {

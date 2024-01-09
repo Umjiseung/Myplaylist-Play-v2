@@ -33,7 +33,7 @@ public class PlayList{
     private Category category;
 
     @Column(nullable = false)
-    private Integer date;
+    private String date;
 
     @ManyToOne
     @JoinColumn(name = "memberId")
@@ -45,5 +45,9 @@ public class PlayList{
         this.musicURL = musicURL;
         this.musicContent = musicContent;
         this.category = category;
+    }
+
+    public void insertDate(String date) {
+        this.date = date;
     }
 }

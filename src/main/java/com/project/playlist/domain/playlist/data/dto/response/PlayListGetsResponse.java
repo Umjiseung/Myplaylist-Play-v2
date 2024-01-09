@@ -17,9 +17,10 @@ public class PlayListGetsResponse {
     private String musicURL;
     private String musicContent;
     private Category category;
+    private String date;
 
 
-    public PlayListGetsResponse(Long id, Member member, String musicName, String musicURL, String musicContent, Category category ) {
+    public PlayListGetsResponse(Long id, Member member, String musicName, String musicURL, String musicContent, Category category, String date) {
         this.id = id;
         this.studentId = member.getStudentId();
         this.studentName = member.getStudentName();
@@ -27,5 +28,6 @@ public class PlayListGetsResponse {
         this.musicURL = musicURL;
         this.musicContent = musicContent;
         this.category = category;
+        this.date = date;
     }
 }

@@ -18,4 +18,6 @@ public interface PlayListService {
     void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
 
     List<PlayListGetsResponse> playlistAllGets();
+
+    List<PlayListGetsResponse> playlistGetsDate(String date);
 }

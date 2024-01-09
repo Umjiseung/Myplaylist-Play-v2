@@ -15,6 +15,8 @@ public interface PlayListRepository extends JpaRepository<PlayList,Long> {
 
     PlayList findByIdOrIdNull(Long id);
 
+    List<PlayList> findByDate(String date);
+
     List<PlayList> findPlayListsByMember(Member member);
     boolean existsByMemberAndMusicName(Member member, String musicName);
 }

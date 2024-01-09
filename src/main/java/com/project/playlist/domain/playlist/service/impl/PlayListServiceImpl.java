@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +33,12 @@ public class PlayListServiceImpl implements PlayListService {
 
     public void playListWrite(PlayListWriteRequest writeRequest) {
         Member userInfo = memberUtils.getCurrentMember();
+        SimpleDateFormat dateFormat = new SimpleDateFormat ( "yyyyMMdd");
+        Date time = new Date();
+        String result = dateFormat.format(time);
+
         PlayList playList = writeRequest.toEntity(userInfo);
+        playList.insertDate(result);
         playListRepository.save(playList);
     }
 
@@ -47,7 +54,8 @@ public class PlayListServiceImpl implements PlayListService {
                     playList.getMusicName(),
                     playList.getMusicURL(),
                     playList.getMusicContent(),
-                    playList.getCategory()
+                    playList.getCategory(),
+                    playList.getDate()
             ));
         }
         return responses;
@@ -68,7 +76,8 @@ public class PlayListServiceImpl implements PlayListService {
                     playList.getMusicName(),
                     playList.getMusicURL(),
                     playList.getMusicContent(),
-                    playList.getCategory()
+                    playList.getCategory(),
+                    playList.getDate()
             ));
         }
         return listOfCategory;
@@ -104,4 +113,21 @@ public class PlayListServiceImpl implements PlayListService {
         playList.update(updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
     }
 
+    public List<PlayListGetsResponse> playlistGetsDate(String date) {
+        List<PlayList> playLists = playListRepository.findByDate(date);
+        List<PlayListGetsResponse> responses = new ArrayList<>();
+
+        for (PlayList playList: playLists) {
+            responses.add(new PlayListGetsResponse(
+                    playList.getId(),
+                    playList.getMember(),
+                    playList.getMusicName(),
+                    playList.getMusicURL(),
+                    playList.getMusicContent(),
+                    playList.getCategory(),
+                    playList.getDate()
+            ));
+        }
+        return responses;
+    }
 }
