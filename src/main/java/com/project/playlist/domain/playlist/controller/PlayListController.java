@@ -21,7 +21,6 @@ public class PlayListController {
 
     private final PlayListService playListService;
 
-    // Playlist 작성
     @PostMapping("/write")
     public ResponseEntity<Void> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
@@ -34,13 +33,11 @@ public class PlayListController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // 카테고리별 Playlist 가져오기
     @GetMapping("/{category}")
     public ResponseEntity<List<PlayListGetsResponse>> musicOfGets(@PathVariable("category") Category category) {
         return new ResponseEntity<>(playListService.playListOfGets(category),HttpStatus.OK);
     }
 
-    // playlist 상세보기
     @GetMapping("/{category}/{id}")
     public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("category") Category category,@PathVariable("id") Long id) {
         return new ResponseEntity<>(playListService.playListGet(id,category),HttpStatus.OK);
@@ -52,14 +49,12 @@ public class PlayListController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // Playlist 삭제하기
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id) {
         playListService.playListDelete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // playlist 수정하기
     @PatchMapping("/{id}")
     public ResponseEntity<Void> musicUpdate(@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id,updateRequest);
