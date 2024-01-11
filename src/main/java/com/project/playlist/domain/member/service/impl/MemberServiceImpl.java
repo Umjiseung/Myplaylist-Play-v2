@@ -1,6 +1,6 @@
 package com.project.playlist.domain.member.service.impl;
 
-import com.project.playlist.domain.member.data.dto.request.UpdatePassword;
+import com.project.playlist.domain.member.data.dto.request.UpdatePasswordRequest;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.member.exception.MemberNotFoundException;
@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
         return playListUtils.findPlaylistsByUserInfo(member);
     }
 
-    public void updatePassword(String studentId, UpdatePassword request) {
+    public void updatePassword(String studentId, UpdatePasswordRequest request) {
         Member member = memberUtils.getCurrentMember();
         Member findMember = memberRepository.findByStudentId(studentId)
                 .orElseThrow(MemberNotFoundException::new);

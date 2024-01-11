@@ -1,6 +1,6 @@
 package com.project.playlist.domain.member.controller;
 
-import com.project.playlist.domain.member.data.dto.request.UpdatePassword;
+import com.project.playlist.domain.member.data.dto.request.UpdatePasswordRequest;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.service.MemberService;
 import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
@@ -31,7 +31,7 @@ public class MemberController {
     @PatchMapping("/{studentId}")
     public ResponseEntity<Void> updateMemberPassword(
             @PathVariable String studentId,
-            @Valid @RequestBody UpdatePassword request
+            @Valid @RequestBody UpdatePasswordRequest request
     ) {
         memberService.updatePassword(studentId,request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

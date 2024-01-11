@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @NoArgsConstructor
-public class UpdatePassword {
+public class UpdatePasswordRequest {
     @NotBlank
     @Pattern(regexp = "^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,24}$", message = "Invalid Password Pattern")
     public String password;
