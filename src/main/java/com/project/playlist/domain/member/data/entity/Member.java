@@ -31,7 +31,7 @@ public class Member {
     private String studentName;
 
     @Column(nullable = false)
-    @Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@gmail\\.com$", message = "Invalid Gmail address")
+    @Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@gsm\\.hs\\.kr$", message = "Invalid GSM email address")
     private String email;
 
     @Column(nullable = false)
