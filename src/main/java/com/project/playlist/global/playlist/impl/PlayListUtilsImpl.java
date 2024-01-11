@@ -15,13 +15,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlayListUtilsImpl implements PlayListUtils {
     private final PlayListRepository playListRepository;
-    @Override
+
     public List<MyPlaylistGetsResponse> findPlaylistsByUserInfo(Member member) {
         List<PlayList> playLists = playListRepository.findPlayListsByMember(member);
         return getBoardTitle(playLists, member);
     }
 
-    @Override
     public void validate(Member userInfo, PlayList playlistInfo) {
         boolean checkBoardOwner = playListRepository.existsByMemberAndMusicName(userInfo,playlistInfo.getMusicName());
         if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
