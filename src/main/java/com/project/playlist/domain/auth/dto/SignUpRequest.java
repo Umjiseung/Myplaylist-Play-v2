@@ -32,8 +32,4 @@ public class SignUpRequest {
                 .authority(Authority.ROLE_USER)
                 .build();
     }
-
-    public UsernamePasswordAuthenticationToken toAuthentication() {
-        return new UsernamePasswordAuthenticationToken(email, password);
-    }
 }

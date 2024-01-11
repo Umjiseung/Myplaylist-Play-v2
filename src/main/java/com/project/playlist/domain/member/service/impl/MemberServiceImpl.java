@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -26,10 +25,16 @@ public class MemberServiceImpl implements MemberService {
     private final MemberUtils memberUtils;
 
     @Transactional(readOnly = true)
-    public MemberResponse myMemberInfo(String StudentId) {
-        return memberRepository.findByStudentId(StudentId)
-                .map(MemberResponse::of)
-                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
+    public MemberResponse myMemberInfo(String studentId) {
+        Member user = memberUtils.getCurrentMember();
+        Member userInfo = memberRepository.findByStudentId(studentId)
+                .orElseThrow(MemberNotFoundException::new);
+
+        if (user != userInfo) {
+            throw new MemberNotSameException();
+        }
+
+        return MemberResponse.of(user);
     }
 
     @Transactional(readOnly = true)
@@ -43,8 +48,9 @@ public class MemberServiceImpl implements MemberService {
         Member findMember = memberRepository.findByStudentId(studentId)
                 .orElseThrow(MemberNotFoundException::new);
 
-        if (!Objects.equals(member.getId(), findMember.getId()))
+        if (member != findMember) {
             throw new MemberNotSameException();
+        }
 
         member.UpdateMember(request);
     }
