@@ -11,6 +11,7 @@ import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResp
 import com.project.playlist.global.member.MemberUtils;
 import com.project.playlist.global.playlist.PlayListUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final PlayListUtils playListUtils;
     private final MemberUtils memberUtils;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
     public MemberResponse myMemberInfo(String studentId) {
@@ -51,6 +53,8 @@ public class MemberServiceImpl implements MemberService {
         if (member != findMember) {
             throw new MemberNotSameException();
         }
+
+        request.updatePassword(passwordEncoder, member.getPassword());
 
         member.UpdateMember(request);
     }

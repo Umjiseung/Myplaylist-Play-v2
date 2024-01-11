@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,9 +29,9 @@ public class MemberController {
     }
 
     @PatchMapping("/{studentId}")
-    public ResponseEntity<Void> updateMemberInfo(
+    public ResponseEntity<Void> updateMemberPassword(
             @PathVariable String studentId,
-            @RequestBody UpdatePassword request
+            @Valid @RequestBody UpdatePassword request
     ) {
         memberService.updatePassword(studentId,request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
