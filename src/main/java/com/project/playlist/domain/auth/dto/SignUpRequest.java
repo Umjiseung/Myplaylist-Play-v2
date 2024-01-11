@@ -3,6 +3,8 @@ package com.project.playlist.domain.auth.dto;
 import com.project.playlist.domain.member.data.entity.Authority;
 import com.project.playlist.domain.member.data.entity.Member;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ public class SignUpRequest {
     @NotBlank
     private String studentName;
     @NotBlank
+    @Pattern(regexp = "^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,24}$", message = "Invalid Password Pattern")
     private String password;
 
     public Member toMember(PasswordEncoder passwordEncoder) {
