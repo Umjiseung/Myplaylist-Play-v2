@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class PlayListController {
     private final PlayListService playListService;
 
     @PostMapping("/write")
-    public ResponseEntity<Void> musicWrite(@RequestBody PlayListWriteRequest writeRequest) {
+    public ResponseEntity<Void> musicWrite(@Valid @RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -56,7 +57,7 @@ public class PlayListController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> musicUpdate(@PathVariable("id") Long id, @RequestBody PlayListUpdateRequest updateRequest) {
+    public ResponseEntity<Void> musicUpdate(@PathVariable("id") Long id, @Valid @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id,updateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
