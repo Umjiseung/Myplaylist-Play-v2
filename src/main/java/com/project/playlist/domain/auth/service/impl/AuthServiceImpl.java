@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
         return MemberResponse.of(memberRepository.save(member));
     }
 
-    public TokenDto login(SignUpRequest signUpRequest) {
+    public TokenDto login(LoginRequest signUpRequest) {
         UsernamePasswordAuthenticationToken authenticationToken = signUpRequest.toAuthentication();
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
