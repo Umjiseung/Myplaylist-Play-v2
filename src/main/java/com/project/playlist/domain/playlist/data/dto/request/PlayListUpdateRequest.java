@@ -2,6 +2,8 @@ package com.project.playlist.domain.playlist.data.dto.request;
 
 import com.project.playlist.domain.playlist.data.entity.Category;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +19,6 @@ public class PlayListUpdateRequest {
     private String musicURL;
     @NotBlank
     private String musicContent;
-    @NotBlank
+    @NotNull
     private Category category;
 }

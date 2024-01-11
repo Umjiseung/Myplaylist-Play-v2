@@ -4,6 +4,7 @@ package com.project.playlist.domain.playlist.data.dto.request;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class PlayListWriteRequest {
     private String musicURL;
     @NotBlank
     private String musicContent;
-    @NotBlank
+    @NotNull
     private Category category;
     @NotBlank
     private String playListPW;
