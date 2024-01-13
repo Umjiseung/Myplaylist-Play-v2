@@ -28,13 +28,4 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getMyPlaylist());
     }
 
-    @PatchMapping("/{studentId}")
-    public ResponseEntity<Void> updateMemberPassword(
-            @PathVariable String studentId,
-            @Valid @RequestBody UpdatePasswordRequest request
-    ) {
-        memberService.updatePassword(studentId,request);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
 }
