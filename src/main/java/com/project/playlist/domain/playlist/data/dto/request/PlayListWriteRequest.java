@@ -24,8 +24,6 @@ public class PlayListWriteRequest {
     private String musicContent;
     @NotNull
     private Category category;
-    @NotBlank
-    private String playListPW;
 
     public PlayList toEntity(Member member) {
         return PlayList.builder()
