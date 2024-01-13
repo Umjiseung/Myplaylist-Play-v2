@@ -16,10 +16,6 @@ public interface PlayListService {
     List<PlayListGetsResponse> playListOfGets(Category category);
     PlayListInfoResponse playListGet(Long id);
     void playListDelete(Long id);
-
     void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
-
     List<PlayListGetsResponse> playlistAllGets();
-
-    List<PlayListGetsResponse> playlistGetsDate(String date);
 }

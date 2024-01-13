@@ -39,15 +39,9 @@ public class PlayListController {
         return new ResponseEntity<>(playListService.playListOfGets(category),HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{category}/{id}")
     public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") Long id) {
         return new ResponseEntity<>(playListService.playListGet(id),HttpStatus.OK);
-    }
-
-    @GetMapping("/playlist")
-    public ResponseEntity<PlayListGetsResponse> musicGetsOfDate(@RequestParam String date) {
-        playListService.playlistGetsDate(date);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
