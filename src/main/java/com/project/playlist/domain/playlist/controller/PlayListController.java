@@ -22,7 +22,7 @@ public class PlayListController {
 
     private final PlayListService playListService;
 
-    @PostMapping("/write")
+    @PostMapping
     public ResponseEntity<Void> musicWrite(@Valid @RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
