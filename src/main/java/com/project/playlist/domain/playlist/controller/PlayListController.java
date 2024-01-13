@@ -39,9 +39,9 @@ public class PlayListController {
         return new ResponseEntity<>(playListService.playListOfGets(category),HttpStatus.OK);
     }
 
-    @GetMapping("/{category}/{id}")
-    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("category") Category category,@PathVariable("id") Long id) {
-        return new ResponseEntity<>(playListService.playListGet(id,category),HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(playListService.playListGet(id),HttpStatus.OK);
     }
 
     @GetMapping("/playlist")

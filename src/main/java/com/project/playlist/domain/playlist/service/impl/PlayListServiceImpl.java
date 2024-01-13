@@ -58,8 +58,8 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Transactional(readOnly = true)
-    public PlayListInfoResponse playListGet(Long id,Category category) {
-        PlayList playList = playListRepository.findByCategoryAndId(category, id);
+    public PlayListInfoResponse playListGet(Long id) {
+        PlayList playList = playListRepository.findByIdOrIdNull(id);
         if (playList == null) {
             throw new PlaylistNotFound();
         }

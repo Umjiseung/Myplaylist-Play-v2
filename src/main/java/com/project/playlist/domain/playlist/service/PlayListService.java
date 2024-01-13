@@ -14,7 +14,7 @@ public interface PlayListService {
 
     void playListWrite(PlayListWriteRequest writeRequest);
     List<PlayListGetsResponse> playListOfGets(Category category);
-    PlayListInfoResponse playListGet(Long id,Category category);
+    PlayListInfoResponse playListGet(Long id);
     void playListDelete(Long id);
 
     void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
