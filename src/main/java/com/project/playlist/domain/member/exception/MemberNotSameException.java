@@ -5,5 +5,5 @@ import com.project.playlist.global.error.exception.GlobalException;
 
 public class MemberNotSameException extends GlobalException {
 
-    public MemberNotSameException(){super(ErrorCode.Member_NOT_SAME);}
+    public MemberNotSameException(){super(ErrorCode.MEMBER_NOT_SAME);}
 }
