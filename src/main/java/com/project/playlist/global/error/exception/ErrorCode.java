@@ -8,9 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
-    PLAYLIST_NOT_FOUND(404, "Playlist Not Found"),
     ALREADY_EXIST_MEMBER(400, "Already Exist Member"),
-    PASSWORD_MISMATCH(400, "Password Mismatch"),
     NOT_THE_OWNER(400, "Not The Owner"),
     EXPIRED_TOKEN(401, "Expired Token"),
     EXPIRED_REFRESHTOKEN(401, "Expired RefreshToken"),
