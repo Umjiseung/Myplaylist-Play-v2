@@ -17,12 +17,14 @@ public class MemberController {
 
     @GetMapping("/{studentId}")
     public ResponseEntity<MemberResponse> findMemberInfo(@PathVariable String studentId) {
-        return ResponseEntity.ok(memberService.myMemberInfo(studentId));
+        memberService.myMemberInfo(studentId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
     public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist() {
-        return ResponseEntity.ok(memberService.getMyPlaylist());
+        memberService.getMyPlaylist();
+        return ResponseEntity.ok().build();
     }
 
 }
