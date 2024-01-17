@@ -30,31 +30,30 @@ public class PlayListController {
     @GetMapping
     public ResponseEntity<List<PlayListGetsResponse>> musicAllGets() {
         playListService.playlistAllGets();
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{category}")
     public ResponseEntity<List<PlayListGetsResponse>> musicOfGets(@PathVariable("category") Category category) {
-        return new ResponseEntity<>(playListService.playListOfGets(category),HttpStatus.OK);
+        playListService.playListOfGets(category);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{category}/{id}")
     public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(playListService.playListGet(id),HttpStatus.OK);
+        playListService.playListGet(id);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id) {
         playListService.playListDelete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> musicUpdate(@PathVariable("id") Long id, @Valid @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id,updateRequest);
-        return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
+        return ResponseEntity.noContent().build();
     }
-
-
-
 }
