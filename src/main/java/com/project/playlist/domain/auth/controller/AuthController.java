@@ -30,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<TokenDto> refresh(@RequestBody TokenRequestDto requestDto) {
+    public ResponseEntity<TokenDto> refresh(@Valid @RequestBody TokenRequestDto requestDto) {
         return ResponseEntity.ok(authService.refresh(requestDto));
     }
 
