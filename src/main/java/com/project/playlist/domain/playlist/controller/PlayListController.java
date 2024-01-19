@@ -29,20 +29,20 @@ public class PlayListController {
 
     @GetMapping
     public ResponseEntity<List<PlayListGetsResponse>> musicAllGets() {
-        playListService.playlistAllGets();
-        return ResponseEntity.ok().build();
+        List<PlayListGetsResponse> result = playListService.playlistAllGets();
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{category}")
     public ResponseEntity<List<PlayListGetsResponse>> musicOfGets(@PathVariable("category") Category category) {
-        playListService.playListOfGets(category);
-        return ResponseEntity.ok().build();
+        List<PlayListGetsResponse> result = playListService.playListOfGets(category);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{category}/{id}")
     public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") Long id) {
-        playListService.playListGet(id);
-        return ResponseEntity.ok().build();
+        PlayListInfoResponse result = playListService.playListGet(id);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{id}")
