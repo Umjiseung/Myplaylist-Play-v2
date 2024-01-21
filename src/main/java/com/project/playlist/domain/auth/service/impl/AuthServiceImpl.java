@@ -31,9 +31,7 @@ public class AuthServiceImpl implements AuthService {
     private final MemberUtils memberUtils;
 
     public MemberResponse signup(SignUpRequest signUpRequest) {
-        if (memberRepository.existsByStudentIdOrStudentName(
-                signUpRequest.getStudentId(),
-                signUpRequest.getStudentName())) {
+        if (memberRepository.existsByStudentId(signUpRequest.getStudentId())) {
             throw new AlreadyExistMemberException();
         }
 
