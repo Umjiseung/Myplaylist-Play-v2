@@ -20,4 +20,4 @@ spring:
     port: ${REDIS_PORT}
 
 discord:
-  webhook: ${DISCORD_WEBHOOK}
+  webhook: ${WEBHOOK_URL}
