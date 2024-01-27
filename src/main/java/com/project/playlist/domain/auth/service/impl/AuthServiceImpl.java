@@ -11,6 +11,7 @@ import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.domain.member.repository.RefreshTokenRepository;
 import com.project.playlist.global.member.MemberUtils;
 import com.project.playlist.global.security.jwt.TokenProvider;
+import com.project.playlist.global.thirdparty.discord.WebHookUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,6 +30,7 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final MemberUtils memberUtils;
+    private final WebHookUtil webHookUtil;
 
     public MemberResponse signup(SignUpRequest signUpRequest) {
         if (memberRepository.existsByStudentId(signUpRequest.getStudentId())) {
@@ -36,6 +38,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         Member member = signUpRequest.toMember(passwordEncoder);
+        webHookUtil.callEvent(signUpRequest.getEmail(),signUpRequest.getStudentName());
         return MemberResponse.of(memberRepository.save(member));
     }
 
