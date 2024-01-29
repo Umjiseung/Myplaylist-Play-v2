@@ -1,13 +1,11 @@
 package com.project.playlist.domain.auth.controller;
 
-import antlr.Token;
 import com.project.playlist.domain.auth.dto.*;
 import com.project.playlist.domain.auth.service.AuthService;
 
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
