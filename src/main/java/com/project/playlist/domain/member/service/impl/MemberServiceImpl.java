@@ -45,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
         return playListUtils.findPlaylistsByUserInfo(member);
     }
 
+    @Transactional
     public void updatePassword(String studentId, UpdatePasswordRequest request) {
         Member member = memberUtils.getCurrentMember();
         Member findMember = memberRepository.findByStudentId(studentId)
