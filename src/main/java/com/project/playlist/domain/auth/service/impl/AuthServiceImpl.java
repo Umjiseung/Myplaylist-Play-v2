@@ -11,7 +11,6 @@ import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.domain.member.repository.RefreshTokenRepository;
 import com.project.playlist.global.member.MemberUtils;
 import com.project.playlist.global.security.jwt.TokenProvider;
-import com.project.playlist.global.thirdparty.discord.WebHookUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
