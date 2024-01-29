@@ -30,15 +30,12 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final MemberUtils memberUtils;
-    private final WebHookUtil webHookUtil;
 
     public MemberResponse signup(SignUpRequest signUpRequest) {
         if (memberRepository.existsByStudentId(signUpRequest.getStudentId())) {
             throw new AlreadyExistMemberException();
         }
-
         Member member = signUpRequest.toMember(passwordEncoder);
-        webHookUtil.callEvent(signUpRequest.getEmail(),signUpRequest.getStudentName());
         return MemberResponse.of(memberRepository.save(member));
     }
 

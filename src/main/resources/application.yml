@@ -18,6 +18,3 @@ spring:
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
-
-discord:
-  webhook: https://discord.com/api/webhooks/1190291470452793475/CnGU1kIFs7cXCPnJQRjoKD2RLR_3JNWp7C_Ag00Dc2pUsMAnxjDjIQVStT8m1OLfLUPj
