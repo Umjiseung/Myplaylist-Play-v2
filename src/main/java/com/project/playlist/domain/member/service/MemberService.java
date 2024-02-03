@@ -10,6 +10,5 @@ import java.util.List;
 public interface MemberService {
     MemberResponse myMemberInfo(String StudentId);
     List<MyPlaylistGetsResponse> getMyPlaylist();
-
     void updatePassword(String studentId, UpdatePasswordRequest request);
 }
