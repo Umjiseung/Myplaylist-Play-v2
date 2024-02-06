@@ -12,11 +12,11 @@ public enum ErrorCode {
     ALREADY_EXIST_MEMBER(400, "Already Exist Member"),
     NOT_THE_OWNER(400, "Not The Owner"),
     EXPIRED_TOKEN(401, "Expired Token"),
-    EXPIRED_REFRESHTOKEN(401, "Expired RefreshToken"),
     INVALID_TOKEN(401, "Invalid Token"),
     UNAUTHORIZED(401, "Unauthorized"),
     MEMBER_NOT_SAME(401,"Member Not Same"),
-    MEMBER_NOT_FOUND(404, "Member Not Found");
+    MEMBER_NOT_FOUND(404, "Member Not Found"),
+    INVALID_TOKEN_TYPE(401,"Invalid Token Type");
 
 
     private final int status;
