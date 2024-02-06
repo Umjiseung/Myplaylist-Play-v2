@@ -1,6 +1,9 @@
 package com.project.playlist.global.security.jwt;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
+import com.project.playlist.domain.auth.exception.ExpiredTokenException;
+import com.project.playlist.domain.auth.exception.InvalidTokenException;
+import com.project.playlist.global.security.exception.InvalidTokenTypeException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -41,7 +44,6 @@ public class TokenProvider {
         String authorities = authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.joining(","));
-
         long now = (new Date()).getTime();
 
         // Access Token 생성
@@ -96,20 +98,18 @@ public class TokenProvider {
             return true;
         } catch (SecurityException | MalformedJwtException e) {
             // JWT 서명이 유효하지 않거나 형식이 잘못된 경우를 처리합니다.
-            log.info("잘못된 JWT 서명입니다.");
+            throw new InvalidTokenException();
         } catch (ExpiredJwtException e) {
             // JWT가 만료된 경우를 처리합니다.
-            log.info("만료된 JWT 토큰입니다.");
+            throw new ExpiredTokenException();
         } catch (UnsupportedJwtException e) {
             // 지원되지 않는 JWT인 경우를 처리합니다.
             log.info("지원되지 않는 JWT 토큰입니다.");
+            throw new InvalidTokenTypeException();
         } catch (IllegalArgumentException e) {
             // JWT가 잘못된 구조로 생성된 경우를 처리합니다. (예: null 또는 빈 문자열)
-            log.info("JWT 토큰이 잘못되었습니다.");
+            throw new InvalidTokenException();
         }
-
-        // 어떤 예외가 발생하더라도 false를 반환합니다 (유효하지 않은 토큰).
-        return false;
     }
 
     private Claims parseClaims(String accessToken) {
