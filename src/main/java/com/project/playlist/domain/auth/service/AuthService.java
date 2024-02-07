@@ -7,7 +7,7 @@ public interface AuthService {
 
     MemberResponse signup(SignUpRequest signUpRequest);
     TokenDto login(LoginRequest signUpRequest);
-    TokenDto refresh(TokenRequestDto tokenRequestDto);
-    void logout();
+    TokenDto refresh(String refreshToken);
+    void logout(String refreshToken);
 
 }
