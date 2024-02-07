@@ -16,7 +16,8 @@ public enum ErrorCode {
     UNAUTHORIZED(401, "Unauthorized"),
     MEMBER_NOT_SAME(401,"Member Not Same"),
     MEMBER_NOT_FOUND(404, "Member Not Found"),
-    INVALID_TOKEN_TYPE(401,"Invalid Token Type");
+    INVALID_TOKEN_TYPE(401,"Invalid Token Type"),
+    PASSWORD_NOT_MATCH(400, "Password Not Match");
 
 
     private final int status;
