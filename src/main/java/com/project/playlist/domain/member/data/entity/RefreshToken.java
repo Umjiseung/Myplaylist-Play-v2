@@ -6,6 +6,8 @@ import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
+import java.util.UUID;
+
 
 @RedisHash(value = "refreshToken", timeToLive = 60)
 @Builder
@@ -13,19 +15,7 @@ import org.springframework.data.redis.core.RedisHash;
 public class RefreshToken {
 
     @Id
-    private String key;
-
-    private String value;
-
-    public void ExpireValue(String value) {
-        this.value = value;
-    }
-
-    public RefreshToken updateValue(String token) {
-        this.value = token;
-        return this;
-    }
-
-
-
+    private String refreshToken;
+    private Long memberId;
+    private Long expiredAt;
 }
