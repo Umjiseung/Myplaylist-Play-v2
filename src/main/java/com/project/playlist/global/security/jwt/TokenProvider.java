@@ -85,18 +85,12 @@ public class TokenProvider {
 
             // 성공하면 true를 반환합니다 (유효한 토큰).
             return true;
-        } catch (SecurityException | MalformedJwtException e) {
-            // JWT 서명이 유효하지 않거나 형식이 잘못된 경우를 처리합니다.
-            throw new InvalidTokenException();
         } catch (ExpiredJwtException e) {
-            // JWT가 만료된 경우를 처리합니다.
+
             throw new ExpiredTokenException();
-        } catch (UnsupportedJwtException e) {
-            // 지원되지 않는 JWT인 경우를 처리합니다.
+        } catch (Exception e) {
+
             throw new InvalidTokenTypeException();
-        } catch (IllegalArgumentException e) {
-            // JWT가 잘못된 구조로 생성된 경우를 처리합니다. (예: null 또는 빈 문자열)
-            throw new InvalidTokenException();
         }
     }
 
