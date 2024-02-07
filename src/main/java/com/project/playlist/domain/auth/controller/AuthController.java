@@ -30,15 +30,15 @@ public class AuthController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/refresh")
-    public ResponseEntity<TokenDto> refresh(@Valid @RequestBody TokenRequestDto requestDto) {
-        TokenDto result = authService.refresh(requestDto);
+    @PatchMapping
+    public ResponseEntity<TokenDto> refresh(@RequestHeader String refreshToken) {
+        TokenDto result = authService.refresh(refreshToken);
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/logout")
-    public ResponseEntity<Void> logout(){
-        authService.logout();
+    @DeleteMapping
+    public ResponseEntity<Void> logout(@RequestHeader String refreshToken){
+        authService.logout(refreshToken);
         return ResponseEntity.ok().build();
     }
 }
