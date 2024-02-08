@@ -6,6 +6,7 @@ import com.project.playlist.domain.auth.service.AuthService;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,12 +34,12 @@ public class AuthController {
     @PatchMapping
     public ResponseEntity<TokenDto> refresh(@RequestHeader String refreshToken) {
         TokenDto result = authService.refresh(refreshToken);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(result);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> logout(@RequestHeader String refreshToken){
         authService.logout(refreshToken);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }
