@@ -1,5 +1,6 @@
 package com.project.playlist.global.security.properties.config;
 
+import com.project.playlist.domain.member.data.entity.Authority;
 import com.project.playlist.global.security.exception.JwtAccessDeniedHandler;
 import com.project.playlist.global.security.properties.JwtAuthenticationEntryPoint;
 import com.project.playlist.global.security.jwt.TokenProvider;
@@ -53,11 +54,27 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST,"/auth/signup").permitAll()
-                .antMatchers(HttpMethod.POST,"/auth/login").permitAll()
 
-                .antMatchers(HttpMethod.GET,"/health").permitAll()
-                .anyRequest().authenticated()
+                // auth
+                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/auth").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/auth").permitAll()
+
+                // health
+                .antMatchers(HttpMethod.GET, "/health").permitAll()
+
+                // member
+                .antMatchers(HttpMethod.GET, "/member/{studentId}").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/member").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+
+                // playlist
+                .antMatchers(HttpMethod.POST, "/playlist").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/playlist/{id}").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/playlist/{category}").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/playlist").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.PATCH, "/playlist/{id}").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.DELETE, "/playlist/{id}").hasAnyAuthority(Authority.ROLE_USER.name(), Authority.ROLE_ADMIN.name())
 
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
