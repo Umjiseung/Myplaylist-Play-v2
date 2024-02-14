@@ -3,10 +3,12 @@ package com.project.playlist.domain.playlist.data.dto.response;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Getter
 @NoArgsConstructor
 public class MyPlaylistGetsResponse {
-    private Long id;
+    private UUID id;
     private String studentId;
     private String studentName;
     private String musicName;
@@ -14,7 +16,7 @@ public class MyPlaylistGetsResponse {
     private String musicContent;
 
 
-    public MyPlaylistGetsResponse(Long id, String studentId, String studentName, String musicName, String musicURL, String musicContent) {
+    public MyPlaylistGetsResponse(UUID id, String studentId, String studentName, String musicName, String musicURL, String musicContent) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;
