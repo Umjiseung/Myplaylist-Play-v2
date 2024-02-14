@@ -6,11 +6,13 @@ import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 
 @Getter
 @NoArgsConstructor
 public class PlayListGetsResponse {
-    private Long id;
+    private UUID id;
     private String studentId;
     private String studentName;
     private String musicName;
@@ -20,7 +22,7 @@ public class PlayListGetsResponse {
     private String date;
 
 
-    public PlayListGetsResponse(Long id, Member member, String musicName, String musicURL, String musicContent, Category category, String date) {
+    public PlayListGetsResponse(UUID id, Member member, String musicName, String musicURL, String musicContent, Category category, String date) {
         this.id = id;
         this.studentId = member.getStudentId();
         this.studentName = member.getStudentName();
