@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -18,7 +20,7 @@ public class MemberUtilsImpl implements MemberUtils {
     @Override
     public Member getCurrentMember() {
         String id = SecurityContextHolder.getContext().getAuthentication().getName();
-        return memberRepository.findById(Long.valueOf(id))
+        return memberRepository.findById(UUID.fromString(id))
                 .orElseThrow(MemberNotFoundException::new);
     }
 
