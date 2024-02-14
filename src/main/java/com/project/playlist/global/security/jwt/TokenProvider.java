@@ -21,6 +21,7 @@ import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,7 +40,7 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenDto generateTokenDto(Long id, Authority authority) {
+    public TokenDto generateTokenDto(UUID id, Authority authority) {
         return TokenDto.builder()
                 .grantType(BEARER_TYPE)
                 .accessToken(generateAccessToken(id, authority))
@@ -104,7 +105,7 @@ public class TokenProvider {
         }
     }
 
-    private String generateAccessToken(Long id, Authority authority) {
+    private String generateAccessToken(UUID id, Authority authority) {
         long now = (new Date()).getTime();
 
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
@@ -118,7 +119,7 @@ public class TokenProvider {
                 .compact();
     }
 
-    private String generateRefreshToken(Long id) {
+    private String generateRefreshToken(UUID id) {
         long now = (new Date()).getTime();
 
         Date refreshTokenExpiresIn = new Date(now + REFRESH_TOKEN_EXPIRE_TIME);
