@@ -5,6 +5,9 @@ import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import javax.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.UUID;
 
 
 @Entity
@@ -16,8 +19,10 @@ import lombok.*;
 public class PlayList{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column(nullable = false)
     private String musicName;
