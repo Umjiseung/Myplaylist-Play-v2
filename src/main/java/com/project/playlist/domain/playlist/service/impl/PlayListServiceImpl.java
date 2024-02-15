@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -58,7 +59,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Transactional(readOnly = true)
-    public PlayListInfoResponse playListGet(Long id) {
+    public PlayListInfoResponse playListGet(UUID id) {
         PlayList playList = playListRepository.findByIdOrIdNull(id);
         if (playList == null) {
             throw new PlaylistNotFound();
@@ -74,14 +75,14 @@ public class PlayListServiceImpl implements PlayListService {
         );
     }
 
-    public void playListDelete(Long id) {
+    public void playListDelete(UUID id) {
         Member userInfo = memberUtils.getCurrentMember();
         PlayList playListInfo = playListRepository.findByIdOrIdNull(id);
         playListUtils.validate(userInfo,playListInfo);
         playListRepository.deleteById(id);
     }
 
-    public void playListUpdate(Long id, PlayListUpdateRequest updateRequest) {
+    public void playListUpdate(UUID id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();
         PlayList playList = playListRepository.findById(id).orElseThrow(PlaylistNotFound::new);
         playListUtils.validate(member,playList);
