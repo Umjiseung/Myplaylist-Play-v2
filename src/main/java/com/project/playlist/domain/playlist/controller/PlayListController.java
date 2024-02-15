@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,19 +41,19 @@ public class PlayListController {
     }
 
     @GetMapping("/{category}/{id}")
-    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") Long id) {
+    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") UUID id) {
         PlayListInfoResponse result = playListService.playListGet(id);
         return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> musicDelete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> musicDelete(@PathVariable("id") UUID id) {
         playListService.playListDelete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> musicUpdate(@PathVariable("id") Long id, @Valid @RequestBody PlayListUpdateRequest updateRequest) {
+    public ResponseEntity<Void> musicUpdate(@PathVariable("id") UUID id, @Valid @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id,updateRequest);
         return ResponseEntity.noContent().build();
     }

@@ -9,13 +9,14 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResp
 import com.project.playlist.domain.playlist.data.entity.Category;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface PlayListService {
 
     void playListWrite(PlayListWriteRequest writeRequest);
     List<PlayListGetsResponse> playListOfGets(Category category);
-    PlayListInfoResponse playListGet(Long id);
-    void playListDelete(Long id);
-    void playListUpdate(Long id, PlayListUpdateRequest updateRequest);
+    PlayListInfoResponse playListGet(UUID id);
+    void playListDelete(UUID id);
+    void playListUpdate(UUID id, PlayListUpdateRequest updateRequest);
     List<PlayListGetsResponse> playlistAllGets();
 }
