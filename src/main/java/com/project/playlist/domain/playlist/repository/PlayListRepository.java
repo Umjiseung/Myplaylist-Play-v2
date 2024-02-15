@@ -7,16 +7,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public interface PlayListRepository extends JpaRepository<PlayList,Long> {
     List<PlayList> findByCategory(Category category);
-    PlayList findByCategoryAndId(Category category, Long id);
+    PlayList findByCategoryAndId(Category category, UUID id);
 
-    PlayList findByIdOrIdNull(Long id);
+    PlayList findByIdOrIdNull(UUID id);
 
     List<PlayList> findByDate(String date);
 
     List<PlayList> findPlayListsByMember(Member member);
     boolean existsByMemberAndMusicName(Member member, String musicName);
+
+    void deleteById(UUID id);
 }
