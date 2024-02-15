@@ -84,7 +84,7 @@ public class PlayListServiceImpl implements PlayListService {
 
     public void playListUpdate(UUID id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();
-        PlayList playList = playListRepository.findById(id).orElseThrow(PlaylistNotFound::new);
+        PlayList playList = playListRepository.findByIdOrIdNull(id);
         playListUtils.validate(member,playList);
         playList.update(updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
     }
