@@ -42,8 +42,8 @@ public class PlayList{
     @Column(nullable = false)
     private String date;
 
-    @ManyToOne
-    @JoinColumn(name = "memberId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member member;
 
 
