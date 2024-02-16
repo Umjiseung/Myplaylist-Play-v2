@@ -88,15 +88,7 @@ public class PlayListServiceImpl implements PlayListService {
         List<PlayListGetsResponse> responses = new ArrayList<>();
 
         for (PlayList playList: playLists) {
-            responses.add(new PlayListGetsResponse(
-                    playList.getId(),
-                    playList.getMember(),
-                    playList.getMusicName(),
-                    playList.getMusicURL(),
-                    playList.getMusicContent(),
-                    playList.getCategory(),
-                    playList.getDate()
-            ));
+            responses.add(new PlayListGetsResponse(playList));
         }
         return responses;
     }
