@@ -27,7 +27,6 @@ public class Member {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Column(nullable = false)
