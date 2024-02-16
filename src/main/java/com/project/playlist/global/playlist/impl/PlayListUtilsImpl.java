@@ -1,7 +1,7 @@
 package com.project.playlist.global.playlist.impl;
 
 import com.project.playlist.domain.member.data.entity.Member;
-import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
+import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.global.playlist.PlayListUtils;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class PlayListUtilsImpl implements PlayListUtils {
     private final PlayListRepository playListRepository;
 
-    public List<MyPlaylistGetsResponse> findPlaylistsByUserInfo(Member member) {
+    public List<PlayListGetsResponse> findPlaylistsByUserInfo(Member member) {
         List<PlayList> playLists = playListRepository.findPlayListsByMember(member);
         return getBoardTitle(playLists, member);
     }
@@ -29,6 +29,7 @@ public class PlayListUtilsImpl implements PlayListUtils {
     private List<MyPlaylistGetsResponse> getBoardTitle(List<PlayList> boardList, Member member){
         return boardList.stream().map(playList->
                         new MyPlaylistGetsResponse(playList.getId(), member,playList.getMusicName(), playList.getMusicURL(), playList.getMusicContent(), playList.getCategory(), playList.getMusicURL()))
+    private List<PlayListGetsResponse> getBoardTitle(List<PlayList> boardList, Member member){
                 .collect(Collectors.toList());
     }
 }
