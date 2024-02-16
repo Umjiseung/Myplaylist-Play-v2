@@ -22,4 +22,5 @@ public interface PlayListRepository extends JpaRepository<PlayList,Long> {
     boolean existsByMemberAndMusicName(Member member, String musicName);
 
     void deleteById(UUID id);
+    List<PlayList> findPlayListByMemberAndCategory(Member member, Category category);
 }
