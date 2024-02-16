@@ -35,13 +35,13 @@ public class PlayListController {
     }
 
     @GetMapping("/{category}")
-    public ResponseEntity<List<PlayListGetsResponse>> musicOfGets(@PathVariable("category") Category category) {
+    public ResponseEntity<List<PlayListGetsResponse>> musicCategoryOfGets(@PathVariable("category") Category category) {
         List<PlayListGetsResponse> result = playListService.playListOfGets(category);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PlayListInfoResponse> musicGet(@PathVariable("id") UUID id) {
+    public ResponseEntity<PlayListInfoResponse> musicInfo(@PathVariable("id") UUID id) {
         PlayListInfoResponse result = playListService.playListGet(id);
         return ResponseEntity.ok(result);
     }
