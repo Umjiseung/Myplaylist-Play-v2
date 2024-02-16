@@ -3,6 +3,7 @@ package com.project.playlist.domain.member.controller;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.service.MemberService;
 import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
+import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,12 @@ public class MemberController {
     @GetMapping
     public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist() {
         List<MyPlaylistGetsResponse> result = memberService.getMyPlaylist();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/my-playlist")
+    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylistCategory(@RequestParam Category category) {
+        List<MyPlaylistGetsResponse> result = memberService.getMyPlaylistCategory(category);
         return ResponseEntity.ok(result);
     }
 
