@@ -21,14 +21,14 @@ public enum ErrorCode {
     EXPIRED_TOKEN(401, "Expired Token"),
     INVALID_TOKEN(401, "Invalid Token"),
     UNAUTHORIZED(401, "Unauthorized"),
-    MEMBER_NOT_SAME(401,"Member Not Same"),
-    MEMBER_NOT_FOUND(404, "Member Not Found"),
     INVALID_TOKEN_TYPE(401,"Invalid Token Type"),
-    PASSWORD_NOT_MATCH(400, "Password Not Match");
 
     // auth
     PASSWORD_NOT_MATCH(400, "Password Not Match"),
 
+    // comment
+    COMMENT_NOT_FOUND(404, "Not Found Comment"),
+    COMMENT_NOT_SAME(401, "Comment_Not_Same");
 
     private final int status;
     private final String message;
