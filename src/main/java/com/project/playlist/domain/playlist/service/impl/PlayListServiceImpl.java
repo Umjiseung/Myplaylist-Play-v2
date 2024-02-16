@@ -1,5 +1,6 @@
 package com.project.playlist.domain.playlist.service.impl;
 
+import com.project.playlist.domain.comment.repository.CommentRepository;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
@@ -30,6 +31,7 @@ public class PlayListServiceImpl implements PlayListService {
     private final PlayListRepository playListRepository;
     private final MemberUtils memberUtils;
     private final PlayListUtils playListUtils;
+    private final CommentRepository commentRepository;
 
 
     public void playListWrite(PlayListWriteRequest writeRequest) {
@@ -64,15 +66,8 @@ public class PlayListServiceImpl implements PlayListService {
         if (playList == null) {
             throw new PlaylistNotFound();
         }
-        return new PlayListInfoResponse(
-                playList.getId(),
-                playList.getMember(),
-                playList.getMusicName(),
-                playList.getMusicURL(),
-                playList.getMusicContent(),
-                playList.getCategory(),
-                playList.getDate()
-        );
+
+        return new PlayListInfoResponse(playList);
     }
 
     public void playListDelete(UUID id) {
