@@ -1,11 +1,15 @@
 package com.project.playlist.domain.playlist.data.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.playlist.domain.comment.data.entiry.Comment;
 import com.project.playlist.domain.member.data.entity.Member;
 import javax.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -45,6 +49,11 @@ public class PlayList{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OrderBy("id asc")
+    private List<Comment> comments = new ArrayList<>();
 
 
     public void update(String musicName, String musicURL, String musicContent, Category category) {
