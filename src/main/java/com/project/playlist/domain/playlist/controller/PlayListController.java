@@ -40,7 +40,7 @@ public class PlayListController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("info/{id}")
     public ResponseEntity<PlayListInfoResponse> musicInfo(@PathVariable("id") UUID id) {
         PlayListInfoResponse result = playListService.playListGet(id);
         return ResponseEntity.ok(result);
