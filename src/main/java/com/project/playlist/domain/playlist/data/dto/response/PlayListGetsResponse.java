@@ -3,6 +3,7 @@ package com.project.playlist.domain.playlist.data.dto.response;
 
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.entity.Category;
+import com.project.playlist.domain.playlist.data.entity.PlayList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,14 +23,14 @@ public class PlayListGetsResponse {
     private String date;
 
 
-    public PlayListGetsResponse(UUID id, Member member, String musicName, String musicURL, String musicContent, Category category, String date) {
-        this.id = id;
-        this.studentId = member.getStudentId();
-        this.studentName = member.getStudentName();
-        this.musicName = musicName;
-        this.musicURL = musicURL;
-        this.musicContent = musicContent;
-        this.category = category;
-        this.date = date;
+    public PlayListGetsResponse(PlayList playList) {
+        this.id = playList.getId();
+        this.studentId = playList.getMember().getStudentId();
+        this.studentName = playList.getMember().getStudentName();
+        this.musicName = playList.getMusicName();
+        this.musicURL = playList.getMusicURL();
+        this.musicContent = playList.getMusicContent();
+        this.category = playList.getCategory();
+        this.date = playList.getDate();
     }
 }
