@@ -54,15 +54,7 @@ public class MemberServiceImpl implements MemberService {
         List<PlayListGetsResponse> responses = new ArrayList<>();
 
         for (PlayList playList: myPlayLists) {
-            responses.add(new MyPlaylistGetsResponse(
-                    playList.getId(),
-                    playList.getMember(),
-                    playList.getMusicName(),
-                    playList.getMusicURL(),
-                    playList.getMusicContent(),
-                    playList.getCategory(),
-                    playList.getDate()
-            ));
+            responses.add(new PlayListGetsResponse(playList));
         }
         return responses;
     }
