@@ -26,10 +26,8 @@ public class PlayListUtilsImpl implements PlayListUtils {
         if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
     }
 
-    private List<MyPlaylistGetsResponse> getBoardTitle(List<PlayList> boardList, Member member){
-        return boardList.stream().map(playList->
-                        new MyPlaylistGetsResponse(playList.getId(), member,playList.getMusicName(), playList.getMusicURL(), playList.getMusicContent(), playList.getCategory(), playList.getMusicURL()))
     private List<PlayListGetsResponse> getBoardTitle(List<PlayList> boardList, Member member){
+        return boardList.stream().map(PlayListGetsResponse::new)
                 .collect(Collectors.toList());
     }
 }
