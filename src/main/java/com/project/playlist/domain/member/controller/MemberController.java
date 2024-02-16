@@ -2,7 +2,7 @@ package com.project.playlist.domain.member.controller;
 
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.service.MemberService;
-import com.project.playlist.domain.playlist.data.dto.response.MyPlaylistGetsResponse;
+import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +23,14 @@ public class MemberController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylist() {
-        List<MyPlaylistGetsResponse> result = memberService.getMyPlaylist();
+    public ResponseEntity<List<PlayListGetsResponse>> getMyPlaylist() {
+        List<PlayListGetsResponse> result = memberService.getMyPlaylist();
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/my-playlist")
-    public ResponseEntity<List<MyPlaylistGetsResponse>> getMyPlaylistCategory(@RequestParam Category category) {
-        List<MyPlaylistGetsResponse> result = memberService.getMyPlaylistCategory(category);
+    public ResponseEntity<List<PlayListGetsResponse>> getMyPlaylistCategory(@RequestParam Category category) {
+        List<PlayListGetsResponse> result = memberService.getMyPlaylistCategory(category);
         return ResponseEntity.ok(result);
     }
 
