@@ -29,7 +29,6 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final PlayListRepository playListRepository;
     private final MemberUtils memberUtils;
-    private final MemberRepository memberRepository;
 
     public void writeComment(UUID id, WriteCommentRequestDto request) {
         Member member = memberUtils.getCurrentMember();
