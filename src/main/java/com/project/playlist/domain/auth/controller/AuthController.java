@@ -21,25 +21,22 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<MemberResponse> signup(@Valid @RequestBody SignUpRequest requestDto) {
-        MemberResponse result = authService.signup(requestDto);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.signup(requestDto));
     }
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@Valid @RequestBody LoginRequest requestDto) {
-        TokenDto result = authService.login(requestDto);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.status(HttpStatus.OK).body(authService.login(requestDto));
     }
 
     @PatchMapping
     public ResponseEntity<TokenDto> refresh(@RequestHeader String refreshToken) {
-        TokenDto result = authService.refresh(refreshToken);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(authService.refresh(refreshToken));
     }
 
     @DeleteMapping
     public ResponseEntity<Void> logout(@RequestHeader String refreshToken){
         authService.logout(refreshToken);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
