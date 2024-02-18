@@ -12,15 +12,9 @@ import java.util.UUID;
 @Repository
 public interface PlayListRepository extends JpaRepository<PlayList,Long> {
     List<PlayList> findByCategory(Category category);
-    PlayList findByCategoryAndId(Category category, UUID id);
-
     PlayList findByIdOrIdNull(UUID id);
-
-    List<PlayList> findByDate(String date);
-
     List<PlayList> findPlayListsByMember(Member member);
     boolean existsByMemberAndMusicName(Member member, String musicName);
-
     void deleteById(UUID id);
     List<PlayList> findPlayListByMemberAndCategory(Member member, Category category);
 }
