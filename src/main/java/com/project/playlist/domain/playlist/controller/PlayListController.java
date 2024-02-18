@@ -30,17 +30,17 @@ public class PlayListController {
 
     @GetMapping
     public ResponseEntity<List<PlayListGetsResponse>> musicAllGets() {
-        return ResponseEntity.ok(playListService.playlistAllGets());
+        return ResponseEntity.status(HttpStatus.OK).body(playListService.playlistAllGets());
     }
 
     @GetMapping("/{category}")
     public ResponseEntity<List<PlayListGetsResponse>> musicCategoryOfGets(@PathVariable("category") Category category) {
-        return ResponseEntity.ok(playListService.playListOfGets(category));
+        return ResponseEntity.status(HttpStatus.OK).body(playListService.playListOfGets(category));
     }
 
     @GetMapping("info/{id}")
     public ResponseEntity<PlayListInfoResponse> musicInfo(@PathVariable("id") UUID id) {
-        return ResponseEntity.ok(playListService.playListGet(id));
+        return ResponseEntity.status(HttpStatus.OK).body(playListService.playListGet(id));
     }
 
     @DeleteMapping("/{id}")
