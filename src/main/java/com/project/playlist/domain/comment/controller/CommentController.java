@@ -21,19 +21,19 @@ public class CommentController {
     @PostMapping("/{id}")
     public ResponseEntity<Void> writeComment(@PathVariable UUID id, @Valid @RequestBody WriteCommentRequestDto requestDto) {
         commentService.writeComment(id, requestDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PatchMapping("/{commentId}")
     public ResponseEntity<Void> updateComment(@PathVariable UUID commentId, @Valid @RequestBody UpdateCommentRequestDto requestDto) {
         commentService.updateComment(commentId, requestDto);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable UUID commentId) {
         commentService.deleteComment(commentId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.status(HttpStatus.RESET_CONTENT).build();
     }
 
 }
