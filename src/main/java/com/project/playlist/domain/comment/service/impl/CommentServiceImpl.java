@@ -8,12 +8,10 @@ import com.project.playlist.domain.comment.exception.CommentNotSameException;
 import com.project.playlist.domain.comment.repository.CommentRepository;
 import com.project.playlist.domain.comment.service.CommentService;
 import com.project.playlist.domain.member.data.entity.Member;
-import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.global.member.MemberUtils;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +20,6 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 @Transactional(rollbackFor = {Exception.class})
 public class CommentServiceImpl implements CommentService {
 
