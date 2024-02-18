@@ -15,7 +15,4 @@ public class LoginRequest {
     @NotBlank
     private String password;
 
-    public UsernamePasswordAuthenticationToken toAuthentication() {
-        return new UsernamePasswordAuthenticationToken(email, password);
-    }
 }
