@@ -64,11 +64,6 @@ public class Member {
         this.studentName = requestDto.getStudentName();
         this.password = requestDto.getPassword();
     }
-
-    public void UpdateMember(UpdatePasswordRequest request) {
-        this.password = request.getPassword();
-    }
-
 }
 
 
