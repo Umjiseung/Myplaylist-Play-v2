@@ -25,36 +25,33 @@ public class PlayListController {
     @PostMapping
     public ResponseEntity<Void> musicWrite(@Valid @RequestBody PlayListWriteRequest writeRequest) {
         playListService.playListWrite(writeRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
     public ResponseEntity<List<PlayListGetsResponse>> musicAllGets() {
-        List<PlayListGetsResponse> result = playListService.playlistAllGets();
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(playListService.playlistAllGets());
     }
 
     @GetMapping("/{category}")
     public ResponseEntity<List<PlayListGetsResponse>> musicCategoryOfGets(@PathVariable("category") Category category) {
-        List<PlayListGetsResponse> result = playListService.playListOfGets(category);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(playListService.playListOfGets(category));
     }
 
     @GetMapping("info/{id}")
     public ResponseEntity<PlayListInfoResponse> musicInfo(@PathVariable("id") UUID id) {
-        PlayListInfoResponse result = playListService.playListGet(id);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(playListService.playListGet(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> musicDelete(@PathVariable("id") UUID id) {
         playListService.playListDelete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.RESET_CONTENT).build();
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> musicUpdate(@PathVariable("id") UUID id, @Valid @RequestBody PlayListUpdateRequest updateRequest) {
         playListService.playListUpdate(id,updateRequest);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
