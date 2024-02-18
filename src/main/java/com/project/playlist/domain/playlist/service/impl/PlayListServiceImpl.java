@@ -8,7 +8,7 @@ import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsRespon
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
-import com.project.playlist.domain.playlist.exception.PlaylistNotFound;
+import com.project.playlist.domain.playlist.exception.PlaylistNotFoundException;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import com.project.playlist.global.member.MemberUtils;
@@ -55,7 +55,7 @@ public class PlayListServiceImpl implements PlayListService {
     public List<PlayListGetsResponse> playListOfGets(Category category) {
         List<PlayList> playLists = playListRepository.findByCategory(category);
         if (playLists == null) {
-            throw new PlaylistNotFound();
+            throw new PlaylistNotFoundException();
         }
         return playlistGets(playLists);
     }
@@ -64,7 +64,7 @@ public class PlayListServiceImpl implements PlayListService {
     public PlayListInfoResponse playListGet(UUID id) {
         PlayList playList = playListRepository.findByIdOrIdNull(id);
         if (playList == null) {
-            throw new PlaylistNotFound();
+            throw new PlaylistNotFoundException();
         }
 
         return new PlayListInfoResponse(playList);
