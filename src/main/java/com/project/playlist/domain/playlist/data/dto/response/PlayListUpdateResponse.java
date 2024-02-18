@@ -3,9 +3,7 @@ package com.project.playlist.domain.playlist.data.dto.response;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor

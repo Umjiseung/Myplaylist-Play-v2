@@ -1,7 +1,6 @@
 package com.project.playlist.domain.playlist.data.dto.response;
 
 
-import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.entity.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import lombok.Getter;

@@ -1,6 +1,5 @@
 package com.project.playlist.domain.playlist.service.impl;
 
-import com.project.playlist.domain.comment.repository.CommentRepository;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateRequest;
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
