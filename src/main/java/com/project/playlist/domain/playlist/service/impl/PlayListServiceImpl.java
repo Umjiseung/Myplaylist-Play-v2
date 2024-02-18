@@ -30,7 +30,6 @@ public class PlayListServiceImpl implements PlayListService {
     private final PlayListRepository playListRepository;
     private final MemberUtils memberUtils;
     private final PlayListUtils playListUtils;
-    private final CommentRepository commentRepository;
 
 
     public void playListWrite(PlayListWriteRequest writeRequest) {
