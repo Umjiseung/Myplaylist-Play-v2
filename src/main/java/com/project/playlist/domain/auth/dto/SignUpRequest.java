@@ -1,6 +1,6 @@
 package com.project.playlist.domain.auth.dto;
 
-import com.project.playlist.domain.member.data.entity.Authority;
+import com.project.playlist.domain.member.data.entity.enums.Authority;
 import com.project.playlist.domain.member.data.entity.Member;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

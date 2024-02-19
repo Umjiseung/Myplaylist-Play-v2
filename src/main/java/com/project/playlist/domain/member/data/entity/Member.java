@@ -2,6 +2,7 @@ package com.project.playlist.domain.member.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.auth.dto.SignUpRequest;
+import com.project.playlist.domain.member.data.entity.enums.Authority;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;

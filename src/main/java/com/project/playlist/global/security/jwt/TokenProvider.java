@@ -2,8 +2,7 @@ package com.project.playlist.global.security.jwt;
 
 import com.project.playlist.domain.auth.dto.TokenDto;
 import com.project.playlist.domain.auth.exception.ExpiredTokenException;
-import com.project.playlist.domain.auth.exception.InvalidTokenException;
-import com.project.playlist.domain.member.data.entity.Authority;
+import com.project.playlist.domain.member.data.entity.enums.Authority;
 import com.project.playlist.global.security.exception.InvalidTokenTypeException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
