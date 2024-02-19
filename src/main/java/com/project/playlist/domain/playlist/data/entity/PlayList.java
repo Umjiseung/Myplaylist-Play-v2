@@ -50,7 +50,7 @@ public class PlayList{
     private Member member;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @OrderBy("id asc")
     private List<Comment> comments = new ArrayList<>();
 
