@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.comment.data.entiry.Comment;
 import com.project.playlist.domain.member.data.entity.Member;
 import javax.persistence.*;
+
+import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 

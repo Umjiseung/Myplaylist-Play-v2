@@ -7,7 +7,7 @@ import com.project.playlist.domain.member.exception.MemberNotSameException;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.domain.member.service.MemberService;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
-import com.project.playlist.domain.playlist.data.entity.Category;
+import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.global.member.MemberUtils;

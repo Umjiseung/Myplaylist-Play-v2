@@ -5,8 +5,7 @@ import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateReque
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
-import com.project.playlist.domain.playlist.data.dto.response.PlayListUpdateResponse;
-import com.project.playlist.domain.playlist.data.entity.Category;
+import com.project.playlist.domain.playlist.data.entity.enums.Category;
 
 import java.util.List;
 import java.util.UUID;

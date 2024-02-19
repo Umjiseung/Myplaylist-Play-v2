@@ -1,6 +1,6 @@
 package com.project.playlist.domain.playlist.data.dto.request;
 
-import com.project.playlist.domain.playlist.data.entity.Category;
+import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 

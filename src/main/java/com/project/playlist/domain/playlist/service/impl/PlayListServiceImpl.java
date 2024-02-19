@@ -5,7 +5,7 @@ import com.project.playlist.domain.playlist.data.dto.request.PlayListUpdateReque
 import com.project.playlist.domain.playlist.data.dto.request.PlayListWriteRequest;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListInfoResponse;
-import com.project.playlist.domain.playlist.data.entity.Category;
+import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.exception.PlaylistNotFoundException;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;

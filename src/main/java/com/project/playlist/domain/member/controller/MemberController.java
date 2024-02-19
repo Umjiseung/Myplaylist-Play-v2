@@ -3,7 +3,7 @@ package com.project.playlist.domain.member.controller;
 import com.project.playlist.domain.member.data.dto.response.MemberResponse;
 import com.project.playlist.domain.member.service.MemberService;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
-import com.project.playlist.domain.playlist.data.entity.Category;
+import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
