@@ -24,14 +24,14 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PatchMapping("/{commentId}")
-    public ResponseEntity<Void> updateComment(@PathVariable UUID commentId, @Valid @RequestBody UpdateCommentRequestDto requestDto) {
+    @PatchMapping("/{comment_id}")
+    public ResponseEntity<Void> updateComment(@PathVariable("comment_id") UUID commentId, @Valid @RequestBody UpdateCommentRequestDto requestDto) {
         commentService.updateComment(commentId, requestDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable UUID commentId) {
+    @DeleteMapping("/{comment_id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable("comment_id") UUID commentId) {
         commentService.deleteComment(commentId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
