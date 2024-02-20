@@ -17,8 +17,8 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
 
-    @GetMapping("/{studentId}")
-    public ResponseEntity<MemberResponse> findMemberInfo(@PathVariable String studentId) {
+    @GetMapping("/{student_id}")
+    public ResponseEntity<MemberResponse> findMemberInfo(@PathVariable("student_id") String studentId) {
         return ResponseEntity.status(HttpStatus.OK).body(memberService.myMemberInfo(studentId));
     }
 
