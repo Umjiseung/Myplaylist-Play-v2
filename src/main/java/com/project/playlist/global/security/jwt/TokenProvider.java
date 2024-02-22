@@ -1,6 +1,6 @@
 package com.project.playlist.global.security.jwt;
 
-import com.project.playlist.domain.auth.dto.TokenDto;
+import com.project.playlist.domain.auth.presentation.dto.TokenDto;
 import com.project.playlist.domain.auth.exception.ExpiredTokenException;
 import com.project.playlist.domain.member.data.entity.enums.Authority;
 import com.project.playlist.global.security.exception.InvalidTokenTypeException;

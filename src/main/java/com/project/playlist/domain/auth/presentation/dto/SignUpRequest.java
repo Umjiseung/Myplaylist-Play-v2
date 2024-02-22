@@ -1,4 +1,4 @@
-package com.project.playlist.domain.auth.dto;
+package com.project.playlist.domain.auth.presentation.dto;
 
 import com.project.playlist.domain.member.data.entity.enums.Authority;
 import com.project.playlist.domain.member.data.entity.Member;

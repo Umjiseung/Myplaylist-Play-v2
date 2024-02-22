@@ -1,4 +1,4 @@
-package com.project.playlist.domain.auth.dto;
+package com.project.playlist.domain.auth.presentation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
