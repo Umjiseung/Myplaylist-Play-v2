@@ -18,7 +18,7 @@ public class PlayListUtilsImpl implements PlayListUtils {
 
     public List<PlayListGetsResponse> findPlaylistsByUserInfo(Member member) {
         List<PlayList> playLists = playListRepository.findPlayListsByMember(member);
-        return getBoardTitle(playLists, member);
+        return getBoardTitle(playLists);
     }
 
     public void validate(Member userInfo, PlayList playlistInfo) {
@@ -26,7 +26,7 @@ public class PlayListUtilsImpl implements PlayListUtils {
         if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
     }
 
-    private List<PlayListGetsResponse> getBoardTitle(List<PlayList> boardList, Member member){
+    private List<PlayListGetsResponse> getBoardTitle(List<PlayList> boardList){
         return boardList.stream().map(PlayListGetsResponse::new)
                 .collect(Collectors.toList());
     }
