@@ -1,4 +1,4 @@
-package com.project.playlist.domain.playlist.data.entity.enums;
+package com.project.playlist.domain.playlist.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

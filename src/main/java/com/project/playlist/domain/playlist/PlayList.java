@@ -1,4 +1,4 @@
-package com.project.playlist.domain.playlist.data.entity;
+package com.project.playlist.domain.playlist;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,7 +6,7 @@ import com.project.playlist.domain.comment.Comment;
 import com.project.playlist.domain.member.Member;
 import javax.persistence.*;
 
-import com.project.playlist.domain.playlist.data.entity.enums.Category;
+import com.project.playlist.domain.playlist.enums.Category;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 

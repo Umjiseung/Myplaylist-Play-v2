@@ -3,7 +3,7 @@ package com.project.playlist.domain.member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.auth.presentation.dto.SignUpRequest;
 import com.project.playlist.domain.member.enums.Authority;
-import com.project.playlist.domain.playlist.data.entity.PlayList;
+import com.project.playlist.domain.playlist.PlayList;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 

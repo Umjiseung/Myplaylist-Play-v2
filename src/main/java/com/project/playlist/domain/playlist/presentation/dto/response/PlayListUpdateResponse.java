@@ -1,6 +1,6 @@
-package com.project.playlist.domain.playlist.data.dto.response;
+package com.project.playlist.domain.playlist.presentation.dto.response;
 
-import com.project.playlist.domain.playlist.data.entity.enums.Category;
+import com.project.playlist.domain.playlist.enums.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
