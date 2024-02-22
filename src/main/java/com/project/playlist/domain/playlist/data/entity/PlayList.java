@@ -2,7 +2,7 @@ package com.project.playlist.domain.playlist.data.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.playlist.domain.comment.data.entiry.Comment;
+import com.project.playlist.domain.comment.Comment;
 import com.project.playlist.domain.member.data.entity.Member;
 import javax.persistence.*;
 

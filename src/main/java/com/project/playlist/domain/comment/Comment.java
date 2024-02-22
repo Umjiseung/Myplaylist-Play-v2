@@ -1,4 +1,4 @@
-package com.project.playlist.domain.comment.data.entiry;
+package com.project.playlist.domain.comment;
 
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.entity.PlayList;

@@ -1,8 +1,8 @@
 package com.project.playlist.domain.comment.service.impl;
 
-import com.project.playlist.domain.comment.data.dto.request.UpdateCommentRequestDto;
-import com.project.playlist.domain.comment.data.dto.request.WriteCommentRequestDto;
-import com.project.playlist.domain.comment.data.entiry.Comment;
+import com.project.playlist.domain.comment.presentation.dto.request.UpdateCommentRequestDto;
+import com.project.playlist.domain.comment.presentation.dto.request.WriteCommentRequestDto;
+import com.project.playlist.domain.comment.Comment;
 import com.project.playlist.domain.comment.exception.CommentNotFoundException;
 import com.project.playlist.domain.comment.exception.CommentNotSameException;
 import com.project.playlist.domain.comment.repository.CommentRepository;

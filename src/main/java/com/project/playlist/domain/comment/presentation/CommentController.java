@@ -1,7 +1,7 @@
-package com.project.playlist.domain.comment.controller;
+package com.project.playlist.domain.comment.presentation;
 
-import com.project.playlist.domain.comment.data.dto.request.UpdateCommentRequestDto;
-import com.project.playlist.domain.comment.data.dto.request.WriteCommentRequestDto;
+import com.project.playlist.domain.comment.presentation.dto.request.UpdateCommentRequestDto;
+import com.project.playlist.domain.comment.presentation.dto.request.WriteCommentRequestDto;
 import com.project.playlist.domain.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

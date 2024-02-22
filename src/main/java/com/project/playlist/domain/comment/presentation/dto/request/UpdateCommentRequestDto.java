@@ -1,6 +1,6 @@
-package com.project.playlist.domain.comment.data.dto.request;
+package com.project.playlist.domain.comment.presentation.dto.request;
 
-import com.project.playlist.domain.comment.data.entiry.Comment;
+import com.project.playlist.domain.comment.Comment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
