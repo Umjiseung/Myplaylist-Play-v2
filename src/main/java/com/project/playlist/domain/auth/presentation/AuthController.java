@@ -1,6 +1,5 @@
 package com.project.playlist.domain.auth.presentation;
 
-import com.project.playlist.domain.auth.dto.*;
 import com.project.playlist.domain.auth.presentation.dto.LoginRequest;
 import com.project.playlist.domain.auth.presentation.dto.SignUpRequest;
 import com.project.playlist.domain.auth.presentation.dto.TokenDto;

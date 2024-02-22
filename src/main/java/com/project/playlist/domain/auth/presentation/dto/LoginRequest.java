@@ -2,7 +2,6 @@ package com.project.playlist.domain.auth.presentation.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.NotBlank;
 
