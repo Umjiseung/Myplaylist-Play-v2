@@ -11,7 +11,7 @@ import com.project.playlist.domain.playlist.exception.PlaylistNotFoundException;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.domain.playlist.service.PlayListService;
 import com.project.playlist.global.member.MemberUtils;
-import com.project.playlist.global.playlist.PlayListUtils;
+import com.project.playlist.domain.playlist.utils.PlayListUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

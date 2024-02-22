@@ -1,11 +1,11 @@
-package com.project.playlist.global.playlist.impl;
+package com.project.playlist.domain.playlist.utils.impl;
 
 import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.playlist.presentation.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.PlayList;
 import com.project.playlist.domain.playlist.exception.PlaylistNotFoundException;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
-import com.project.playlist.global.playlist.PlayListUtils;
+import com.project.playlist.domain.playlist.utils.PlayListUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

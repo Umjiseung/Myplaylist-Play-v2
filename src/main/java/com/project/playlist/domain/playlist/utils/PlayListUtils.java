@@ -1,4 +1,4 @@
-package com.project.playlist.global.playlist;
+package com.project.playlist.domain.playlist.utils;
 
 import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.playlist.presentation.dto.response.PlayListGetsResponse;
