@@ -1,4 +1,4 @@
-package com.project.playlist.domain.member.data.entity;
+package com.project.playlist.domain.member;
 
 
 import lombok.Builder;

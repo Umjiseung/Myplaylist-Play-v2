@@ -1,7 +1,7 @@
 package com.project.playlist.domain.member.service.impl;
 
-import com.project.playlist.domain.member.data.dto.response.MemberResponse;
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.presentation.dto.response.MemberResponse;
+import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.member.exception.MemberNotFoundException;
 import com.project.playlist.domain.member.exception.MemberNotSameException;
 import com.project.playlist.domain.member.repository.MemberRepository;

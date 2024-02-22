@@ -1,6 +1,6 @@
 package com.project.playlist.global.security.properties.config;
 
-import com.project.playlist.domain.member.data.entity.enums.Authority;
+import com.project.playlist.domain.member.enums.Authority;
 import com.project.playlist.global.security.exception.JwtAccessDeniedHandler;
 import com.project.playlist.global.security.properties.JwtAuthenticationEntryPoint;
 import com.project.playlist.global.security.jwt.TokenProvider;

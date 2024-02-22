@@ -1,6 +1,6 @@
 package com.project.playlist.domain.playlist.repository;
 
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import org.springframework.data.jpa.repository.JpaRepository;

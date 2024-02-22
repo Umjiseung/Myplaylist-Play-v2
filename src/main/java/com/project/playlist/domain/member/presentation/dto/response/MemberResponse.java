@@ -1,6 +1,6 @@
-package com.project.playlist.domain.member.data.dto.response;
+package com.project.playlist.domain.member.presentation.dto.response;
 
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

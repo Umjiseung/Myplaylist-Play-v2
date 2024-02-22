@@ -1,6 +1,6 @@
 package com.project.playlist.global.member.impl;
 
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.member.exception.MemberNotFoundException;
 import com.project.playlist.domain.member.repository.MemberRepository;
 import com.project.playlist.global.member.MemberUtils;

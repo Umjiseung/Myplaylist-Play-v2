@@ -1,7 +1,7 @@
 package com.project.playlist.domain.comment.presentation.dto.request;
 
 import com.project.playlist.domain.comment.Comment;
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

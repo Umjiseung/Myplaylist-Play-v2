@@ -1,7 +1,7 @@
 package com.project.playlist.domain.playlist.data.dto.request;
 
 
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.playlist.data.entity.enums.Category;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

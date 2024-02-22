@@ -3,7 +3,7 @@ package com.project.playlist.domain.playlist.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.playlist.domain.comment.Comment;
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import javax.persistence.*;
 
 import com.project.playlist.domain.playlist.data.entity.enums.Category;

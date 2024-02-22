@@ -1,4 +1,4 @@
-package com.project.playlist.domain.member.data.dto.request;
+package com.project.playlist.domain.member.presentation.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -7,7 +7,7 @@ import com.project.playlist.domain.comment.exception.CommentNotFoundException;
 import com.project.playlist.domain.comment.exception.CommentNotSameException;
 import com.project.playlist.domain.comment.repository.CommentRepository;
 import com.project.playlist.domain.comment.service.CommentService;
-import com.project.playlist.domain.member.data.entity.Member;
+import com.project.playlist.domain.member.Member;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.global.member.MemberUtils;

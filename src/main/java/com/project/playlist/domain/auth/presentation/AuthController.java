@@ -5,7 +5,7 @@ import com.project.playlist.domain.auth.presentation.dto.SignUpRequest;
 import com.project.playlist.domain.auth.presentation.dto.TokenDto;
 import com.project.playlist.domain.auth.service.AuthService;
 
-import com.project.playlist.domain.member.data.dto.response.MemberResponse;
+import com.project.playlist.domain.member.presentation.dto.response.MemberResponse;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
