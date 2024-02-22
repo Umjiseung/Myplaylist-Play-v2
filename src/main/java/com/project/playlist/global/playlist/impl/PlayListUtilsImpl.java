@@ -3,6 +3,7 @@ package com.project.playlist.global.playlist.impl;
 import com.project.playlist.domain.member.data.entity.Member;
 import com.project.playlist.domain.playlist.data.dto.response.PlayListGetsResponse;
 import com.project.playlist.domain.playlist.data.entity.PlayList;
+import com.project.playlist.domain.playlist.exception.PlaylistNotFoundException;
 import com.project.playlist.domain.playlist.repository.PlayListRepository;
 import com.project.playlist.global.playlist.PlayListUtils;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class PlayListUtilsImpl implements PlayListUtils {
 
     public void validate(Member userInfo, PlayList playlistInfo) {
         boolean checkBoardOwner = playListRepository.existsByMemberAndMusicName(userInfo,playlistInfo.getMusicName());
-        if(!checkBoardOwner) throw new IllegalArgumentException("유효한 플리가 없습니다.");
+        if(!checkBoardOwner) throw new PlaylistNotFoundException();
     }
 
     private List<PlayListGetsResponse> getBoardTitle(List<PlayList> playLists){
