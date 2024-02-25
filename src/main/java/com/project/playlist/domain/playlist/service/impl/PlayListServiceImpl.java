@@ -38,8 +38,7 @@ public class PlayListServiceImpl implements PlayListService {
         Date time = new Date();
         String result = dateFormat.format(time);
 
-        PlayList playList = writeRequest.toEntity(userInfo);
-        playList.insertDate(result);
+        PlayList playList = writeRequest.toEntity(userInfo, result);
         playListRepository.save(playList);
     }
 
