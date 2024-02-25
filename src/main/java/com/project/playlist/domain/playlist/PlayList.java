@@ -55,16 +55,4 @@ public class PlayList{
     @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @OrderBy("id asc")
     private List<Comment> comments = new ArrayList<>();
-
-
-    public void update(String musicName, String musicURL, String musicContent, Category category) {
-        this.musicName = musicName;
-        this.musicURL = musicURL;
-        this.musicContent = musicContent;
-        this.category = category;
-    }
-
-    public void insertDate(String date) {
-        this.date = date;
-    }
 }
