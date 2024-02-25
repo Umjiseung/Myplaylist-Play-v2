@@ -50,21 +50,6 @@ public class Member {
     @OneToMany(mappedBy = "member")
     @Column(nullable = false)
     List<PlayList> playList = new ArrayList<>();
-
-    public Member(String email ,String studentId, String studentName, String password, Authority authority) {
-        this.email = email;
-        this.studentId = studentId;
-        this.studentName = studentName;
-        this.password = password;
-        this.authority = authority;
-    }
-
-    public Member(SignUpRequest requestDto) {
-        this.email = requestDto.getEmail();
-        this.studentId = requestDto.getStudentId();
-        this.studentName = requestDto.getStudentName();
-        this.password = requestDto.getPassword();
-    }
 }
 
 
