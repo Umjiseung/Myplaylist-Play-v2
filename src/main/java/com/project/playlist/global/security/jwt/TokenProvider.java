@@ -3,6 +3,8 @@ package com.project.playlist.global.security.jwt;
 import com.project.playlist.domain.auth.presentation.dto.TokenDto;
 import com.project.playlist.domain.auth.exception.ExpiredTokenException;
 import com.project.playlist.domain.member.enums.Authority;
+import com.project.playlist.global.error.exception.ErrorCode;
+import com.project.playlist.global.error.exception.GlobalException;
 import com.project.playlist.global.security.exception.InvalidTokenTypeException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -87,10 +89,10 @@ public class TokenProvider {
             return true;
         } catch (ExpiredJwtException e) {
 
-            throw new ExpiredTokenException();
+            throw new GlobalException(ErrorCode.EXPIRED_TOKEN);
         } catch (Exception e) {
 
-            throw new InvalidTokenTypeException();
+            throw new GlobalException(ErrorCode.INVALID_TOKEN_TYPE);
         }
     }
 
