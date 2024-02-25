@@ -25,13 +25,14 @@ public class PlayListWriteRequest {
     @NotNull
     private Category category;
 
-    public PlayList toEntity(Member member) {
+    public PlayList toEntity(Member member, String date) {
         return PlayList.builder()
                 .member(member)
                 .musicName(musicName)
                 .musicContent(musicContent)
                 .musicURL(musicURL)
                 .category(category)
+                .date(date)
                 .build();
     }
 
