@@ -52,20 +52,17 @@ public class TokenProvider {
     }
 
     public Authentication getAuthentication(String accessToken) {
-        // 토큰 복호화
         Claims claims = parseClaims(accessToken);
 
         if (claims.get(AUTHORITIES_KEY) == null) {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
 
-        // 클레임에서 권한 정보 가져오기
         Collection<? extends GrantedAuthority> authorities =
             Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);
 
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
@@ -82,10 +79,8 @@ public class TokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            // JWT를 파싱하고 유효성을 검사를 시도합니다.
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
 
-            // 성공하면 true를 반환합니다 (유효한 토큰).
             return true;
         } catch (ExpiredJwtException e) {
 
@@ -98,10 +93,8 @@ public class TokenProvider {
 
     private Claims parseClaims(String accessToken) {
         try {
-            // 주어진 액세스 토큰을 파싱하여 클레임을 추출합니다.
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
         } catch (ExpiredJwtException e) {
-            // 토큰이 만료된 경우, 만료된 토큰에서 클레임을 추출하여 반환합니다.
             return e.getClaims();
         }
     }
