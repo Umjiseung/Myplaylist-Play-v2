@@ -77,8 +77,8 @@ public class PlayListServiceImpl implements PlayListService {
     public void playListUpdate(UUID id, PlayListUpdateRequest updateRequest) {
         Member member = memberUtils.getCurrentMember();
         PlayList playList = playListRepository.findByIdOrIdNull(id);
-        playListUtils.validate(member,playList);
-        playList.update(updateRequest.getMusicName(), updateRequest.getMusicURL(), updateRequest.getMusicContent(), updateRequest.getCategory());
+        playListUtils.validate(member, playList);
+        playListRepository.save(updateRequest.toEntity(playList));
     }
 
     private List<PlayListGetsResponse> playlistGets(List<PlayList> playLists) {
