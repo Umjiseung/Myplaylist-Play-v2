@@ -1,4 +1,4 @@
-package com.project.playlist.global.security.properties;
+package com.project.playlist.global.security.handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

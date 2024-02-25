@@ -1,4 +1,4 @@
-package com.project.playlist.global.security.exception;
+package com.project.playlist.global.security.handler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
