@@ -1,4 +1,4 @@
-package com.project.playlist.global.security.properties.config;
+package com.project.playlist.global.security.config;
 
 import com.project.playlist.domain.member.enums.Authority;
 import com.project.playlist.global.security.handler.JwtAccessDeniedHandler;

@@ -1,4 +1,4 @@
-package com.project.playlist.global.security.properties.config;
+package com.project.playlist.global.security.config;
 
 import com.project.playlist.global.security.jwt.TokenProvider;
 import com.project.playlist.global.security.filter.JwtFilter;
