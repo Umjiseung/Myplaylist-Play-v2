@@ -53,6 +53,6 @@ public class PlayList{
 
     @JsonIgnore
     @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    @OrderBy("id asc")
+    @OrderBy("modifiedDate asc")
     private List<Comment> comments = new ArrayList<>();
 }
